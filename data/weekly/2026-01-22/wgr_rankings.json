@@ -1,0 +1,3209 @@
+{
+  "id": "967df347-38ab-40bf-b773-f9b4c888efde",
+  "name": "World Golf Ranking",
+  "alias": "WGR",
+  "status": "created",
+  "season": 2026,
+  "players": [
+    {
+      "id": "6db3e736-d86d-4181-aa3b-651b8c1bfdc1",
+      "first_name": "Scottie",
+      "last_name": "Scheffler",
+      "country": "UNITED STATES",
+      "rank": 1,
+      "prior_rank": 1,
+      "abbr_name": "S.Scheffler",
+      "statistics": {
+        "events_played": 41,
+        "avg_points": 15.99,
+        "points": 655.4468,
+        "points_lost": -29.509,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "da226913-b804-48de-adbf-96e956eb75ac",
+      "first_name": "Rory",
+      "last_name": "McIlroy",
+      "country": "NORTHERN IRELAND",
+      "rank": 2,
+      "prior_rank": 2,
+      "abbr_name": "R.McIlroy",
+      "statistics": {
+        "events_played": 47,
+        "avg_points": 8.94,
+        "points": 419.9735,
+        "points_lost": -16.7449,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "6577ec3d-9e78-4979-8f4c-01c465fa6b1d",
+      "first_name": "Tommy",
+      "last_name": "Fleetwood",
+      "country": "ENGLAND",
+      "rank": 3,
+      "prior_rank": 3,
+      "abbr_name": "T.Fleetwood",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 5.49,
+        "points": 274.2992,
+        "points_lost": -8.699,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "26dc0bda-b9a8-4303-9c1c-ddecda3817d2",
+      "first_name": "Xander",
+      "last_name": "Schauffele",
+      "country": "UNITED STATES",
+      "rank": 4,
+      "prior_rank": 4,
+      "abbr_name": "X.Schauffele",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 4.86,
+        "points": 194.311,
+        "points_lost": -11.7689,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "d8a9ce2c-9bdf-4e54-b53e-58692a1f4d59",
+      "first_name": "Russell",
+      "last_name": "Henley",
+      "country": "UNITED STATES",
+      "rank": 5,
+      "prior_rank": 5,
+      "abbr_name": "R.Henley",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 4.72,
+        "points": 188.6558,
+        "points_lost": -7.7012,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "7fdc75ca-2c33-49b8-8738-a8ea06fb51ed",
+      "first_name": "J.J.",
+      "last_name": "Spaun",
+      "country": "UNITED STATES",
+      "rank": 6,
+      "prior_rank": 6,
+      "abbr_name": "J.Spaun",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 4.63,
+        "points": 240.8517,
+        "points_lost": -7.1853,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "99f32016-2a65-4652-8662-e810556ca542",
+      "first_name": "Robert",
+      "last_name": "MacIntyre",
+      "country": "SCOTLAND",
+      "rank": 7,
+      "prior_rank": 7,
+      "abbr_name": "R.MacIntyre",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 4.48,
+        "points": 232.9692,
+        "points_lost": -8.3719,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "d8126bf8-8558-44a2-a473-8ce001de7471",
+      "first_name": "Ben",
+      "last_name": "Griffin",
+      "country": "UNITED STATES",
+      "rank": 8,
+      "prior_rank": 8,
+      "abbr_name": "B.Griffin",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 4.42,
+        "points": 230.0726,
+        "points_lost": -6.2762,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "2094fa02-6411-48df-a717-aa1a7228d645",
+      "first_name": "Justin",
+      "last_name": "Thomas",
+      "country": "UNITED STATES",
+      "rank": 9,
+      "prior_rank": 9,
+      "abbr_name": "J.Thomas",
+      "statistics": {
+        "events_played": 42,
+        "avg_points": 4.32,
+        "points": 181.6304,
+        "points_lost": -7.5217,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "c11235f6-0f62-4afb-93e7-952dc0554649",
+      "first_name": "Justin",
+      "last_name": "Rose",
+      "country": "ENGLAND",
+      "rank": 10,
+      "prior_rank": 10,
+      "abbr_name": "J.Rose",
+      "statistics": {
+        "events_played": 43,
+        "avg_points": 4.07,
+        "points": 174.8275,
+        "points_lost": -5.9957,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "7e11058b-ce7b-4efa-8963-2e48c683ff5b",
+      "first_name": "Harris",
+      "last_name": "English",
+      "country": "UNITED STATES",
+      "rank": 11,
+      "prior_rank": 13,
+      "abbr_name": "H.English",
+      "statistics": {
+        "events_played": 48,
+        "avg_points": 3.83,
+        "points": 183.7168,
+        "points_lost": -6.2952,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "502087cf-2c40-4e1d-9649-4f4e6d7d7778",
+      "first_name": "Sepp",
+      "last_name": "Straka",
+      "country": "AUSTRIA",
+      "rank": 12,
+      "prior_rank": 11,
+      "abbr_name": "S.Straka",
+      "statistics": {
+        "events_played": 48,
+        "avg_points": 3.82,
+        "points": 183.402,
+        "points_lost": -6.6896,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "88bc83d5-45d0-4be3-9dd1-1af5282a718e",
+      "first_name": "Alex",
+      "last_name": "Noren",
+      "country": "SWEDEN",
+      "rank": 13,
+      "prior_rank": 12,
+      "abbr_name": "A.Noren",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 3.79,
+        "points": 151.5883,
+        "points_lost": -4.6948,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "0b5d3fd6-e3ec-4efd-8743-60db44c87425",
+      "first_name": "Keegan",
+      "last_name": "Bradley",
+      "country": "UNITED STATES",
+      "rank": 14,
+      "prior_rank": 15,
+      "abbr_name": "K.Bradley",
+      "statistics": {
+        "events_played": 43,
+        "avg_points": 3.71,
+        "points": 159.6534,
+        "points_lost": -6.787,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "965d925a-5ecd-409c-beb7-a34ef1ca52f3",
+      "first_name": "Viktor",
+      "last_name": "Hovland",
+      "country": "NORWAY",
+      "rank": 15,
+      "prior_rank": 14,
+      "abbr_name": "V.Hovland",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 3.64,
+        "points": 145.6929,
+        "points_lost": -5.4963,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "d45bcf4a-5803-4b0b-ab6c-6427a76cecf7",
+      "first_name": "Hideki",
+      "last_name": "Matsuyama",
+      "country": "JAPAN",
+      "rank": 16,
+      "prior_rank": 17,
+      "abbr_name": "H.Matsuyama",
+      "statistics": {
+        "events_played": 47,
+        "avg_points": 3.63,
+        "points": 170.5005,
+        "points_lost": -8.0252,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "f0ff1391-fc29-41bf-b46a-cd5ef9f63ad9",
+      "first_name": "Collin",
+      "last_name": "Morikawa",
+      "country": "UNITED STATES",
+      "rank": 17,
+      "prior_rank": 16,
+      "abbr_name": "C.Morikawa",
+      "statistics": {
+        "events_played": 41,
+        "avg_points": 3.54,
+        "points": 145.3283,
+        "points_lost": -8.0326,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "4fff3b28-5c2e-4ec3-91d1-696f42638cf4",
+      "first_name": "Ludvig",
+      "last_name": "Aberg",
+      "country": "SWEDEN",
+      "rank": 18,
+      "prior_rank": 18,
+      "abbr_name": "L.Aberg",
+      "statistics": {
+        "events_played": 43,
+        "avg_points": 3.53,
+        "points": 151.984,
+        "points_lost": -8.0203,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "9fbf091c-5e4b-42a4-93d7-92a6785a618d",
+      "first_name": "Cameron",
+      "last_name": "Young",
+      "country": "UNITED STATES",
+      "rank": 19,
+      "prior_rank": 19,
+      "abbr_name": "C.Young",
+      "statistics": {
+        "events_played": 48,
+        "avg_points": 3.23,
+        "points": 154.8975,
+        "points_lost": -6.0067,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "ce5a1cd5-bf8c-4f0d-9903-844ec3aa7e10",
+      "first_name": "Tyrrell",
+      "last_name": "Hatton",
+      "country": "ENGLAND",
+      "rank": 20,
+      "prior_rank": 20,
+      "abbr_name": "T.Hatton",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 3.14,
+        "points": 125.7243,
+        "points_lost": -4.5497,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "04b52e10-1f50-4efb-9895-86b4107f78c4",
+      "first_name": "Matt",
+      "last_name": "Fitzpatrick",
+      "country": "ENGLAND",
+      "rank": 21,
+      "prior_rank": 21,
+      "abbr_name": "M.Fitzpatrick",
+      "statistics": {
+        "events_played": 48,
+        "avg_points": 3.04,
+        "points": 145.9593,
+        "points_lost": -4.1886,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "37221a6c-c8c4-4eaa-beba-715f6e781962",
+      "first_name": "Maverick",
+      "last_name": "McNealy",
+      "country": "UNITED STATES",
+      "rank": 22,
+      "prior_rank": 22,
+      "abbr_name": "M.McNealy",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 2.96,
+        "points": 154.0212,
+        "points_lost": -6.1255,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "31f03fb8-f92c-4853-8805-c668430cecc2",
+      "first_name": "Aaron",
+      "last_name": "Rai",
+      "country": "ENGLAND",
+      "rank": 23,
+      "prior_rank": 23,
+      "abbr_name": "A.Rai",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 2.82,
+        "points": 146.4473,
+        "points_lost": -5.1506,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "f572509d-7c6d-48b9-9c65-a20f6d2d492b",
+      "first_name": "Sam",
+      "last_name": "Burns",
+      "country": "UNITED STATES",
+      "rank": 24,
+      "prior_rank": 24,
+      "abbr_name": "S.Burns",
+      "statistics": {
+        "events_played": 47,
+        "avg_points": 2.74,
+        "points": 128.8547,
+        "points_lost": -5.6102,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "d072ae36-88f2-4276-b97e-6de87aa2b875",
+      "first_name": "Patrick",
+      "last_name": "Cantlay",
+      "country": "UNITED STATES",
+      "rank": 25,
+      "prior_rank": 25,
+      "abbr_name": "P.Cantlay",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 2.71,
+        "points": 108.2394,
+        "points_lost": -5.1845,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "f59ddf3e-5f14-42b3-9cf1-b681cd0d35a0",
+      "first_name": "Shane",
+      "last_name": "Lowry",
+      "country": "IRELAND",
+      "rank": 26,
+      "prior_rank": 26,
+      "abbr_name": "S.Lowry",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 2.66,
+        "points": 138.1297,
+        "points_lost": -5.9211,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "0096b26b-fc25-4fcf-90b9-4b796e3f6c5a",
+      "first_name": "Bryson",
+      "last_name": "DeChambeau",
+      "country": "UNITED STATES",
+      "rank": 27,
+      "prior_rank": 27,
+      "abbr_name": "B.DeChambeau",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 2.58,
+        "points": 103.1959,
+        "points_lost": -5.7874,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "9ab689b1-c681-45db-8a63-9cd628433f00",
+      "first_name": "Chris",
+      "last_name": "Gotterup",
+      "country": "UNITED STATES",
+      "rank": 28,
+      "prior_rank": 28,
+      "abbr_name": "C.Gotterup",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 2.56,
+        "points": 133.1998,
+        "points_lost": -4.0821,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "b9a86035-7554-4b52-b57f-e089860fb009",
+      "first_name": "Marco",
+      "last_name": "Penge",
+      "country": "ENGLAND",
+      "rank": 29,
+      "prior_rank": 29,
+      "abbr_name": "M.Penge",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 2.53,
+        "points": 131.6111,
+        "points_lost": -2.899,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "dfc22025-5644-4b06-9eac-52db7df7b259",
+      "first_name": "Corey",
+      "last_name": "Conners",
+      "country": "CANADA",
+      "rank": 30,
+      "prior_rank": 30,
+      "abbr_name": "C.Conners",
+      "statistics": {
+        "events_played": 46,
+        "avg_points": 2.49,
+        "points": 114.6156,
+        "points_lost": -4.7879,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "e3f8b40a-30b4-407b-98f0-0b33377c57a4",
+      "first_name": "Kristoffer",
+      "last_name": "Reitan",
+      "country": "NORWAY",
+      "rank": 31,
+      "prior_rank": 31,
+      "abbr_name": "K.Reitan",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 2.23,
+        "points": 111.2804,
+        "points_lost": -2.3505,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "f112c09e-6ad9-4a93-a3c7-d5e1d13dab07",
+      "first_name": "Michael",
+      "last_name": "Brennan",
+      "country": "UNITED STATES",
+      "rank": 32,
+      "prior_rank": 32,
+      "abbr_name": "M.Brennan",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 2.19,
+        "points": 87.6434,
+        "points_lost": -1.2346,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "f0628f83-84ab-48cc-a2c4-f011d2c09a18",
+      "first_name": "Andrew",
+      "last_name": "Novak",
+      "country": "UNITED STATES",
+      "rank": 33,
+      "prior_rank": 34,
+      "abbr_name": "A.Novak",
+      "statistics": {
+        "events_played": 51,
+        "avg_points": 2.19,
+        "points": 111.612,
+        "points_lost": -4.0305,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "72d49435-47fb-4134-b57c-3f8de2605554",
+      "first_name": "Max",
+      "last_name": "Greyserman",
+      "country": "UNITED STATES",
+      "rank": 34,
+      "prior_rank": 33,
+      "abbr_name": "M.Greyserman",
+      "statistics": {
+        "events_played": 51,
+        "avg_points": 2.19,
+        "points": 111.5217,
+        "points_lost": -4.3003,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "92544280-0438-4f43-a5f3-f3a21ea55157",
+      "first_name": "Brian",
+      "last_name": "Harman",
+      "country": "UNITED STATES",
+      "rank": 35,
+      "prior_rank": 35,
+      "abbr_name": "B.Harman",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 2.18,
+        "points": 108.9069,
+        "points_lost": -4.7432,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "5e4d3877-596c-4165-93d6-cda69c29447a",
+      "first_name": "Kurt",
+      "last_name": "Kitayama",
+      "country": "UNITED STATES",
+      "rank": 36,
+      "prior_rank": 36,
+      "abbr_name": "K.Kitayama",
+      "statistics": {
+        "events_played": 43,
+        "avg_points": 2.15,
+        "points": 92.5773,
+        "points_lost": -3.3032,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "8593b951-98f9-4757-bed3-3e922c989d2f",
+      "first_name": "Michael",
+      "last_name": "Kim",
+      "country": "UNITED STATES",
+      "rank": 37,
+      "prior_rank": 37,
+      "abbr_name": "M.Kim",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 2.09,
+        "points": 108.6016,
+        "points_lost": -3.3168,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "c035de63-4cdd-4cd9-91bc-32a747c05e4a",
+      "first_name": "Sami",
+      "last_name": "Valimaki",
+      "country": "FINLAND",
+      "rank": 38,
+      "prior_rank": 38,
+      "abbr_name": "S.Valimaki",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 2.07,
+        "points": 107.6243,
+        "points_lost": -2.0638,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "7161a8f8-bd34-4b09-a3b5-0ada7f148b7f",
+      "first_name": "Rasmus",
+      "last_name": "Hojgaard",
+      "country": "DENMARK",
+      "rank": 39,
+      "prior_rank": 40,
+      "abbr_name": "R.Hojgaard",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 2.04,
+        "points": 101.7712,
+        "points_lost": -3.8766,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "4466666b-77b3-4c26-8fbb-f0fd1d179149",
+      "first_name": "Ryan",
+      "last_name": "Fox",
+      "country": "NEW ZEALAND",
+      "rank": 40,
+      "prior_rank": 39,
+      "abbr_name": "R.Fox",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 2.02,
+        "points": 105.069,
+        "points_lost": -3.4983,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "12195ed9-3fcd-486a-86b4-1ec726d201cd",
+      "first_name": "Patrick",
+      "last_name": "Reed",
+      "country": "UNITED STATES",
+      "rank": 41,
+      "prior_rank": 41,
+      "abbr_name": "P.Reed",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 1.94,
+        "points": 77.6596,
+        "points_lost": -2.587,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "6ff0d2f5-2a16-45fd-82a9-69c99a86261d",
+      "first_name": "Ryan",
+      "last_name": "Gerard",
+      "country": "UNITED STATES",
+      "rank": 42,
+      "prior_rank": 42,
+      "abbr_name": "R.Gerard",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.94,
+        "points": 100.9135,
+        "points_lost": -3.0025,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "b7519c68-a6b3-4d99-b772-5bc951357592",
+      "first_name": "Min Woo",
+      "last_name": "Lee",
+      "country": "AUSTRALIA",
+      "rank": 43,
+      "prior_rank": 44,
+      "abbr_name": "M.Lee",
+      "statistics": {
+        "events_played": 49,
+        "avg_points": 1.92,
+        "points": 94.1884,
+        "points_lost": -3.9622,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "ac1db384-8cb4-4223-bc46-60f4ed963645",
+      "first_name": "Sungjae",
+      "last_name": "Im",
+      "country": "SOUTH KOREA",
+      "rank": 44,
+      "prior_rank": 43,
+      "abbr_name": "S.Im",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.92,
+        "points": 99.6252,
+        "points_lost": -4.8996,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "6c98595c-2395-4e85-aeb8-cad4f50fb581",
+      "first_name": "John",
+      "last_name": "Keefer",
+      "country": "UNITED STATES",
+      "rank": 45,
+      "prior_rank": 48,
+      "abbr_name": "J.Keefer",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 1.9,
+        "points": 75.9702,
+        "points_lost": -2.3071,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "21886b8c-d915-4bbc-9bda-0352821c432b",
+      "first_name": "Si Woo",
+      "last_name": "Kim",
+      "country": "SOUTH KOREA",
+      "rank": 46,
+      "prior_rank": 47,
+      "abbr_name": "S.Kim",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.9,
+        "points": 98.6625,
+        "points_lost": -3.3406,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "0f2eb1c3-7278-4b5e-af2e-fd67644834b5",
+      "first_name": "Wyndham",
+      "last_name": "Clark",
+      "country": "UNITED STATES",
+      "rank": 47,
+      "prior_rank": 45,
+      "abbr_name": "W.Clark",
+      "statistics": {
+        "events_played": 47,
+        "avg_points": 1.89,
+        "points": 88.7453,
+        "points_lost": -6.4282,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "dfbe6c98-2862-4266-a5e4-494003349a31",
+      "first_name": "Akshay",
+      "last_name": "Bhatia",
+      "country": "UNITED STATES",
+      "rank": 48,
+      "prior_rank": 46,
+      "abbr_name": "A.Bhatia",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.89,
+        "points": 98.1287,
+        "points_lost": -5.0332,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "606d1a25-2e9a-4e9f-95a2-c0947bb52912",
+      "first_name": "Rasmus",
+      "last_name": "Neergaard-Petersen",
+      "country": "DENMARK",
+      "rank": 49,
+      "prior_rank": 49,
+      "abbr_name": "R.Neergaard-Petersen",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.87,
+        "points": 97.3458,
+        "points_lost": -2.5708,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "ec136a76-cae2-4f69-a293-cc54fb79b56c",
+      "first_name": "Sam",
+      "last_name": "Stevens",
+      "country": "UNITED STATES",
+      "rank": 50,
+      "prior_rank": 50,
+      "abbr_name": "S.Stevens",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.86,
+        "points": 96.4682,
+        "points_lost": -3.2701,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "c4c3d105-7c57-4caa-b941-f86cd8b3d97c",
+      "first_name": "Taylor",
+      "last_name": "Pendrith",
+      "country": "CANADA",
+      "rank": 51,
+      "prior_rank": 52,
+      "abbr_name": "T.Pendrith",
+      "statistics": {
+        "events_played": 47,
+        "avg_points": 1.85,
+        "points": 86.9701,
+        "points_lost": -4.4161,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "0dab2467-b758-4d5a-9d15-e591b5945b4c",
+      "first_name": "Nicolas",
+      "last_name": "Echavarria",
+      "country": "COLOMBIA",
+      "rank": 52,
+      "prior_rank": 51,
+      "abbr_name": "N.Echavarria",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.84,
+        "points": 95.562,
+        "points_lost": -3.2687,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "f04f89c3-3f8f-4009-bc49-0de2a634ead3",
+      "first_name": "Billy",
+      "last_name": "Horschel",
+      "country": "UNITED STATES",
+      "rank": 53,
+      "prior_rank": 53,
+      "abbr_name": "B.Horschel",
+      "statistics": {
+        "events_played": 41,
+        "avg_points": 1.83,
+        "points": 74.8493,
+        "points_lost": -4.6619,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "8454b651-9427-488d-a405-8e0219741c6e",
+      "first_name": "Nick",
+      "last_name": "Taylor",
+      "country": "CANADA",
+      "rank": 54,
+      "prior_rank": 56,
+      "abbr_name": "N.Taylor",
+      "statistics": {
+        "events_played": 49,
+        "avg_points": 1.8,
+        "points": 88.1816,
+        "points_lost": -4.5706,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "20be4865-0813-4e80-87fd-d2294cd6996c",
+      "first_name": "J.T.",
+      "last_name": "Poston",
+      "country": "UNITED STATES",
+      "rank": 55,
+      "prior_rank": 58,
+      "abbr_name": "J.Poston",
+      "statistics": {
+        "events_played": 48,
+        "avg_points": 1.79,
+        "points": 85.8019,
+        "points_lost": -4.0031,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "80d16074-9940-44ee-b159-4b7ad819e2ac",
+      "first_name": "Matthew",
+      "last_name": "McCarty",
+      "country": "UNITED STATES",
+      "rank": 56,
+      "prior_rank": 54,
+      "abbr_name": "M.McCarty",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.78,
+        "points": 92.5551,
+        "points_lost": -3.5895,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "97cd8ce8-beb2-484e-9081-ccba9baa0607",
+      "first_name": "Jason",
+      "last_name": "Day",
+      "country": "AUSTRALIA",
+      "rank": 57,
+      "prior_rank": 55,
+      "abbr_name": "J.Day",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 1.77,
+        "points": 70.6837,
+        "points_lost": -3.4909,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "4d70e4fe-4a2a-44f4-9fd0-a7b76b3828ca",
+      "first_name": "Thomas",
+      "last_name": "Detry",
+      "country": "BELGIUM",
+      "rank": 58,
+      "prior_rank": 57,
+      "abbr_name": "T.Detry",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.76,
+        "points": 91.7582,
+        "points_lost": -3.9207,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "8cc15635-8afc-45ed-82bd-0728a67788b1",
+      "first_name": "Jayden Trey",
+      "last_name": "Schaper",
+      "country": "SOUTH AFRICA",
+      "rank": 59,
+      "prior_rank": 60,
+      "abbr_name": "J.Schaper",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.74,
+        "points": 90.656,
+        "points_lost": -1.1882,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "88c2edb1-7551-4920-91ad-71c971e51e8c",
+      "first_name": "Lucas",
+      "last_name": "Glover",
+      "country": "UNITED STATES",
+      "rank": 60,
+      "prior_rank": 62,
+      "abbr_name": "L.Glover",
+      "statistics": {
+        "events_played": 47,
+        "avg_points": 1.74,
+        "points": 81.7936,
+        "points_lost": -3.4478,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "9968007c-a481-4b66-9c2b-8e752b9537eb",
+      "first_name": "Laurie",
+      "last_name": "Canter",
+      "country": "ENGLAND",
+      "rank": 61,
+      "prior_rank": 59,
+      "abbr_name": "L.Canter",
+      "statistics": {
+        "events_played": 41,
+        "avg_points": 1.73,
+        "points": 71.0499,
+        "points_lost": -2.1533,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "be5be8d0-b561-4d0e-ac4a-90275f2f979f",
+      "first_name": "Harry",
+      "last_name": "Hall",
+      "country": "ENGLAND",
+      "rank": 62,
+      "prior_rank": 61,
+      "abbr_name": "H.Hall",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.72,
+        "points": 89.2054,
+        "points_lost": -3.2606,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "509991b7-9e9d-48be-9a3b-b75fd23be6ff",
+      "first_name": "Daniel",
+      "last_name": "Berger",
+      "country": "UNITED STATES",
+      "rank": 63,
+      "prior_rank": 63,
+      "abbr_name": "D.Berger",
+      "statistics": {
+        "events_played": 48,
+        "avg_points": 1.71,
+        "points": 81.8831,
+        "points_lost": -3.0904,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "95049360-bdd6-4b20-9b10-29eb6594e962",
+      "first_name": "Garrick",
+      "last_name": "Higgo",
+      "country": "SOUTH AFRICA",
+      "rank": 64,
+      "prior_rank": 66,
+      "abbr_name": "G.Higgo",
+      "statistics": {
+        "events_played": 46,
+        "avg_points": 1.7,
+        "points": 78.2699,
+        "points_lost": -1.9747,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "61716f94-0c0d-4fcd-8ba4-6969d469e9b7",
+      "first_name": "Thriston",
+      "last_name": "Lawrence",
+      "country": "SOUTH AFRICA",
+      "rank": 65,
+      "prior_rank": 65,
+      "abbr_name": "T.Lawrence",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.67,
+        "points": 86.7239,
+        "points_lost": -2.999,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "45be1496-ea36-4c0c-8573-4a457ab70573",
+      "first_name": "Adam",
+      "last_name": "Scott",
+      "country": "AUSTRALIA",
+      "rank": 66,
+      "prior_rank": 64,
+      "abbr_name": "A.Scott",
+      "statistics": {
+        "events_played": 48,
+        "avg_points": 1.66,
+        "points": 79.6711,
+        "points_lost": -4.0753,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "d61ba0aa-d3f8-4ea0-924d-a18c0ae76019",
+      "first_name": "Max",
+      "last_name": "McGreevy",
+      "country": "UNITED STATES",
+      "rank": 67,
+      "prior_rank": 67,
+      "abbr_name": "M.McGreevy",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.66,
+        "points": 86.292,
+        "points_lost": -2.3123,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "c3242516-37d7-46e3-aba7-b74f1498527e",
+      "first_name": "Michael",
+      "last_name": "Thorbjornsen",
+      "country": "UNITED STATES",
+      "rank": 68,
+      "prior_rank": 68,
+      "abbr_name": "M.Thorbjornsen",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 1.65,
+        "points": 66.1713,
+        "points_lost": -1.8047,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "6787bd96-6bf0-4297-b819-85025f81a3a9",
+      "first_name": "Denny",
+      "last_name": "McCarthy",
+      "country": "UNITED STATES",
+      "rank": 69,
+      "prior_rank": 70,
+      "abbr_name": "D.McCarthy",
+      "statistics": {
+        "events_played": 45,
+        "avg_points": 1.64,
+        "points": 74.0213,
+        "points_lost": -3.7037,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "20114b19-caef-4123-93d5-ff30bec77954",
+      "first_name": "Rico",
+      "last_name": "Hoey",
+      "country": "PHILIPPINES",
+      "rank": 70,
+      "prior_rank": 69,
+      "abbr_name": "R.Hoey",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.64,
+        "points": 85.131,
+        "points_lost": -2.1379,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "b35c9bff-25ff-40c1-8c5a-3717f1e01c07",
+      "first_name": "Daniel",
+      "last_name": "Brown",
+      "country": "ENGLAND",
+      "rank": 71,
+      "prior_rank": 73,
+      "abbr_name": "D.Brown",
+      "statistics": {
+        "events_played": 48,
+        "avg_points": 1.62,
+        "points": 77.8506,
+        "points_lost": -2.2503,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "6383ba29-158b-46fe-b44a-a5ff6a2796bb",
+      "first_name": "Bud",
+      "last_name": "Cauley",
+      "country": "UNITED STATES",
+      "rank": 72,
+      "prior_rank": 71,
+      "abbr_name": "B.Cauley",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 1.61,
+        "points": 64.25,
+        "points_lost": -2.1837,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "993f71fd-5382-4c69-8da3-06746d4dc62d",
+      "first_name": "Brian",
+      "last_name": "Campbell",
+      "country": "UNITED STATES",
+      "rank": 73,
+      "prior_rank": 72,
+      "abbr_name": "B.Campbell",
+      "statistics": {
+        "events_played": 49,
+        "avg_points": 1.6,
+        "points": 78.5078,
+        "points_lost": -2.8546,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "96cb842a-9497-4229-ba64-f4206ac408a9",
+      "first_name": "Tom",
+      "last_name": "McKibbin",
+      "country": "NORTHERN IRELAND",
+      "rank": 74,
+      "prior_rank": 77,
+      "abbr_name": "T.McKibbin",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 1.58,
+        "points": 63.2631,
+        "points_lost": -1.9302,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "e4f92dca-86d5-441e-8a2d-55d5360937c5",
+      "first_name": "Chris",
+      "last_name": "Kirk",
+      "country": "UNITED STATES",
+      "rank": 75,
+      "prior_rank": 76,
+      "abbr_name": "C.Kirk",
+      "statistics": {
+        "events_played": 44,
+        "avg_points": 1.58,
+        "points": 69.5644,
+        "points_lost": -3.389,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "aea5a136-325c-4150-8f6d-0671367004f5",
+      "first_name": "Adrien",
+      "last_name": "Saddier",
+      "country": "FRANCE",
+      "rank": 76,
+      "prior_rank": 74,
+      "abbr_name": "A.Saddier",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.57,
+        "points": 81.3835,
+        "points_lost": -2.3552,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "3e4963cb-6e80-4393-85cf-2aecec453c4a",
+      "first_name": "Jordan",
+      "last_name": "Spieth",
+      "country": "UNITED STATES",
+      "rank": 77,
+      "prior_rank": 75,
+      "abbr_name": "J.Spieth",
+      "statistics": {
+        "events_played": 41,
+        "avg_points": 1.55,
+        "points": 63.5654,
+        "points_lost": -2.8257,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "e607849b-2f2e-4c86-8eed-e0c34f5ca60d",
+      "first_name": "Matt",
+      "last_name": "Wallace",
+      "country": "ENGLAND",
+      "rank": 78,
+      "prior_rank": 78,
+      "abbr_name": "M.Wallace",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.54,
+        "points": 79.9266,
+        "points_lost": -2.9521,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "7a4b2b40-4675-41d9-86fd-cc6a61a1d3b2",
+      "first_name": "Nicolai",
+      "last_name": "Hojgaard",
+      "country": "DENMARK",
+      "rank": 79,
+      "prior_rank": 79,
+      "abbr_name": "N.Hojgaard",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.53,
+        "points": 79.6171,
+        "points_lost": -3.0446,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "b2cde176-328d-4856-9684-6885a1651f57",
+      "first_name": "Christiaan",
+      "last_name": "Bezuidenhout",
+      "country": "SOUTH AFRICA",
+      "rank": 80,
+      "prior_rank": 80,
+      "abbr_name": "C.Bezuidenhout",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.52,
+        "points": 79.0088,
+        "points_lost": -3.2056,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "c9466b3a-d8f6-42ec-aa53-1f55db13377d",
+      "first_name": "Jacob",
+      "last_name": "Bridgeman",
+      "country": "UNITED STATES",
+      "rank": 81,
+      "prior_rank": 81,
+      "abbr_name": "J.Bridgeman",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.51,
+        "points": 78.4755,
+        "points_lost": -2.7429,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "9786a2d1-21b0-4086-957b-8ca089562614",
+      "first_name": "John",
+      "last_name": "Parry",
+      "country": "ENGLAND",
+      "rank": 82,
+      "prior_rank": 82,
+      "abbr_name": "J.Parry",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.49,
+        "points": 77.4113,
+        "points_lost": -2.3406,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "bfc6a7dc-833e-43df-a9b6-499929fdd42c",
+      "first_name": "Aldrich",
+      "last_name": "Potgieter",
+      "country": "SOUTH AFRICA",
+      "rank": 83,
+      "prior_rank": 84,
+      "abbr_name": "A.Potgieter",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 1.48,
+        "points": 73.9439,
+        "points_lost": -2.4569,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "5735703a-32d9-4a6c-8b24-6596f300bc44",
+      "first_name": "Rickie",
+      "last_name": "Fowler",
+      "country": "UNITED STATES",
+      "rank": 84,
+      "prior_rank": 83,
+      "abbr_name": "R.Fowler",
+      "statistics": {
+        "events_played": 43,
+        "avg_points": 1.48,
+        "points": 63.5473,
+        "points_lost": -2.2721,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "4c25a86b-b1ff-46b4-bc95-ac61dda7bb55",
+      "first_name": "Jhonattan",
+      "last_name": "Vegas",
+      "country": "VENEZUELA",
+      "rank": 85,
+      "prior_rank": 86,
+      "abbr_name": "J.Vegas",
+      "statistics": {
+        "events_played": 43,
+        "avg_points": 1.47,
+        "points": 63.4125,
+        "points_lost": -2.7204,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "81a12293-b97e-4b11-9686-a1e0bc8a4096",
+      "first_name": "Hao-Tong",
+      "last_name": "Li",
+      "country": "CHINA",
+      "rank": 86,
+      "prior_rank": 87,
+      "abbr_name": "H.Li",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 1.47,
+        "points": 73.3473,
+        "points_lost": -2.2443,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "7b52b9be-a490-4569-9bbc-57db5f232dcb",
+      "first_name": "Jon",
+      "last_name": "Rahm",
+      "country": "SPAIN",
+      "rank": 87,
+      "prior_rank": 85,
+      "abbr_name": "J.Rahm",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 1.46,
+        "points": 58.4325,
+        "points_lost": -2.2256,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "370a1bcf-227f-4bf4-9fa4-f5cc90def77d",
+      "first_name": "Matti",
+      "last_name": "Schmid",
+      "country": "GERMANY",
+      "rank": 88,
+      "prior_rank": 88,
+      "abbr_name": "M.Schmid",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.42,
+        "points": 73.7922,
+        "points_lost": -2.3341,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "1b5f26e5-c53d-44e3-b551-fd0284ab59b7",
+      "first_name": "Jordan L.",
+      "last_name": "Smith",
+      "country": "ENGLAND",
+      "rank": 89,
+      "prior_rank": 89,
+      "abbr_name": "J.Smith",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.42,
+        "points": 73.5922,
+        "points_lost": -2.4809,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "77a9104b-6fd4-40b7-85e2-10b2448a8f86",
+      "first_name": "Kevin",
+      "last_name": "Yu",
+      "country": "CHINESE TAIPEI",
+      "rank": 90,
+      "prior_rank": 90,
+      "abbr_name": "K.Yu",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.4,
+        "points": 72.8658,
+        "points_lost": -2.6771,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "6cad8490-72de-4df2-9d6a-ee1be88df338",
+      "first_name": "Mackenzie",
+      "last_name": "Hughes",
+      "country": "CANADA",
+      "rank": 91,
+      "prior_rank": 91,
+      "abbr_name": "M.Hughes",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.35,
+        "points": 70.2045,
+        "points_lost": -3.3254,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "1f1e519b-a51a-4de5-8ce7-ce882772c194",
+      "first_name": "Neal",
+      "last_name": "Shipley",
+      "country": "UNITED STATES",
+      "rank": 92,
+      "prior_rank": 93,
+      "abbr_name": "N.Shipley",
+      "statistics": {
+        "events_played": 42,
+        "avg_points": 1.34,
+        "points": 56.424,
+        "points_lost": -1.8261,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "d76795dc-6280-41d9-9345-7ec0b96453fc",
+      "first_name": "Keita",
+      "last_name": "Nakajima",
+      "country": "JAPAN",
+      "rank": 93,
+      "prior_rank": 94,
+      "abbr_name": "K.Nakajima",
+      "statistics": {
+        "events_played": 46,
+        "avg_points": 1.34,
+        "points": 61.5825,
+        "points_lost": -1.8416,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "737b280c-11fd-40c0-8811-2c1951e7f270",
+      "first_name": "Pierceson",
+      "last_name": "Coody",
+      "country": "UNITED STATES",
+      "rank": 94,
+      "prior_rank": 95,
+      "abbr_name": "P.Coody",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.34,
+        "points": 69.4748,
+        "points_lost": -2.0701,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "f1fb4562-ffe8-4539-927b-0ffd13e9533f",
+      "first_name": "Emiliano",
+      "last_name": "Grillo",
+      "country": "ARGENTINA",
+      "rank": 95,
+      "prior_rank": 98,
+      "abbr_name": "E.Grillo",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 1.33,
+        "points": 66.5978,
+        "points_lost": -2.6206,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "f33d746b-8e14-4325-a4e1-81d6f983b163",
+      "first_name": "Tony",
+      "last_name": "Finau",
+      "country": "UNITED STATES",
+      "rank": 96,
+      "prior_rank": 92,
+      "abbr_name": "T.Finau",
+      "statistics": {
+        "events_played": 42,
+        "avg_points": 1.33,
+        "points": 55.8886,
+        "points_lost": -3.7456,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "7eb71731-d2f6-4d1e-86ae-a93ba4c2d20e",
+      "first_name": "Thorbjorn",
+      "last_name": "Olesen",
+      "country": "DENMARK",
+      "rank": 97,
+      "prior_rank": 97,
+      "abbr_name": "T.Olesen",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.33,
+        "points": 68.9211,
+        "points_lost": -2.1575,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "0f5da2c3-5994-456b-b676-9c9c6f8550b2",
+      "first_name": "Davis",
+      "last_name": "Thompson",
+      "country": "UNITED STATES",
+      "rank": 98,
+      "prior_rank": 96,
+      "abbr_name": "D.Thompson",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.32,
+        "points": 68.5048,
+        "points_lost": -3.7279,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "5a9ea77c-7323-4f26-86b5-f6adc3b7e00a",
+      "first_name": "Byeong Hun",
+      "last_name": "An",
+      "country": "SOUTH KOREA",
+      "rank": 99,
+      "prior_rank": 99,
+      "abbr_name": "B.An",
+      "statistics": {
+        "events_played": 51,
+        "avg_points": 1.32,
+        "points": 67.1833,
+        "points_lost": -3.8697,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "37027ff0-9f03-49fd-8d19-ec16bb365d82",
+      "first_name": "Shaun",
+      "last_name": "Norris",
+      "country": "SOUTH AFRICA",
+      "rank": 100,
+      "prior_rank": 100,
+      "abbr_name": "S.Norris",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.31,
+        "points": 68.1873,
+        "points_lost": -1.9275,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "f8a4cccc-bf81-4863-99a5-60b13d911184",
+      "first_name": "Davis",
+      "last_name": "Riley",
+      "country": "UNITED STATES",
+      "rank": 101,
+      "prior_rank": 102,
+      "abbr_name": "D.Riley",
+      "statistics": {
+        "events_played": 51,
+        "avg_points": 1.31,
+        "points": 66.8544,
+        "points_lost": -2.9632,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "dae7d61f-bde2-4182-9e99-06b48689f004",
+      "first_name": "Tom",
+      "last_name": "Hoge",
+      "country": "UNITED STATES",
+      "rank": 102,
+      "prior_rank": 101,
+      "abbr_name": "T.Hoge",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.29,
+        "points": 67.3076,
+        "points_lost": -3.2763,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "29f689c9-9a88-4e51-8d7b-e445ddc7d04b",
+      "first_name": "Mac",
+      "last_name": "Meissner",
+      "country": "UNITED STATES",
+      "rank": 103,
+      "prior_rank": 103,
+      "abbr_name": "M.Meissner",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 1.28,
+        "points": 64.0365,
+        "points_lost": -2.2639,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "fd21d0f3-f5f7-413a-bb05-4034e4d4fc8e",
+      "first_name": "Steven",
+      "last_name": "Fisk",
+      "country": "UNITED STATES",
+      "rank": 104,
+      "prior_rank": 104,
+      "abbr_name": "S.Fisk",
+      "statistics": {
+        "events_played": 49,
+        "avg_points": 1.27,
+        "points": 62.351,
+        "points_lost": -2.2629,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "1a669884-b715-4d7f-8fe4-63e345cc7f66",
+      "first_name": "Jake",
+      "last_name": "Knapp",
+      "country": "UNITED STATES",
+      "rank": 105,
+      "prior_rank": 106,
+      "abbr_name": "J.Knapp",
+      "statistics": {
+        "events_played": 45,
+        "avg_points": 1.27,
+        "points": 57.2194,
+        "points_lost": -3.1806,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "c6c566d2-bdbf-484d-a581-3036ad95ee57",
+      "first_name": "Vince",
+      "last_name": "Whaley",
+      "country": "UNITED STATES",
+      "rank": 106,
+      "prior_rank": 105,
+      "abbr_name": "V.Whaley",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.27,
+        "points": 65.8407,
+        "points_lost": -2.0247,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "aca3420a-9ed0-444d-b214-f831561f7c71",
+      "first_name": "Tom",
+      "last_name": "Kim",
+      "country": "SOUTH KOREA",
+      "rank": 107,
+      "prior_rank": 107,
+      "abbr_name": "T.Kim",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.23,
+        "points": 64.2186,
+        "points_lost": -3.5295,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "16d4f2fd-6ab2-4322-ac89-6be402686bec",
+      "first_name": "Joakim",
+      "last_name": "Lagergren",
+      "country": "SWEDEN",
+      "rank": 108,
+      "prior_rank": 108,
+      "abbr_name": "J.Lagergren",
+      "statistics": {
+        "events_played": 47,
+        "avg_points": 1.21,
+        "points": 57.039,
+        "points_lost": -1.6048,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "09983b18-825f-485d-9e88-1da1d9f3783d",
+      "first_name": "Kazuki",
+      "last_name": "Higa",
+      "country": "JAPAN",
+      "rank": 109,
+      "prior_rank": 111,
+      "abbr_name": "K.Higa",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.2,
+        "points": 62.3356,
+        "points_lost": -1.4205,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "c01c741a-fd91-4e1c-8d39-ec448fc37e0a",
+      "first_name": "Eric",
+      "last_name": "Cole",
+      "country": "UNITED STATES",
+      "rank": 110,
+      "prior_rank": 110,
+      "abbr_name": "E.Cole",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.19,
+        "points": 62.051,
+        "points_lost": -2.2496,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "5488bb49-3607-4517-a3a1-5cf68737aa37",
+      "first_name": "Stephan",
+      "last_name": "Jaeger",
+      "country": "GERMANY",
+      "rank": 111,
+      "prior_rank": 109,
+      "abbr_name": "S.Jaeger",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.18,
+        "points": 61.4219,
+        "points_lost": -3.7243,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "423d212b-6260-4c7f-b0db-d2c365648f12",
+      "first_name": "Joe",
+      "last_name": "Highsmith",
+      "country": "UNITED STATES",
+      "rank": 112,
+      "prior_rank": 112,
+      "abbr_name": "J.Highsmith",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.18,
+        "points": 61.3607,
+        "points_lost": -2.3095,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "e9c5849a-ae3d-4577-a54d-f7f21cc642f9",
+      "first_name": "David",
+      "last_name": "Puig",
+      "country": "SPAIN",
+      "rank": 113,
+      "prior_rank": 113,
+      "abbr_name": "D.Puig",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 1.16,
+        "points": 46.4261,
+        "points_lost": -1.5069,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "1330a2ae-16d0-433f-8382-e26cdce78ac7",
+      "first_name": "Erik",
+      "last_name": "Van Rooyen",
+      "country": "SOUTH AFRICA",
+      "rank": 114,
+      "prior_rank": 114,
+      "abbr_name": "E.Van Rooyen",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.15,
+        "points": 59.7592,
+        "points_lost": -2.7753,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "bb638691-1a48-486b-a439-25d89c8a5c93",
+      "first_name": "William",
+      "last_name": "Mouw",
+      "country": "UNITED STATES",
+      "rank": 115,
+      "prior_rank": 115,
+      "abbr_name": "W.Mouw",
+      "statistics": {
+        "events_played": 45,
+        "avg_points": 1.15,
+        "points": 51.6975,
+        "points_lost": -1.729,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "a0a52f7a-4dbf-4656-ba47-1e1b6de63411",
+      "first_name": "Takumi",
+      "last_name": "Kanaya",
+      "country": "JAPAN",
+      "rank": 116,
+      "prior_rank": 116,
+      "abbr_name": "T.Kanaya",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.15,
+        "points": 59.639,
+        "points_lost": -1.4469,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "a1c8919d-8fd7-460d-9057-daf2deb31911",
+      "first_name": "Angel",
+      "last_name": "Ayora Fanegas",
+      "country": "SPAIN",
+      "rank": 117,
+      "prior_rank": 117,
+      "abbr_name": "A.Ayora Fanegas",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.14,
+        "points": 59.4628,
+        "points_lost": -1.3482,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "c3da4ffe-bb6a-4ae0-a627-3942f2081f7b",
+      "first_name": "Chandler",
+      "last_name": "Blanchet",
+      "country": "UNITED STATES",
+      "rank": 118,
+      "prior_rank": 118,
+      "abbr_name": "C.Blanchet",
+      "statistics": {
+        "events_played": 45,
+        "avg_points": 1.14,
+        "points": 51.2124,
+        "points_lost": -1.2007,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "e0bb81ec-b52c-4805-bb9a-a90fa981b5fb",
+      "first_name": "Mark",
+      "last_name": "Hubbard",
+      "country": "UNITED STATES",
+      "rank": 119,
+      "prior_rank": 119,
+      "abbr_name": "M.Hubbard",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.11,
+        "points": 57.9197,
+        "points_lost": -1.9923,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "25faf9c2-3b45-4630-aac8-d11229cde0a1",
+      "first_name": "Sahith",
+      "last_name": "Theegala",
+      "country": "UNITED STATES",
+      "rank": 120,
+      "prior_rank": 119,
+      "abbr_name": "S.Theegala",
+      "statistics": {
+        "events_played": 46,
+        "avg_points": 1.11,
+        "points": 51.2308,
+        "points_lost": -4.4066,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "3888a78e-b24a-4005-8915-2f03fccf3107",
+      "first_name": "Patrick",
+      "last_name": "Rodgers",
+      "country": "UNITED STATES",
+      "rank": 121,
+      "prior_rank": 121,
+      "abbr_name": "P.Rodgers",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.11,
+        "points": 57.8534,
+        "points_lost": -1.8036,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "fa3c656a-7f3e-4931-ab19-5e07cc52c4f9",
+      "first_name": "Alex",
+      "last_name": "Smalley",
+      "country": "UNITED STATES",
+      "rank": 122,
+      "prior_rank": 122,
+      "abbr_name": "A.Smalley",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.09,
+        "points": 56.5144,
+        "points_lost": -1.7197,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "2d568087-700f-44a2-8390-47aa7bafc770",
+      "first_name": "Gary",
+      "last_name": "Woodland",
+      "country": "UNITED STATES",
+      "rank": 123,
+      "prior_rank": 125,
+      "abbr_name": "G.Woodland",
+      "statistics": {
+        "events_played": 46,
+        "avg_points": 1.08,
+        "points": 49.7818,
+        "points_lost": -1.8175,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "6bf842fd-bd68-403c-8ef8-b7ea0267445e",
+      "first_name": "Eugenio",
+      "last_name": "Lopez-Chacarra",
+      "country": "SPAIN",
+      "rank": 124,
+      "prior_rank": 123,
+      "abbr_name": "E.Chacarra",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 1.08,
+        "points": 43.145,
+        "points_lost": -1.0318,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "e6282714-3001-43db-887b-adc5eec201f6",
+      "first_name": "Elvis",
+      "last_name": "Smylie",
+      "country": "AUSTRALIA",
+      "rank": 125,
+      "prior_rank": 127,
+      "abbr_name": "E.Smylie",
+      "statistics": {
+        "events_played": 42,
+        "avg_points": 1.06,
+        "points": 44.5329,
+        "points_lost": -1.233,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "fcab0418-7f9f-4039-8a2c-7d6842461cfa",
+      "first_name": "Austin",
+      "last_name": "Eckroat",
+      "country": "UNITED STATES",
+      "rank": 126,
+      "prior_rank": 124,
+      "abbr_name": "A.Eckroat",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.05,
+        "points": 54.667,
+        "points_lost": -3.4546,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "d85f5551-08f1-4a4d-8ae1-c36879b6de1d",
+      "first_name": "Patrick",
+      "last_name": "Fishburn",
+      "country": "UNITED STATES",
+      "rank": 127,
+      "prior_rank": 126,
+      "abbr_name": "P.Fishburn",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.03,
+        "points": 53.7695,
+        "points_lost": -2.0952,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "e8ebcb8b-c953-4d36-9784-35f0f44731d7",
+      "first_name": "JC",
+      "last_name": "Ritchie",
+      "country": "SOUTH AFRICA",
+      "rank": 128,
+      "prior_rank": 130,
+      "abbr_name": "J.Ritchie",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.03,
+        "points": 53.6642,
+        "points_lost": -1.2053,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "4649b88b-6263-4bc1-a06c-2ba89615761d",
+      "first_name": "Martin",
+      "last_name": "Couvra",
+      "country": "FRANCE",
+      "rank": 129,
+      "prior_rank": 129,
+      "abbr_name": "M.Couvra",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.03,
+        "points": 53.6044,
+        "points_lost": -1.5062,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "21cad9ff-689e-4a99-b3a9-91f66cec3f01",
+      "first_name": "Keith",
+      "last_name": "Mitchell",
+      "country": "UNITED STATES",
+      "rank": 130,
+      "prior_rank": 132,
+      "abbr_name": "K.Mitchell",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 1.03,
+        "points": 51.4886,
+        "points_lost": -2.4216,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "8a699c51-e95c-4f2b-b57c-2fab6eb01adf",
+      "first_name": "Ryo",
+      "last_name": "Hisatsune",
+      "country": "JAPAN",
+      "rank": 131,
+      "prior_rank": 128,
+      "abbr_name": "R.Hisatsune",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.03,
+        "points": 53.5022,
+        "points_lost": -2.0158,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "cd0d0c72-bec4-42e9-a622-06d4805f6295",
+      "first_name": "Austin",
+      "last_name": "Smotherman",
+      "country": "UNITED STATES",
+      "rank": 132,
+      "prior_rank": 131,
+      "abbr_name": "A.Smotherman",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 1.02,
+        "points": 51.1602,
+        "points_lost": -1.7042,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "cb1856a9-b6ef-45ca-9ad7-9c02501f2481",
+      "first_name": "Adam",
+      "last_name": "Schenk",
+      "country": "UNITED STATES",
+      "rank": 133,
+      "prior_rank": 133,
+      "abbr_name": "A.Schenk",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.02,
+        "points": 52.9916,
+        "points_lost": -1.4248,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "7060c098-0919-4fbb-9c12-c396378fd6e5",
+      "first_name": "Beau",
+      "last_name": "Hossler",
+      "country": "UNITED STATES",
+      "rank": 134,
+      "prior_rank": 134,
+      "abbr_name": "B.Hossler",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1.01,
+        "points": 52.4167,
+        "points_lost": -2.0436,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "047de4e6-1cfe-4166-90e8-492add1161e3",
+      "first_name": "Matt",
+      "last_name": "Kuchar",
+      "country": "UNITED STATES",
+      "rank": 135,
+      "prior_rank": 137,
+      "abbr_name": "M.Kuchar",
+      "statistics": {
+        "events_played": 42,
+        "avg_points": 1.01,
+        "points": 42.297,
+        "points_lost": -1.5723,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "6ecd3db0-6b6c-4bf8-b69e-808a2b5cda42",
+      "first_name": "Victor",
+      "last_name": "Perez",
+      "country": "FRANCE",
+      "rank": 136,
+      "prior_rank": 135,
+      "abbr_name": "V.Perez",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 1,
+        "points": 52.1319,
+        "points_lost": -2.4837,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "f2bc6b83-fab1-4567-8bcf-9287d1940f2d",
+      "first_name": "Cameron",
+      "last_name": "Davis",
+      "country": "AUSTRALIA",
+      "rank": 137,
+      "prior_rank": 136,
+      "abbr_name": "C.Davis",
+      "statistics": {
+        "events_played": 47,
+        "avg_points": 1,
+        "points": 47.0203,
+        "points_lost": -2.7448,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "b066be97-6e60-45ea-8025-04d52ad22f73",
+      "first_name": "Daniel",
+      "last_name": "Hillier",
+      "country": "NEW ZEALAND",
+      "rank": 138,
+      "prior_rank": 139,
+      "abbr_name": "D.Hillier",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.97,
+        "points": 50.3044,
+        "points_lost": -1.1723,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "dca62a36-a1c7-45d2-9818-ac3f4a50470f",
+      "first_name": "Andy",
+      "last_name": "Sullivan",
+      "country": "ENGLAND",
+      "rank": 139,
+      "prior_rank": 141,
+      "abbr_name": "A.Sullivan",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.96,
+        "points": 50.0683,
+        "points_lost": -1.3121,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "8e3fb27f-d585-4b9e-9c0e-284a654969f5",
+      "first_name": "Max",
+      "last_name": "Homa",
+      "country": "UNITED STATES",
+      "rank": 140,
+      "prior_rank": 138,
+      "abbr_name": "M.Homa",
+      "statistics": {
+        "events_played": 46,
+        "avg_points": 0.96,
+        "points": 44.0908,
+        "points_lost": -2.4575,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "045c94ec-9444-424e-8c8f-5045d872c57b",
+      "first_name": "Lee",
+      "last_name": "Hodges",
+      "country": "UNITED STATES",
+      "rank": 141,
+      "prior_rank": 140,
+      "abbr_name": "L.Hodges",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.96,
+        "points": 49.7842,
+        "points_lost": -1.9141,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "4249bf6e-9723-4a4a-9ddd-515022618de9",
+      "first_name": "Joaquin",
+      "last_name": "Niemann",
+      "country": "CHILE",
+      "rank": 142,
+      "prior_rank": 142,
+      "abbr_name": "J.Niemann",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.95,
+        "points": 37.8064,
+        "points_lost": -1.8203,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "74dc07d3-784c-4e1c-95ad-d3a22d58f9d9",
+      "first_name": "David",
+      "last_name": "Lipsky",
+      "country": "UNITED STATES",
+      "rank": 143,
+      "prior_rank": 144,
+      "abbr_name": "D.Lipsky",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.93,
+        "points": 48.4785,
+        "points_lost": -1.7606,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "4b626dbc-ddae-4eb5-b5e0-d5364f5cc7c0",
+      "first_name": "Jesper",
+      "last_name": "Svensson",
+      "country": "SWEDEN",
+      "rank": 144,
+      "prior_rank": 143,
+      "abbr_name": "J.Svensson",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.93,
+        "points": 48.3754,
+        "points_lost": -2.0411,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "0da41090-bfca-43e2-be9e-0d18ebba5b17",
+      "first_name": "Christo",
+      "last_name": "Lamprecht",
+      "country": "SOUTH AFRICA",
+      "rank": 145,
+      "prior_rank": 146,
+      "abbr_name": "C.Lamprecht",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.93,
+        "points": 37.0889,
+        "points_lost": -1.0741,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "e87e2c8f-cc33-42cd-8171-c21542e436fc",
+      "first_name": "Karl",
+      "last_name": "Vilips",
+      "country": "AUSTRALIA",
+      "rank": 146,
+      "prior_rank": 145,
+      "abbr_name": "K.Vilips",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.92,
+        "points": 36.988,
+        "points_lost": -1.3984,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "212d5f1a-e8b9-4ec6-8829-2e27528efe03",
+      "first_name": "Kevin",
+      "last_name": "Roy",
+      "country": "UNITED STATES",
+      "rank": 147,
+      "prior_rank": 147,
+      "abbr_name": "K.Roy",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.92,
+        "points": 47.8574,
+        "points_lost": -1.7245,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "fa4b1348-de92-49e6-9379-b96b936055fe",
+      "first_name": "Doug",
+      "last_name": "Ghim",
+      "country": "UNITED STATES",
+      "rank": 148,
+      "prior_rank": 148,
+      "abbr_name": "D.Ghim",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.9,
+        "points": 46.8572,
+        "points_lost": -2.0531,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "b3bd6986-a84b-4f83-aee6-65a49c4ca502",
+      "first_name": "Carlos",
+      "last_name": "Ortiz",
+      "country": "MEXICO",
+      "rank": 149,
+      "prior_rank": 149,
+      "abbr_name": "C.Ortiz",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.88,
+        "points": 35.2545,
+        "points_lost": -1.3302,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "426d7ce8-f249-4737-8d4f-041e1c803966",
+      "first_name": "Jacob Skov",
+      "last_name": "Olesen",
+      "country": "DENMARK",
+      "rank": 150,
+      "prior_rank": 151,
+      "abbr_name": "J.Olesen",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.88,
+        "points": 35.1544,
+        "points_lost": -0.8129,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "13171ba7-5768-4561-8965-5c15e760737b",
+      "first_name": "Scott",
+      "last_name": "Vincent",
+      "country": "ZIMBABWE",
+      "rank": 151,
+      "prior_rank": 150,
+      "abbr_name": "S.Vincent",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.88,
+        "points": 35.1447,
+        "points_lost": -0.9551,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "d61bc778-126a-4a2f-9be3-f289b9c2a882",
+      "first_name": "Niklas",
+      "last_name": "Norgaard Moller",
+      "country": "DENMARK",
+      "rank": 152,
+      "prior_rank": 152,
+      "abbr_name": "N.Norgaard Moller",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.86,
+        "points": 44.8896,
+        "points_lost": -1.9996,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "a47fa922-a1ba-413d-b30a-56addcf746c6",
+      "first_name": "Emilio",
+      "last_name": "Gonzalez",
+      "country": "MEXICO",
+      "rank": 153,
+      "prior_rank": 154,
+      "abbr_name": "E.Gonzalez",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.86,
+        "points": 44.7816,
+        "points_lost": -1.3449,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "5661cca1-e9ed-4d4c-902d-79dd62a7a35a",
+      "first_name": "Kensei",
+      "last_name": "Hirata",
+      "country": "JAPAN",
+      "rank": 154,
+      "prior_rank": 153,
+      "abbr_name": "K.Hirata",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.86,
+        "points": 44.7073,
+        "points_lost": -1.8272,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "0b0b9c7d-e8d8-4c87-9d00-c57d9ee78ede",
+      "first_name": "Adrien",
+      "last_name": "Dumont De Chassart",
+      "country": "BELGIUM",
+      "rank": 155,
+      "prior_rank": 155,
+      "abbr_name": "A.Dumont De Chassart",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.86,
+        "points": 44.5772,
+        "points_lost": -1.4162,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "bdfa2606-e1c1-40ee-979a-391056419872",
+      "first_name": "Chandler",
+      "last_name": "Phillips",
+      "country": "UNITED STATES",
+      "rank": 156,
+      "prior_rank": 155,
+      "abbr_name": "C.Phillips",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.86,
+        "points": 44.4845,
+        "points_lost": -1.6068,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "4610bb68-73fc-4797-92be-80f0e83563fb",
+      "first_name": "Richard",
+      "last_name": "Mansell",
+      "country": "ENGLAND",
+      "rank": 157,
+      "prior_rank": 158,
+      "abbr_name": "R.Mansell",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.85,
+        "points": 44.0317,
+        "points_lost": -1.457,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "7244dab2-4fc0-4cfc-812d-e0c001907618",
+      "first_name": "Justin",
+      "last_name": "Lower",
+      "country": "UNITED STATES",
+      "rank": 158,
+      "prior_rank": 157,
+      "abbr_name": "J.Lower",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.85,
+        "points": 44.0133,
+        "points_lost": -1.6928,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "7a6e9b42-1b44-4e97-b583-2eb7bda9a68b",
+      "first_name": "Jorge",
+      "last_name": "Campillo",
+      "country": "SPAIN",
+      "rank": 159,
+      "prior_rank": 159,
+      "abbr_name": "J.Campillo",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.84,
+        "points": 43.7753,
+        "points_lost": -1.4335,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "de809908-6be8-4fb7-96c3-413743ef8f74",
+      "first_name": "Ewen",
+      "last_name": "Ferguson",
+      "country": "SCOTLAND",
+      "rank": 160,
+      "prior_rank": 162,
+      "abbr_name": "E.Ferguson",
+      "statistics": {
+        "events_played": 51,
+        "avg_points": 0.84,
+        "points": 42.6235,
+        "points_lost": -1.7303,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "3495d985-fec9-449e-9473-d3c69ea352c1",
+      "first_name": "Antoine",
+      "last_name": "Rozner",
+      "country": "FRANCE",
+      "rank": 161,
+      "prior_rank": 163,
+      "abbr_name": "A.Rozner",
+      "statistics": {
+        "events_played": 51,
+        "avg_points": 0.84,
+        "points": 42.623,
+        "points_lost": -1.6596,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "3ecdcfd1-a9de-4611-a1c8-352a37453cba",
+      "first_name": "Grant",
+      "last_name": "Forrest",
+      "country": "SCOTLAND",
+      "rank": 162,
+      "prior_rank": 166,
+      "abbr_name": "G.Forrest",
+      "statistics": {
+        "events_played": 49,
+        "avg_points": 0.83,
+        "points": 40.729,
+        "points_lost": -1.2288,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "7da9d857-1f6b-4d76-9396-592d5d9d65eb",
+      "first_name": "Seamus",
+      "last_name": "Power",
+      "country": "IRELAND",
+      "rank": 163,
+      "prior_rank": 160,
+      "abbr_name": "S.Power",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.83,
+        "points": 43.1577,
+        "points_lost": -1.6951,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "d802fc43-066b-483c-8553-49ca54488d1b",
+      "first_name": "Seonghyeon",
+      "last_name": "Kim",
+      "country": "SOUTH KOREA",
+      "rank": 164,
+      "prior_rank": 161,
+      "abbr_name": "S.Kim",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.83,
+        "points": 43.0162,
+        "points_lost": -1.5709,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "f1c4f14d-cfb4-4626-8807-303d99c46128",
+      "first_name": "Wenyi",
+      "last_name": "Ding",
+      "country": "CHINA",
+      "rank": 165,
+      "prior_rank": 164,
+      "abbr_name": "W.Ding",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.83,
+        "points": 33.0177,
+        "points_lost": -0.5108,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "43b877f1-e7e4-4218-b1a4-46c9f152b920",
+      "first_name": "Chad",
+      "last_name": "Ramey",
+      "country": "UNITED STATES",
+      "rank": 166,
+      "prior_rank": 165,
+      "abbr_name": "C.Ramey",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.82,
+        "points": 42.6079,
+        "points_lost": -0.9896,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "3bc2b325-1e5c-4d62-973f-c7a149f6998c",
+      "first_name": "Oliver",
+      "last_name": "Lindell",
+      "country": "FINLAND",
+      "rank": 167,
+      "prior_rank": 167,
+      "abbr_name": "O.Lindell",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.81,
+        "points": 42.264,
+        "points_lost": -1.2553,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "ebb2ac2a-077d-4776-974b-103846379408",
+      "first_name": "Kota",
+      "last_name": "Kaneko",
+      "country": "JAPAN",
+      "rank": 168,
+      "prior_rank": 169,
+      "abbr_name": "K.Kaneko",
+      "statistics": {
+        "events_played": 48,
+        "avg_points": 0.81,
+        "points": 38.9641,
+        "points_lost": -0.8526,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "e475c0f2-1b2a-4f20-bdfc-77bbfc12a748",
+      "first_name": "Joost",
+      "last_name": "Luiten",
+      "country": "NETHERLANDS",
+      "rank": 169,
+      "prior_rank": 171,
+      "abbr_name": "J.Luiten",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.81,
+        "points": 41.9465,
+        "points_lost": -1.1726,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "55584c5e-762f-42fa-bcce-88ccde64e65f",
+      "first_name": "Ricky",
+      "last_name": "Castillo",
+      "country": "UNITED STATES",
+      "rank": 170,
+      "prior_rank": 173,
+      "abbr_name": "R.Castillo",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.81,
+        "points": 41.8643,
+        "points_lost": -1.1236,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "a7a24782-a936-4bb8-ad7b-9564ee93f051",
+      "first_name": "Richard T.",
+      "last_name": "Lee",
+      "country": "CANADA",
+      "rank": 171,
+      "prior_rank": 172,
+      "abbr_name": "R.Lee",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 0.8,
+        "points": 40.1936,
+        "points_lost": -1.4219,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "4e93ec3d-3ca8-4755-a874-4d1e5c18ccbf",
+      "first_name": "Taylor",
+      "last_name": "Moore",
+      "country": "UNITED STATES",
+      "rank": 172,
+      "prior_rank": 168,
+      "abbr_name": "T.Moore",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.8,
+        "points": 41.7222,
+        "points_lost": -2.2759,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "bed447e2-c814-42de-b029-980e1b5b838b",
+      "first_name": "Carson",
+      "last_name": "Young",
+      "country": "UNITED STATES",
+      "rank": 173,
+      "prior_rank": 174,
+      "abbr_name": "C.Young",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.79,
+        "points": 40.9654,
+        "points_lost": -1.517,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "5f5295f6-93c0-48ae-ac53-7f398289ccf0",
+      "first_name": "Nick",
+      "last_name": "Dunlap",
+      "country": "UNITED STATES",
+      "rank": 174,
+      "prior_rank": 170,
+      "abbr_name": "N.Dunlap",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 0.79,
+        "points": 39.3643,
+        "points_lost": -3.2057,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "a3e052e0-4f16-4759-9b0c-ffac48053020",
+      "first_name": "Dan",
+      "last_name": "Bradbury",
+      "country": "ENGLAND",
+      "rank": 175,
+      "prior_rank": 176,
+      "abbr_name": "D.Bradbury",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.78,
+        "points": 40.7167,
+        "points_lost": -1.0659,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "b4a618af-4a08-4d7b-8613-87c26c8ec3a2",
+      "first_name": "Luke",
+      "last_name": "Clanton",
+      "country": "UNITED STATES",
+      "rank": 176,
+      "prior_rank": 175,
+      "abbr_name": "L.Clanton",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.78,
+        "points": 31.0515,
+        "points_lost": -1.5021,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "8c801bf6-7bed-40cf-b9df-16f870d9366f",
+      "first_name": "Taehoon",
+      "last_name": "Ok",
+      "country": "SOUTH KOREA",
+      "rank": 177,
+      "prior_rank": 177,
+      "abbr_name": "T.Ok",
+      "statistics": {
+        "events_played": 46,
+        "avg_points": 0.77,
+        "points": 35.5764,
+        "points_lost": -1.0432,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "8169868c-7b2c-45ff-a9fa-4628f463845a",
+      "first_name": "Jackson",
+      "last_name": "Koivun",
+      "country": "UNITED STATES",
+      "rank": 178,
+      "prior_rank": 178,
+      "abbr_name": "J.Koivun",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.77,
+        "points": 30.9242,
+        "points_lost": -0.7719,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "03abf511-dd15-4d27-b84c-af243b98150f",
+      "first_name": "Jacques",
+      "last_name": "Kruyswijk",
+      "country": "SOUTH AFRICA",
+      "rank": 179,
+      "prior_rank": 179,
+      "abbr_name": "J.Kruyswijk",
+      "statistics": {
+        "events_played": 51,
+        "avg_points": 0.76,
+        "points": 38.896,
+        "points_lost": -1.2391,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "3f82c91a-47f0-4551-8500-04784e940cde",
+      "first_name": "Peter",
+      "last_name": "Uihlein",
+      "country": "UNITED STATES",
+      "rank": 180,
+      "prior_rank": 181,
+      "abbr_name": "P.Uihlein",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.74,
+        "points": 29.7242,
+        "points_lost": -0.9694,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "0cfa22b7-e601-49f6-b85b-3dfd54cf652e",
+      "first_name": "Lanto",
+      "last_name": "Griffin",
+      "country": "UNITED STATES",
+      "rank": 181,
+      "prior_rank": 187,
+      "abbr_name": "L.Griffin",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 0.74,
+        "points": 37.1378,
+        "points_lost": -1.2587,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "bf8aa94c-d1a9-4de4-a05f-322092033fb0",
+      "first_name": "Andrew",
+      "last_name": "Putnam",
+      "country": "UNITED STATES",
+      "rank": 182,
+      "prior_rank": 180,
+      "abbr_name": "A.Putnam",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.74,
+        "points": 38.5761,
+        "points_lost": -1.6397,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "23cc95d0-93c3-4abf-9d26-2b615811331b",
+      "first_name": "Kazuma",
+      "last_name": "Kobori",
+      "country": "NEW ZEALAND",
+      "rank": 183,
+      "prior_rank": 188,
+      "abbr_name": "K.Kobori",
+      "statistics": {
+        "events_played": 49,
+        "avg_points": 0.74,
+        "points": 36.2959,
+        "points_lost": -1.1876,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "7edbf96a-7f52-4a94-9d66-cb86c2789e72",
+      "first_name": "Josele",
+      "last_name": "Ballester",
+      "country": "SPAIN",
+      "rank": 184,
+      "prior_rank": 186,
+      "abbr_name": "J.Ballester",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.74,
+        "points": 29.6162,
+        "points_lost": -0.0525,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "a9db4b96-5135-4d2e-8e8f-03f671b1b719",
+      "first_name": "Calum",
+      "last_name": "Hill",
+      "country": "SCOTLAND",
+      "rank": 185,
+      "prior_rank": 182,
+      "abbr_name": "C.Hill",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.74,
+        "points": 38.3302,
+        "points_lost": -1.2486,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "da8b4888-9330-46d0-8f8a-f76fae949dba",
+      "first_name": "Jackson",
+      "last_name": "Suber",
+      "country": "UNITED STATES",
+      "rank": 186,
+      "prior_rank": 183,
+      "abbr_name": "J.Suber",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 0.74,
+        "points": 36.8131,
+        "points_lost": -1.2627,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "1caf50fe-a9c1-4ab7-83b7-bdd1e5917607",
+      "first_name": "Trace",
+      "last_name": "Crowe",
+      "country": "UNITED STATES",
+      "rank": 187,
+      "prior_rank": 184,
+      "abbr_name": "T.Crowe",
+      "statistics": {
+        "events_played": 47,
+        "avg_points": 0.73,
+        "points": 34.527,
+        "points_lost": -1.304,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "686786b1-b91a-4015-a9c3-bac97a43067f",
+      "first_name": "Tatsunori",
+      "last_name": "Shogenji",
+      "country": "JAPAN",
+      "rank": 188,
+      "prior_rank": 185,
+      "abbr_name": "T.Shogenji",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.73,
+        "points": 38.0649,
+        "points_lost": -0.9763,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "b967042a-21af-4dfc-b62f-9199860ca203",
+      "first_name": "Taylor",
+      "last_name": "Montgomery",
+      "country": "UNITED STATES",
+      "rank": 189,
+      "prior_rank": 191,
+      "abbr_name": "T.Montgomery",
+      "statistics": {
+        "events_played": 47,
+        "avg_points": 0.73,
+        "points": 34.2013,
+        "points_lost": -1.3929,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "1a4d5a14-9eac-4f48-a788-3b5de297f9dc",
+      "first_name": "Nacho",
+      "last_name": "Elvira",
+      "country": "SPAIN",
+      "rank": 190,
+      "prior_rank": 189,
+      "abbr_name": "N.Elvira",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.72,
+        "points": 37.3577,
+        "points_lost": -1.0724,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "33da12a2-26fc-48bf-a432-4a5bf9224a7a",
+      "first_name": "Nicolai",
+      "last_name": "Von Dellingshausen",
+      "country": "GERMANY",
+      "rank": 191,
+      "prior_rank": 190,
+      "abbr_name": "N.Von Dellingshausen",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.72,
+        "points": 37.2549,
+        "points_lost": -1.125,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "eda03718-53df-4dda-b36d-5a453d0e81d2",
+      "first_name": "Marcus",
+      "last_name": "Armitage",
+      "country": "ENGLAND",
+      "rank": 192,
+      "prior_rank": 192,
+      "abbr_name": "M.Armitage",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.71,
+        "points": 37.1266,
+        "points_lost": -1.0808,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "89245f90-70cb-4177-943d-d8536b85e486",
+      "first_name": "Hank",
+      "last_name": "Lebioda",
+      "country": "UNITED STATES",
+      "rank": 193,
+      "prior_rank": 193,
+      "abbr_name": "H.Lebioda",
+      "statistics": {
+        "events_played": 47,
+        "avg_points": 0.71,
+        "points": 33.4527,
+        "points_lost": -1.1558,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "e76209c2-bac5-4ca8-89f5-3d6edb994418",
+      "first_name": "Matthew",
+      "last_name": "Jordan",
+      "country": "ENGLAND",
+      "rank": 194,
+      "prior_rank": 194,
+      "abbr_name": "M.Jordan",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.71,
+        "points": 36.7881,
+        "points_lost": -1.6262,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "f0318120-4582-4741-be45-328ea94be97b",
+      "first_name": "Junghwan",
+      "last_name": "Lee",
+      "country": "SOUTH KOREA",
+      "rank": 195,
+      "prior_rank": 195,
+      "abbr_name": "J.Lee",
+      "statistics": {
+        "events_played": 50,
+        "avg_points": 0.7,
+        "points": 35.1054,
+        "points_lost": -0.612,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "7d93756c-36eb-413b-8ad8-88941e2390a8",
+      "first_name": "David",
+      "last_name": "Law",
+      "country": "SCOTLAND",
+      "rank": 196,
+      "prior_rank": 196,
+      "abbr_name": "D.Law",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.7,
+        "points": 36.2577,
+        "points_lost": -1.0445,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "a5df8bb8-7de4-48e8-b49a-d0737f945b40",
+      "first_name": "Barend",
+      "last_name": "Botha",
+      "country": "SOUTH AFRICA",
+      "rank": 197,
+      "prior_rank": 197,
+      "abbr_name": "B.Botha",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.7,
+        "points": 27.8209,
+        "points_lost": -0.8084,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "bfbe58d5-3f3d-405a-b8f2-1012745a2343",
+      "first_name": "Richard",
+      "last_name": "Sterne",
+      "country": "SOUTH AFRICA",
+      "rank": 198,
+      "prior_rank": 199,
+      "abbr_name": "R.Sterne",
+      "statistics": {
+        "events_played": 40,
+        "avg_points": 0.69,
+        "points": 27.7818,
+        "points_lost": -0.529,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "12fd81d1-b3a0-4a73-b882-483fc96a1c8a",
+      "first_name": "Romain",
+      "last_name": "Langasque",
+      "country": "FRANCE",
+      "rank": 199,
+      "prior_rank": 198,
+      "abbr_name": "R.Langasque",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.68,
+        "points": 35.5663,
+        "points_lost": -1.8274,
+        "points_gained": 0
+      }
+    },
+    {
+      "id": "2bb9e2cd-4dbb-4478-a425-218d71a6de4e",
+      "first_name": "Harry",
+      "last_name": "Higgs",
+      "country": "UNITED STATES",
+      "rank": 200,
+      "prior_rank": 200,
+      "abbr_name": "H.Higgs",
+      "statistics": {
+        "events_played": 52,
+        "avg_points": 0.68,
+        "points": 35.4421,
+        "points_lost": -1.6659,
+        "points_gained": 0
+      }
+    }
+  ]
+}
