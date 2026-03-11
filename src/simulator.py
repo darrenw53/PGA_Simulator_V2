@@ -224,10 +224,21 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
 
     # Ownership proxy for lineup construction.
     proj_rank = pd.Series(proj_fd).rank(ascending=False, method="average", pct=True).to_numpy(dtype=float)
-    salary_rank = pd.to_numeric(out.get("Salary", 0.0), errors="coerce").fillna(0.0).rank(ascending=False, method="average", pct=True).to_numpy(dtype=float)
-    wgr_rank = pd.to_numeric(out.get("wgr_rank", 999.0), errors="coerce").fillna(999.0)
+
+    salary_series = out["Salary"] if "Salary" in out.columns else pd.Series(0.0, index=out.index)
+    salary_rank = (
+        pd.to_numeric(salary_series, errors="coerce")
+        .fillna(0.0)
+        .rank(ascending=False, method="average", pct=True)
+        .to_numpy(dtype=float)
+    )
+
+    wgr_series = out["wgr_rank"] if "wgr_rank" in out.columns else pd.Series(999.0, index=out.index)
+    wgr_rank = pd.to_numeric(wgr_series, errors="coerce").fillna(999.0)
     wgr_rank_pct = wgr_rank.rank(ascending=True, method="average", pct=True).to_numpy(dtype=float)
-    heater = pd.to_numeric(out.get("hotness_1_5", 3.0), errors="coerce").fillna(3.0)
+
+    heater_series = out["hotness_1_5"] if "hotness_1_5" in out.columns else pd.Series(3.0, index=out.index)
+    heater = pd.to_numeric(heater_series, errors="coerce").fillna(3.0)
     heater_pct = heater.rank(ascending=False, method="average", pct=True).to_numpy(dtype=float)
 
     ownership = 100.0 * (
