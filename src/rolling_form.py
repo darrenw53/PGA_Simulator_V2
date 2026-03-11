@@ -3,17 +3,17 @@ import json
 import numpy as np
 import pandas as pd
 
+
 def calculate_rolling_sg(weekly_path):
 
     weeks = sorted(os.listdir(weekly_path))
+    rows = []
 
-    data = []
-
-    for i, wk in enumerate(weeks):
+    for week_index, week in enumerate(weeks):
 
         stats_file = os.path.join(
             weekly_path,
-            wk,
+            week,
             "player_statistics.json"
         )
 
@@ -25,28 +25,32 @@ def calculate_rolling_sg(weekly_path):
 
         for p in stats:
 
-            data.append({
-                "player": p["player_name"],
-                "week": i,
+            rows.append({
+                "player_name": p.get("player_name"),
+                "week_index": week_index,
                 "sg_total": p.get("strokes_gained_total", 0),
                 "sg_t2g": p.get("strokes_gained_tee_green", 0)
             })
 
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(rows)
 
-    weights = np.exp(df["week"] / df["week"].max())
+    if df.empty:
+        return pd.DataFrame()
 
-    df["w"] = weights
+    # recency weighting
+    df["weight"] = np.exp(df["week_index"] / df["week_index"].max())
 
-    roll = df.groupby("player").apply(
+    rolling = df.groupby("player_name").apply(
         lambda x: pd.Series({
-            "rolling_sg_total":
-                np.average(x.sg_total, weights=x.w),
-            "rolling_sg_t2g":
-                np.average(x.sg_t2g, weights=x.w)
+            "rolling_sg_total": np.average(
+                x["sg_total"], weights=x["weight"]
+            ),
+            "rolling_sg_t2g": np.average(
+                x["sg_t2g"], weights=x["weight"]
+            )
         })
     )
 
-    roll.reset_index(inplace=True)
+    rolling.reset_index(inplace=True)
 
-    return roll
+    return rolling
