@@ -75,9 +75,18 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
     n = len(df)
     sims = int(cfg.n_sims)
 
+    # Optional round-specific wave/weather adjustments (strokes).
+    # Positive values make scoring worse; negative values help scoring.
+    round_adjustments = np.zeros((n, 4), dtype=float)
+    for idx, col in enumerate(["wave_r1_adjust", "wave_r2_adjust", "wave_r3_adjust", "wave_r4_adjust"]):
+        if col in df.columns:
+            round_adjustments[:, idx] = pd.to_numeric(df[col], errors="coerce").fillna(0.0).to_numpy()
+
+    round_loc = mu[:, None] + round_adjustments
+
     # Rounds: [sims, n, 4]
     rounds = rng.normal(
-        loc=mu[None, :, None], scale=float(cfg.round_sd), size=(sims, n, 4)
+        loc=round_loc[None, :, :], scale=float(cfg.round_sd), size=(sims, n, 4)
     )
     # Total score (4 rounds)
     totals = rounds.sum(axis=2)
