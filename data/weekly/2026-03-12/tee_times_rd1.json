@@ -1,0 +1,1312 @@
+{
+  "id": "09a106fc-1a9d-4701-af9d-b3f480aedb2f",
+  "name": "THE PLAYERS Championship",
+  "event_type": "stroke",
+  "purse": 25000000,
+  "winning_share": 4500000,
+  "currency": "USD",
+  "points": 750,
+  "start_date": "2026-03-12",
+  "end_date": "2026-03-15",
+  "course_timezone": "America/New_York",
+  "status": "created",
+  "parent_id": "5001d8fa-35ae-4bd2-98dd-4ef0fa78824f",
+  "seasons": [
+    {
+      "id": "e4694c64-017f-432f-b80e-28bcec314ca6",
+      "year": 2026,
+      "tour": {
+        "id": "b52068af-28e4-4e91-bdbb-037591b0ff84",
+        "alias": "pga",
+        "name": "PGA Tour"
+      }
+    }
+  ],
+  "coverage": "full",
+  "round": {
+    "id": "8a83528d-9492-4d5d-be07-0f221708b7b1",
+    "number": 1,
+    "status": "scheduled",
+    "courses": [
+      {
+        "id": "91d909cc-bd5e-4905-9ab8-533c62d4405a",
+        "name": "TPC Sawgrass",
+        "yardage": 7352,
+        "par": 72,
+        "pairings": [
+          {
+            "tee_time": "2026-03-12T11:40:00+00:00",
+            "back_nine": false,
+            "id": "56f3fd98-c5de-4cf4-b2a8-52f19b1c1c0a",
+            "players": [
+              {
+                "id": "29f689c9-9a88-4e51-8d7b-e445ddc7d04b",
+                "first_name": "Mac",
+                "last_name": "Meissner",
+                "country": "UNITED STATES",
+                "abbr_name": "M.Meissner",
+                "starting_hole": 1
+              },
+              {
+                "id": "e0bb81ec-b52c-4805-bb9a-a90fa981b5fb",
+                "first_name": "Mark",
+                "last_name": "Hubbard",
+                "country": "UNITED STATES",
+                "abbr_name": "M.Hubbard",
+                "starting_hole": 1
+              },
+              {
+                "id": "7eb71731-d2f6-4d1e-86ae-a93ba4c2d20e",
+                "first_name": "Thorbjorn",
+                "last_name": "Olesen",
+                "country": "DENMARK",
+                "abbr_name": "T.Olesen",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T11:40:00+00:00",
+            "back_nine": true,
+            "id": "70c2cfc4-7a3d-4303-a30a-adb4b2e1ca0c",
+            "players": [
+              {
+                "id": "6cad8490-72de-4df2-9d6a-ee1be88df338",
+                "first_name": "Mackenzie",
+                "last_name": "Hughes",
+                "country": "CANADA",
+                "abbr_name": "M.Hughes",
+                "starting_hole": 10
+              },
+              {
+                "id": "c01c741a-fd91-4e1c-8d39-ec448fc37e0a",
+                "first_name": "Eric",
+                "last_name": "Cole",
+                "country": "UNITED STATES",
+                "abbr_name": "E.Cole",
+                "starting_hole": 10
+              },
+              {
+                "id": "20114b19-caef-4123-93d5-ff30bec77954",
+                "first_name": "Rico",
+                "last_name": "Hoey",
+                "country": "PHILIPPINES",
+                "abbr_name": "R.Hoey",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T11:52:00+00:00",
+            "back_nine": false,
+            "id": "5d5f92bb-e654-485f-9ce3-f8c23571559f",
+            "players": [
+              {
+                "id": "c6c566d2-bdbf-484d-a581-3036ad95ee57",
+                "first_name": "Vince",
+                "last_name": "Whaley",
+                "country": "UNITED STATES",
+                "abbr_name": "V.Whaley",
+                "starting_hole": 1
+              },
+              {
+                "id": "6383ba29-158b-46fe-b44a-a5ff6a2796bb",
+                "first_name": "Bud",
+                "last_name": "Cauley",
+                "country": "UNITED STATES",
+                "abbr_name": "B.Cauley",
+                "starting_hole": 1
+              },
+              {
+                "id": "bdfa2606-e1c1-40ee-979a-391056419872",
+                "first_name": "Chandler",
+                "last_name": "Phillips",
+                "country": "UNITED STATES",
+                "abbr_name": "C.Phillips",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T11:52:00+00:00",
+            "back_nine": true,
+            "id": "a3befdfb-575a-4298-83f7-3985e5713884",
+            "players": [
+              {
+                "id": "8e3fb27f-d585-4b9e-9c0e-284a654969f5",
+                "first_name": "Max",
+                "last_name": "Homa",
+                "country": "UNITED STATES",
+                "abbr_name": "M.Homa",
+                "starting_hole": 10
+              },
+              {
+                "id": "509991b7-9e9d-48be-9a3b-b75fd23be6ff",
+                "first_name": "Daniel",
+                "last_name": "Berger",
+                "country": "UNITED STATES",
+                "abbr_name": "D.Berger",
+                "starting_hole": 10
+              },
+              {
+                "id": "c3242516-37d7-46e3-aba7-b74f1498527e",
+                "first_name": "Michael",
+                "last_name": "Thorbjornsen",
+                "country": "UNITED STATES",
+                "abbr_name": "M.Thorbjornsen",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T12:04:00+00:00",
+            "back_nine": false,
+            "id": "b644417f-c06d-41d4-9e2d-6ac43d9738ec",
+            "players": [
+              {
+                "id": "72d49435-47fb-4134-b57c-3f8de2605554",
+                "first_name": "Max",
+                "last_name": "Greyserman",
+                "country": "UNITED STATES",
+                "abbr_name": "M.Greyserman",
+                "starting_hole": 1
+              },
+              {
+                "id": "f1fb4562-ffe8-4539-927b-0ffd13e9533f",
+                "first_name": "Emiliano",
+                "last_name": "Grillo",
+                "country": "ARGENTINA",
+                "abbr_name": "E.Grillo",
+                "starting_hole": 1
+              },
+              {
+                "id": "b2cde176-328d-4856-9684-6885a1651f57",
+                "first_name": "Christiaan",
+                "last_name": "Bezuidenhout",
+                "country": "SOUTH AFRICA",
+                "abbr_name": "C.Bezuidenhout",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T12:04:00+00:00",
+            "back_nine": true,
+            "id": "f24ce751-4d1b-41fc-84e4-1bcc143e493f",
+            "players": [
+              {
+                "id": "de193540-82b9-447a-9f3a-adc779b46019",
+                "first_name": "Danny",
+                "last_name": "Walker",
+                "country": "UNITED STATES",
+                "abbr_name": "D.Walker",
+                "starting_hole": 10
+              },
+              {
+                "id": "7161a8f8-bd34-4b09-a3b5-0ada7f148b7f",
+                "first_name": "Rasmus",
+                "last_name": "Hojgaard",
+                "country": "DENMARK",
+                "abbr_name": "R.Hojgaard",
+                "starting_hole": 10
+              },
+              {
+                "id": "e3f8b40a-30b4-407b-98f0-0b33377c57a4",
+                "first_name": "Kristoffer",
+                "last_name": "Reitan",
+                "country": "NORWAY",
+                "abbr_name": "K.Reitan",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T12:16:00+00:00",
+            "back_nine": false,
+            "id": "969b3189-1cee-43ff-bdda-aa3c2e647303",
+            "players": [
+              {
+                "id": "77a9104b-6fd4-40b7-85e2-10b2448a8f86",
+                "first_name": "Kevin",
+                "last_name": "Yu",
+                "country": "CHINESE TAIPEI",
+                "abbr_name": "K.Yu",
+                "starting_hole": 1
+              },
+              {
+                "id": "f2bc6b83-fab1-4567-8bcf-9287d1940f2d",
+                "first_name": "Cameron",
+                "last_name": "Davis",
+                "country": "AUSTRALIA",
+                "abbr_name": "C.Davis",
+                "starting_hole": 1
+              },
+              {
+                "id": "2d568087-700f-44a2-8390-47aa7bafc770",
+                "first_name": "Gary",
+                "last_name": "Woodland",
+                "country": "UNITED STATES",
+                "abbr_name": "G.Woodland",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T12:16:00+00:00",
+            "back_nine": true,
+            "id": "ee2d6878-d928-4aef-bed6-d2ce6cac412a",
+            "players": [
+              {
+                "id": "4c25a86b-b1ff-46b4-bc95-ac61dda7bb55",
+                "first_name": "Jhonattan",
+                "last_name": "Vegas",
+                "country": "VENEZUELA",
+                "abbr_name": "J.Vegas",
+                "starting_hole": 10
+              },
+              {
+                "id": "c4c3d105-7c57-4caa-b941-f86cd8b3d97c",
+                "first_name": "Taylor",
+                "last_name": "Pendrith",
+                "country": "CANADA",
+                "abbr_name": "T.Pendrith",
+                "starting_hole": 10
+              },
+              {
+                "id": "88bc83d5-45d0-4be3-9dd1-1af5282a718e",
+                "first_name": "Alex",
+                "last_name": "Noren",
+                "country": "SWEDEN",
+                "abbr_name": "A.Noren",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T12:28:00+00:00",
+            "back_nine": true,
+            "id": "2568baf7-185f-4bd8-95b4-98fe5e9d2710",
+            "players": [
+              {
+                "id": "f555d8b6-f0af-4cce-aa5b-de981d89bc69",
+                "first_name": "Brooks",
+                "last_name": "Koepka",
+                "country": "UNITED STATES",
+                "abbr_name": "B.Koepka",
+                "starting_hole": 10
+              },
+              {
+                "id": "f33d746b-8e14-4325-a4e1-81d6f983b163",
+                "first_name": "Tony",
+                "last_name": "Finau",
+                "country": "UNITED STATES",
+                "abbr_name": "T.Finau",
+                "starting_hole": 10
+              },
+              {
+                "id": "dfbe6c98-2862-4266-a5e4-494003349a31",
+                "first_name": "Akshay",
+                "last_name": "Bhatia",
+                "country": "UNITED STATES",
+                "abbr_name": "A.Bhatia",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T12:28:00+00:00",
+            "back_nine": false,
+            "id": "5336c7d0-d152-43ef-8dfe-b9a4cb598ceb",
+            "players": [
+              {
+                "id": "6ff0d2f5-2a16-45fd-82a9-69c99a86261d",
+                "first_name": "Ryan",
+                "last_name": "Gerard",
+                "country": "UNITED STATES",
+                "abbr_name": "R.Gerard",
+                "starting_hole": 1
+              },
+              {
+                "id": "55584c5e-762f-42fa-bcce-88ccde64e65f",
+                "first_name": "Ricky",
+                "last_name": "Castillo",
+                "country": "UNITED STATES",
+                "abbr_name": "R.Castillo",
+                "starting_hole": 1
+              },
+              {
+                "id": "d072ae36-88f2-4276-b97e-6de87aa2b875",
+                "first_name": "Patrick",
+                "last_name": "Cantlay",
+                "country": "UNITED STATES",
+                "abbr_name": "P.Cantlay",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T12:40:00+00:00",
+            "back_nine": false,
+            "id": "4731e725-f6aa-46bf-bc4e-4c556202cbeb",
+            "players": [
+              {
+                "id": "95049360-bdd6-4b20-9b10-29eb6594e962",
+                "first_name": "Garrick",
+                "last_name": "Higgo",
+                "country": "SOUTH AFRICA",
+                "abbr_name": "G.Higgo",
+                "starting_hole": 1
+              },
+              {
+                "id": "cb1856a9-b6ef-45ca-9ad7-9c02501f2481",
+                "first_name": "Adam",
+                "last_name": "Schenk",
+                "country": "UNITED STATES",
+                "abbr_name": "A.Schenk",
+                "starting_hole": 1
+              },
+              {
+                "id": "80d16074-9940-44ee-b159-4b7ad819e2ac",
+                "first_name": "Matthew",
+                "last_name": "McCarty",
+                "country": "UNITED STATES",
+                "abbr_name": "M.McCarty",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T12:40:00+00:00",
+            "back_nine": true,
+            "id": "8156d184-3dee-471c-8048-3e03b04ffd01",
+            "players": [
+              {
+                "id": "4fff3b28-5c2e-4ec3-91d1-696f42638cf4",
+                "first_name": "Ludvig",
+                "last_name": "Aberg",
+                "country": "SWEDEN",
+                "abbr_name": "L.Aberg",
+                "starting_hole": 10
+              },
+              {
+                "id": "21886b8c-d915-4bbc-9bda-0352821c432b",
+                "first_name": "Si Woo",
+                "last_name": "Kim",
+                "country": "SOUTH KOREA",
+                "abbr_name": "S.Kim",
+                "starting_hole": 10
+              },
+              {
+                "id": "f0ff1391-fc29-41bf-b46a-cd5ef9f63ad9",
+                "first_name": "Collin",
+                "last_name": "Morikawa",
+                "country": "UNITED STATES",
+                "abbr_name": "C.Morikawa",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T12:52:00+00:00",
+            "back_nine": true,
+            "id": "882b2269-d78c-4535-bf28-f9e0f7c782b9",
+            "players": [
+              {
+                "id": "6db3e736-d86d-4181-aa3b-651b8c1bfdc1",
+                "first_name": "Scottie",
+                "last_name": "Scheffler",
+                "country": "UNITED STATES",
+                "abbr_name": "S.Scheffler",
+                "starting_hole": 10
+              },
+              {
+                "id": "2094fa02-6411-48df-a717-aa1a7228d645",
+                "first_name": "Justin",
+                "last_name": "Thomas",
+                "country": "UNITED STATES",
+                "abbr_name": "J.Thomas",
+                "starting_hole": 10
+              },
+              {
+                "id": "6577ec3d-9e78-4979-8f4c-01c465fa6b1d",
+                "first_name": "Tommy",
+                "last_name": "Fleetwood",
+                "country": "ENGLAND",
+                "abbr_name": "T.Fleetwood",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T12:52:00+00:00",
+            "back_nine": false,
+            "id": "f089db18-877d-4ce0-91c3-d26c91d7bf09",
+            "players": [
+              {
+                "id": "37221a6c-c8c4-4eaa-beba-715f6e781962",
+                "first_name": "Maverick",
+                "last_name": "McNealy",
+                "country": "UNITED STATES",
+                "abbr_name": "M.McNealy",
+                "starting_hole": 1
+              },
+              {
+                "id": "92544280-0438-4f43-a5f3-f3a21ea55157",
+                "first_name": "Brian",
+                "last_name": "Harman",
+                "country": "UNITED STATES",
+                "abbr_name": "B.Harman",
+                "starting_hole": 1
+              },
+              {
+                "id": "f8a4cccc-bf81-4863-99a5-60b13d911184",
+                "first_name": "Davis",
+                "last_name": "Riley",
+                "country": "UNITED STATES",
+                "abbr_name": "D.Riley",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T13:04:00+00:00",
+            "back_nine": true,
+            "id": "0fd6bdde-e5d5-4cb3-bb90-8acae9b42266",
+            "players": [
+              {
+                "id": "965d925a-5ecd-409c-beb7-a34ef1ca52f3",
+                "first_name": "Viktor",
+                "last_name": "Hovland",
+                "country": "NORWAY",
+                "abbr_name": "V.Hovland",
+                "starting_hole": 10
+              },
+              {
+                "id": "99f32016-2a65-4652-8662-e810556ca542",
+                "first_name": "Robert",
+                "last_name": "MacIntyre",
+                "country": "SCOTLAND",
+                "abbr_name": "R.MacIntyre",
+                "starting_hole": 10
+              },
+              {
+                "id": "d8a9ce2c-9bdf-4e54-b53e-58692a1f4d59",
+                "first_name": "Russell",
+                "last_name": "Henley",
+                "country": "UNITED STATES",
+                "abbr_name": "R.Henley",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T13:04:00+00:00",
+            "back_nine": false,
+            "id": "f2bd3085-3a74-4c35-b142-41fdf2eb8ec1",
+            "players": [
+              {
+                "id": "c035de63-4cdd-4cd9-91bc-32a747c05e4a",
+                "first_name": "Sami",
+                "last_name": "Valimaki",
+                "country": "FINLAND",
+                "abbr_name": "S.Valimaki",
+                "starting_hole": 1
+              },
+              {
+                "id": "04b52e10-1f50-4efb-9895-86b4107f78c4",
+                "first_name": "Matt",
+                "last_name": "Fitzpatrick",
+                "country": "ENGLAND",
+                "abbr_name": "M.Fitzpatrick",
+                "starting_hole": 1
+              },
+              {
+                "id": "88c2edb1-7551-4920-91ad-71c971e51e8c",
+                "first_name": "Lucas",
+                "last_name": "Glover",
+                "country": "UNITED STATES",
+                "abbr_name": "L.Glover",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T13:16:00+00:00",
+            "back_nine": true,
+            "id": "99af9f4f-4381-4391-ab71-c755a6c94e06",
+            "players": [
+              {
+                "id": "1a669884-b715-4d7f-8fe4-63e345cc7f66",
+                "first_name": "Jake",
+                "last_name": "Knapp",
+                "country": "UNITED STATES",
+                "abbr_name": "J.Knapp",
+                "starting_hole": 10
+              },
+              {
+                "id": "ac1db384-8cb4-4223-bc46-60f4ed963645",
+                "first_name": "Sungjae",
+                "last_name": "Im",
+                "country": "SOUTH KOREA",
+                "abbr_name": "S.Im",
+                "starting_hole": 10
+              },
+              {
+                "id": "bfc6a7dc-833e-43df-a9b6-499929fdd42c",
+                "first_name": "Aldrich",
+                "last_name": "Potgieter",
+                "country": "SOUTH AFRICA",
+                "abbr_name": "A.Potgieter",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T13:16:00+00:00",
+            "back_nine": false,
+            "id": "a59a0177-3d58-4b08-b6ad-e1f2cf9e3c3d",
+            "players": [
+              {
+                "id": "f112c09e-6ad9-4a93-a3c7-d5e1d13dab07",
+                "first_name": "Michael",
+                "last_name": "Brennan",
+                "country": "UNITED STATES",
+                "abbr_name": "M.Brennan",
+                "starting_hole": 1
+              },
+              {
+                "id": "20be4865-0813-4e80-87fd-d2294cd6996c",
+                "first_name": "J.T.",
+                "last_name": "Poston",
+                "country": "UNITED STATES",
+                "abbr_name": "J.Poston",
+                "starting_hole": 1
+              },
+              {
+                "id": "7e11058b-ce7b-4efa-8963-2e48c683ff5b",
+                "first_name": "Harris",
+                "last_name": "English",
+                "country": "UNITED STATES",
+                "abbr_name": "H.English",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T13:28:00+00:00",
+            "back_nine": true,
+            "id": "c120be18-759d-4c01-8136-a76299eebb09",
+            "players": [
+              {
+                "id": "7da9d857-1f6b-4d76-9396-592d5d9d65eb",
+                "first_name": "Seamus",
+                "last_name": "Power",
+                "country": "IRELAND",
+                "abbr_name": "S.Power",
+                "starting_hole": 10
+              },
+              {
+                "id": "6c98595c-2395-4e85-aeb8-cad4f50fb581",
+                "first_name": "John",
+                "last_name": "Keefer",
+                "country": "UNITED STATES",
+                "abbr_name": "J.Keefer",
+                "starting_hole": 10
+              },
+              {
+                "id": "3442d4dd-ecfa-43aa-9a01-7525e6f4952c",
+                "first_name": "Patton",
+                "last_name": "Kizzire",
+                "country": "UNITED STATES",
+                "abbr_name": "P.Kizzire",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T13:28:00+00:00",
+            "back_nine": false,
+            "id": "db897138-845c-4762-9387-7209c0f90611",
+            "players": [
+              {
+                "id": "1b5f26e5-c53d-44e3-b551-fd0284ab59b7",
+                "first_name": "Jordan L.",
+                "last_name": "Smith",
+                "country": "ENGLAND",
+                "abbr_name": "J.Smith",
+                "starting_hole": 1
+              },
+              {
+                "id": "2af25cc3-2251-4408-902b-4a1d88e40fef",
+                "first_name": "Zecheng",
+                "last_name": "Dou",
+                "country": "CHINA",
+                "abbr_name": "Z.Dou",
+                "starting_hole": 1
+              },
+              {
+                "id": "81a12293-b97e-4b11-9686-a1e0bc8a4096",
+                "first_name": "Hao-Tong",
+                "last_name": "Li",
+                "country": "CHINA",
+                "abbr_name": "H.Li",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T16:30:00+00:00",
+            "back_nine": true,
+            "id": "5825a0eb-5129-4647-8d24-7eb4e6c62829",
+            "players": [
+              {
+                "id": "6787bd96-6bf0-4297-b819-85025f81a3a9",
+                "first_name": "Denny",
+                "last_name": "McCarthy",
+                "country": "UNITED STATES",
+                "abbr_name": "D.McCarthy",
+                "starting_hole": 10
+              },
+              {
+                "id": "7a4b2b40-4675-41d9-86fd-cc6a61a1d3b2",
+                "first_name": "Nicolai",
+                "last_name": "Hojgaard",
+                "country": "DENMARK",
+                "abbr_name": "N.Hojgaard",
+                "starting_hole": 10
+              },
+              {
+                "id": "dae7d61f-bde2-4182-9e99-06b48689f004",
+                "first_name": "Tom",
+                "last_name": "Hoge",
+                "country": "UNITED STATES",
+                "abbr_name": "T.Hoge",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T16:30:00+00:00",
+            "back_nine": false,
+            "id": "6b2e7d4c-197a-41b5-9d74-f51df93064f8",
+            "players": [
+              {
+                "id": "ec136a76-cae2-4f69-a293-cc54fb79b56c",
+                "first_name": "Sam",
+                "last_name": "Stevens",
+                "country": "UNITED STATES",
+                "abbr_name": "S.Stevens",
+                "starting_hole": 1
+              },
+              {
+                "id": "045c94ec-9444-424e-8c8f-5045d872c57b",
+                "first_name": "Lee",
+                "last_name": "Hodges",
+                "country": "UNITED STATES",
+                "abbr_name": "L.Hodges",
+                "starting_hole": 1
+              },
+              {
+                "id": "bf8aa94c-d1a9-4de4-a05f-322092033fb0",
+                "first_name": "Andrew",
+                "last_name": "Putnam",
+                "country": "UNITED STATES",
+                "abbr_name": "A.Putnam",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T16:42:00+00:00",
+            "back_nine": true,
+            "id": "27fca12b-bc94-4086-af40-3e9eec12bc90",
+            "players": [
+              {
+                "id": "212d5f1a-e8b9-4ec6-8829-2e27528efe03",
+                "first_name": "Kevin",
+                "last_name": "Roy",
+                "country": "UNITED STATES",
+                "abbr_name": "K.Roy",
+                "starting_hole": 10
+              },
+              {
+                "id": "3888a78e-b24a-4005-8915-2f03fccf3107",
+                "first_name": "Patrick",
+                "last_name": "Rodgers",
+                "country": "UNITED STATES",
+                "abbr_name": "P.Rodgers",
+                "starting_hole": 10
+              },
+              {
+                "id": "b9a86035-7554-4b52-b57f-e089860fb009",
+                "first_name": "Marco",
+                "last_name": "Penge",
+                "country": "ENGLAND",
+                "abbr_name": "M.Penge",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T16:42:00+00:00",
+            "back_nine": false,
+            "id": "3a6273d9-a51a-4e05-83d4-cb9dc575f030",
+            "players": [
+              {
+                "id": "1330a2ae-16d0-433f-8382-e26cdce78ac7",
+                "first_name": "Erik",
+                "last_name": "Van Rooyen",
+                "country": "SOUTH AFRICA",
+                "abbr_name": "E.Van Rooyen",
+                "starting_hole": 1
+              },
+              {
+                "id": "8593b951-98f9-4757-bed3-3e922c989d2f",
+                "first_name": "Michael",
+                "last_name": "Kim",
+                "country": "UNITED STATES",
+                "abbr_name": "M.Kim",
+                "starting_hole": 1
+              },
+              {
+                "id": "21cad9ff-689e-4a99-b3a9-91f66cec3f01",
+                "first_name": "Keith",
+                "last_name": "Mitchell",
+                "country": "UNITED STATES",
+                "abbr_name": "K.Mitchell",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T16:54:00+00:00",
+            "back_nine": false,
+            "id": "86907a60-79f8-41f4-a0f0-70df1b8927be",
+            "players": [
+              {
+                "id": "4e93ec3d-3ca8-4755-a874-4d1e5c18ccbf",
+                "first_name": "Taylor",
+                "last_name": "Moore",
+                "country": "UNITED STATES",
+                "abbr_name": "T.Moore",
+                "starting_hole": 1
+              },
+              {
+                "id": "e8860c1b-85bf-4997-8f60-cf8681935219",
+                "first_name": "Joel",
+                "last_name": "Dahmen",
+                "country": "UNITED STATES",
+                "abbr_name": "J.Dahmen",
+                "starting_hole": 1
+              },
+              {
+                "id": "8a699c51-e95c-4f2b-b57c-2fab6eb01adf",
+                "first_name": "Ryo",
+                "last_name": "Hisatsune",
+                "country": "JAPAN",
+                "abbr_name": "R.Hisatsune",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T16:54:00+00:00",
+            "back_nine": true,
+            "id": "a74d1163-f8c6-43af-95d2-c5c8470bfe58",
+            "players": [
+              {
+                "id": "fa3c656a-7f3e-4931-ab19-5e07cc52c4f9",
+                "first_name": "Alex",
+                "last_name": "Smalley",
+                "country": "UNITED STATES",
+                "abbr_name": "A.Smalley",
+                "starting_hole": 10
+              },
+              {
+                "id": "43b877f1-e7e4-4218-b1a4-46c9f152b920",
+                "first_name": "Chad",
+                "last_name": "Ramey",
+                "country": "UNITED STATES",
+                "abbr_name": "C.Ramey",
+                "starting_hole": 10
+              },
+              {
+                "id": "737b280c-11fd-40c0-8811-2c1951e7f270",
+                "first_name": "Pierceson",
+                "last_name": "Coody",
+                "country": "UNITED STATES",
+                "abbr_name": "P.Coody",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T17:06:00+00:00",
+            "back_nine": true,
+            "id": "20160680-0676-40f1-83cf-dcbb55df98a3",
+            "players": [
+              {
+                "id": "5e4d3877-596c-4165-93d6-cda69c29447a",
+                "first_name": "Kurt",
+                "last_name": "Kitayama",
+                "country": "UNITED STATES",
+                "abbr_name": "K.Kitayama",
+                "starting_hole": 10
+              },
+              {
+                "id": "5488bb49-3607-4517-a3a1-5cf68737aa37",
+                "first_name": "Stephan",
+                "last_name": "Jaeger",
+                "country": "GERMANY",
+                "abbr_name": "S.Jaeger",
+                "starting_hole": 10
+              },
+              {
+                "id": "be5be8d0-b561-4d0e-ac4a-90275f2f979f",
+                "first_name": "Harry",
+                "last_name": "Hall",
+                "country": "ENGLAND",
+                "abbr_name": "H.Hall",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T17:06:00+00:00",
+            "back_nine": false,
+            "id": "9f94a4a9-d3b4-4fe3-9794-a8c547ae1b50",
+            "players": [
+              {
+                "id": "c9466b3a-d8f6-42ec-aa53-1f55db13377d",
+                "first_name": "Jacob",
+                "last_name": "Bridgeman",
+                "country": "UNITED STATES",
+                "abbr_name": "J.Bridgeman",
+                "starting_hole": 1
+              },
+              {
+                "id": "d8126bf8-8558-44a2-a473-8ce001de7471",
+                "first_name": "Ben",
+                "last_name": "Griffin",
+                "country": "UNITED STATES",
+                "abbr_name": "B.Griffin",
+                "starting_hole": 1
+              },
+              {
+                "id": "45be1496-ea36-4c0c-8573-4a457ab70573",
+                "first_name": "Adam",
+                "last_name": "Scott",
+                "country": "AUSTRALIA",
+                "abbr_name": "A.Scott",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T17:18:00+00:00",
+            "back_nine": false,
+            "id": "74420288-f588-446b-937a-9254088e1481",
+            "players": [
+              {
+                "id": "f59ddf3e-5f14-42b3-9cf1-b681cd0d35a0",
+                "first_name": "Shane",
+                "last_name": "Lowry",
+                "country": "IRELAND",
+                "abbr_name": "S.Lowry",
+                "starting_hole": 1
+              },
+              {
+                "id": "502087cf-2c40-4e1d-9649-4f4e6d7d7778",
+                "first_name": "Sepp",
+                "last_name": "Straka",
+                "country": "AUSTRIA",
+                "abbr_name": "S.Straka",
+                "starting_hole": 1
+              },
+              {
+                "id": "7fdc75ca-2c33-49b8-8738-a8ea06fb51ed",
+                "first_name": "J.J.",
+                "last_name": "Spaun",
+                "country": "UNITED STATES",
+                "abbr_name": "J.Spaun",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T17:18:00+00:00",
+            "back_nine": true,
+            "id": "9b2d7dcb-ae50-419f-85ce-1a1a997afa52",
+            "players": [
+              {
+                "id": "4466666b-77b3-4c26-8fbb-f0fd1d179149",
+                "first_name": "Ryan",
+                "last_name": "Fox",
+                "country": "NEW ZEALAND",
+                "abbr_name": "R.Fox",
+                "starting_hole": 10
+              },
+              {
+                "id": "0b5d3fd6-e3ec-4efd-8743-60db44c87425",
+                "first_name": "Keegan",
+                "last_name": "Bradley",
+                "country": "UNITED STATES",
+                "abbr_name": "K.Bradley",
+                "starting_hole": 10
+              },
+              {
+                "id": "e4f92dca-86d5-441e-8a2d-55d5360937c5",
+                "first_name": "Chris",
+                "last_name": "Kirk",
+                "country": "UNITED STATES",
+                "abbr_name": "C.Kirk",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T17:30:00+00:00",
+            "back_nine": false,
+            "id": "9abd4e98-aab4-442f-9a43-113b726a6b0d",
+            "players": [
+              {
+                "id": "5735703a-32d9-4a6c-8b24-6596f300bc44",
+                "first_name": "Rickie",
+                "last_name": "Fowler",
+                "country": "UNITED STATES",
+                "abbr_name": "R.Fowler",
+                "starting_hole": 1
+              },
+              {
+                "id": "3e4963cb-6e80-4393-85cf-2aecec453c4a",
+                "first_name": "Jordan",
+                "last_name": "Spieth",
+                "country": "UNITED STATES",
+                "abbr_name": "J.Spieth",
+                "starting_hole": 1
+              },
+              {
+                "id": "25faf9c2-3b45-4630-aac8-d11229cde0a1",
+                "first_name": "Sahith",
+                "last_name": "Theegala",
+                "country": "UNITED STATES",
+                "abbr_name": "S.Theegala",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T17:30:00+00:00",
+            "back_nine": true,
+            "id": "eacebbcb-6b36-433b-9789-68e945ba6cf4",
+            "players": [
+              {
+                "id": "0f2eb1c3-7278-4b5e-af2e-fd67644834b5",
+                "first_name": "Wyndham",
+                "last_name": "Clark",
+                "country": "UNITED STATES",
+                "abbr_name": "W.Clark",
+                "starting_hole": 10
+              },
+              {
+                "id": "8454b651-9427-488d-a405-8e0219741c6e",
+                "first_name": "Nick",
+                "last_name": "Taylor",
+                "country": "CANADA",
+                "abbr_name": "N.Taylor",
+                "starting_hole": 10
+              },
+              {
+                "id": "f0628f83-84ab-48cc-a2c4-f011d2c09a18",
+                "first_name": "Andrew",
+                "last_name": "Novak",
+                "country": "UNITED STATES",
+                "abbr_name": "A.Novak",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T17:42:00+00:00",
+            "back_nine": true,
+            "id": "206b2557-a6c0-4106-a0d1-9dd98e6c2275",
+            "players": [
+              {
+                "id": "bb638691-1a48-486b-a439-25d89c8a5c93",
+                "first_name": "William",
+                "last_name": "Mouw",
+                "country": "UNITED STATES",
+                "abbr_name": "W.Mouw",
+                "starting_hole": 10
+              },
+              {
+                "id": "fd21d0f3-f5f7-413a-bb05-4034e4d4fc8e",
+                "first_name": "Steven",
+                "last_name": "Fisk",
+                "country": "UNITED STATES",
+                "abbr_name": "S.Fisk",
+                "starting_hole": 10
+              },
+              {
+                "id": "423d212b-6260-4c7f-b0db-d2c365648f12",
+                "first_name": "Joe",
+                "last_name": "Highsmith",
+                "country": "UNITED STATES",
+                "abbr_name": "J.Highsmith",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T17:42:00+00:00",
+            "back_nine": false,
+            "id": "639b8c14-5c1b-470d-8d75-f1fdc0e3baf6",
+            "players": [
+              {
+                "id": "da226913-b804-48de-adbf-96e956eb75ac",
+                "first_name": "Rory",
+                "last_name": "McIlroy",
+                "country": "NORTHERN IRELAND",
+                "abbr_name": "R.McIlroy",
+                "starting_hole": 1
+              },
+              {
+                "id": "26dc0bda-b9a8-4303-9c1c-ddecda3817d2",
+                "first_name": "Xander",
+                "last_name": "Schauffele",
+                "country": "UNITED STATES",
+                "abbr_name": "X.Schauffele",
+                "starting_hole": 1
+              },
+              {
+                "id": "d45bcf4a-5803-4b0b-ab6c-6427a76cecf7",
+                "first_name": "Hideki",
+                "last_name": "Matsuyama",
+                "country": "JAPAN",
+                "abbr_name": "H.Matsuyama",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T17:54:00+00:00",
+            "back_nine": true,
+            "id": "14299f1c-dbfd-49ac-90f4-7df1a0d0d591",
+            "players": [
+              {
+                "id": "f572509d-7c6d-48b9-9c65-a20f6d2d492b",
+                "first_name": "Sam",
+                "last_name": "Burns",
+                "country": "UNITED STATES",
+                "abbr_name": "S.Burns",
+                "starting_hole": 10
+              },
+              {
+                "id": "0f5da2c3-5994-456b-b676-9c9c6f8550b2",
+                "first_name": "Davis",
+                "last_name": "Thompson",
+                "country": "UNITED STATES",
+                "abbr_name": "D.Thompson",
+                "starting_hole": 10
+              },
+              {
+                "id": "9fbf091c-5e4b-42a4-93d7-92a6785a618d",
+                "first_name": "Cameron",
+                "last_name": "Young",
+                "country": "UNITED STATES",
+                "abbr_name": "C.Young",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T17:54:00+00:00",
+            "back_nine": false,
+            "id": "c28f845a-7f8c-49de-a610-244172a1dd5b",
+            "players": [
+              {
+                "id": "b7519c68-a6b3-4d99-b772-5bc951357592",
+                "first_name": "Min Woo",
+                "last_name": "Lee",
+                "country": "AUSTRALIA",
+                "abbr_name": "M.Lee",
+                "starting_hole": 1
+              },
+              {
+                "id": "c11235f6-0f62-4afb-93e7-952dc0554649",
+                "first_name": "Justin",
+                "last_name": "Rose",
+                "country": "ENGLAND",
+                "abbr_name": "J.Rose",
+                "starting_hole": 1
+              },
+              {
+                "id": "9ab689b1-c681-45db-8a63-9cd628433f00",
+                "first_name": "Chris",
+                "last_name": "Gotterup",
+                "country": "UNITED STATES",
+                "abbr_name": "C.Gotterup",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T18:06:00+00:00",
+            "back_nine": false,
+            "id": "7307dd5d-9083-4496-bef3-4bf19d439415",
+            "players": [
+              {
+                "id": "31f03fb8-f92c-4853-8805-c668430cecc2",
+                "first_name": "Aaron",
+                "last_name": "Rai",
+                "country": "ENGLAND",
+                "abbr_name": "A.Rai",
+                "starting_hole": 1
+              },
+              {
+                "id": "993f71fd-5382-4c69-8da3-06746d4dc62d",
+                "first_name": "Brian",
+                "last_name": "Campbell",
+                "country": "UNITED STATES",
+                "abbr_name": "B.Campbell",
+                "starting_hole": 1
+              },
+              {
+                "id": "e87e2c8f-cc33-42cd-8171-c21542e436fc",
+                "first_name": "Karl",
+                "last_name": "Vilips",
+                "country": "AUSTRALIA",
+                "abbr_name": "K.Vilips",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T18:06:00+00:00",
+            "back_nine": true,
+            "id": "da342882-11b7-46b0-a3d4-6fac9b0fe7f8",
+            "players": [
+              {
+                "id": "dfc22025-5644-4b06-9eac-52db7df7b259",
+                "first_name": "Corey",
+                "last_name": "Conners",
+                "country": "CANADA",
+                "abbr_name": "C.Conners",
+                "starting_hole": 10
+              },
+              {
+                "id": "0dab2467-b758-4d5a-9d15-e591b5945b4c",
+                "first_name": "Nicolas",
+                "last_name": "Echavarria",
+                "country": "COLOMBIA",
+                "abbr_name": "N.Echavarria",
+                "starting_hole": 10
+              },
+              {
+                "id": "97cd8ce8-beb2-484e-9081-ccba9baa0607",
+                "first_name": "Jason",
+                "last_name": "Day",
+                "country": "AUSTRALIA",
+                "abbr_name": "J.Day",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T18:18:00+00:00",
+            "back_nine": true,
+            "id": "03efe696-7891-4089-8688-47036e1a979d",
+            "players": [
+              {
+                "id": "d802fc43-066b-483c-8553-49ca54488d1b",
+                "first_name": "Seonghyeon",
+                "last_name": "Kim",
+                "country": "SOUTH KOREA",
+                "abbr_name": "S.Kim",
+                "starting_hole": 10
+              },
+              {
+                "id": "93b79859-43be-44c1-b4ed-6dfc064ead0d",
+                "first_name": "Matthieu",
+                "last_name": "Pavon",
+                "country": "FRANCE",
+                "abbr_name": "M.Pavon",
+                "starting_hole": 10
+              },
+              {
+                "id": "cd0d0c72-bec4-42e9-a622-06d4805f6295",
+                "first_name": "Austin",
+                "last_name": "Smotherman",
+                "country": "UNITED STATES",
+                "abbr_name": "A.Smotherman",
+                "starting_hole": 10
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T18:18:00+00:00",
+            "back_nine": false,
+            "id": "d95d895e-e9df-4f91-8711-06b2641058aa",
+            "players": [
+              {
+                "id": "a0a52f7a-4dbf-4656-ba47-1e1b6de63411",
+                "first_name": "Takumi",
+                "last_name": "Kanaya",
+                "country": "JAPAN",
+                "abbr_name": "T.Kanaya",
+                "starting_hole": 1
+              },
+              {
+                "id": "d61ba0aa-d3f8-4ea0-924d-a18c0ae76019",
+                "first_name": "Max",
+                "last_name": "McGreevy",
+                "country": "UNITED STATES",
+                "abbr_name": "M.McGreevy",
+                "starting_hole": 1
+              },
+              {
+                "id": "370a1bcf-227f-4bf4-9fa4-f5cc90def77d",
+                "first_name": "Matti",
+                "last_name": "Schmid",
+                "country": "GERMANY",
+                "abbr_name": "M.Schmid",
+                "starting_hole": 1
+              }
+            ]
+          },
+          {
+            "tee_time": "2026-03-12T18:30:00+00:00",
+            "back_nine": false,
+            "id": "c84ad016-10b9-4250-9ae3-7ccbe278f54e",
+            "players": [
+              {
+                "id": "f0a24808-6745-4a8d-ad86-8cd8838c96a8",
+                "first_name": "A.J.",
+                "last_name": "Ewart",
+                "country": "CANADA",
+                "abbr_name": "A.Ewart",
+                "starting_hole": 1
+              },
+              {
+                "id": "7153951c-62a1-446b-b190-5e40c4775edd",
+                "first_name": "Sudarshan",
+                "last_name": "Yellamaraju",
+                "country": "CANADA",
+                "abbr_name": "S.Yellamaraju",
+                "starting_hole": 1
+              },
+              {
+                "id": "cce68fc0-3280-4365-be53-47bc1664c724",
+                "first_name": "Zachary",
+                "last_name": "Bauchou",
+                "country": "UNITED STATES",
+                "abbr_name": "Z.Bauchou",
+                "starting_hole": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
