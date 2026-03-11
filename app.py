@@ -700,6 +700,7 @@ def main():
         summ_cols = [
             "name", "Heater Meter", "Salary", "FPPG", "tee_time_local_clock", "wave",
             "win_pct", "top10_pct", "make_cut_pct", "avg_finish", "proj_fd_points",
+            "p90_fd_points", "fd_ceiling_points", "ownership_pct", "leverage_score",
         ]
         summ_cols = [c for c in summ_cols if c in results.columns]
         res_col_config = {}
@@ -778,6 +779,26 @@ def main():
         help="0.0 = only FanDuel FPPG, 1.0 = only sim projection. Middle values blend both."
     )
 
+    col4, col5, col6 = st.columns(3)
+    with col4:
+        ceiling_weight = st.slider(
+            "Ceiling weight",
+            0.0, 1.0, 0.30, 0.05,
+            help="Adds simulated upside (P90 / ceiling) into the optimizer so GPP-style lineups are less median-heavy."
+        )
+    with col5:
+        leverage_weight = st.slider(
+            "Leverage weight",
+            0.0, 0.5, 0.10, 0.05,
+            help="Adds a small boost for golfers whose simulated win odds are stronger than their projected ownership."
+        )
+    with col6:
+        value_salary_exp = st.slider(
+            "Value salary exponent",
+            0.70, 1.10, 0.92, 0.01,
+            help="Lower values reduce cheap-player overweighting in candidate selection. 1.00 behaves closer to classic points-per-$1k."
+        )
+
     if st.button("Build best lineup", use_container_width=True):
         with st.spinner("Searching best lineup under $60,000..."):
             lineup, meta = optimize_fanduel_lineup(
@@ -788,6 +809,9 @@ def main():
                 lock_names=set(lock_names),
                 exclude_names=set(exclude_names),
                 blend_alpha=float(blend_alpha),
+                ceiling_weight=float(ceiling_weight),
+                leverage_weight=float(leverage_weight),
+                value_salary_exp=float(value_salary_exp),
             )
 
         if lineup is None or lineup.empty:
@@ -797,9 +821,14 @@ def main():
             # Ensure Heater Meter is present for display
             lineup = _attach_heater_meter(lineup, heater_map_df)
 
-            cols = ["name", "Heater Meter", "Salary", "FPPG", "proj_fd_points"]
+            cols = [
+                "name", "Heater Meter", "Salary", "FPPG", "proj_fd_points",
+                "p90_fd_points", "fd_ceiling_points", "ownership_pct", "leverage_score"
+            ]
             if "blend_points" in lineup.columns:
                 cols.append("blend_points")
+            if "optimizer_score" in lineup.columns:
+                cols.append("optimizer_score")
             cols += ["win_pct", "top10_pct", "make_cut_pct"]
             cols = [c for c in cols if c in lineup.columns]
             lu_col_config = {}
@@ -811,8 +840,11 @@ def main():
                 column_config=lu_col_config if lu_col_config else None,
             )
 
-            st.metric("Total salary", _format_money(meta.get("total_salary", lineup["Salary"].sum())))
-            st.metric("Projected lineup score", f"{meta.get('total_points', 0.0):.2f}")
+            m1, m2, m3, m4 = st.columns(4)
+            m1.metric("Total salary", _format_money(meta.get("total_salary", lineup["Salary"].sum())))
+            m2.metric("Optimizer lineup score", f"{meta.get('total_points', 0.0):.2f}")
+            m3.metric("Ceiling weight", f"{meta.get('ceiling_weight', 0.0):.2f}")
+            m4.metric("Leverage weight", f"{meta.get('leverage_weight', 0.0):.2f}")
 
             st.download_button(
                 "Download lineup CSV",
