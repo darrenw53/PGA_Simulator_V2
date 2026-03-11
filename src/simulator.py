@@ -18,6 +18,10 @@ class SimConfig:
     course_fit_weights: dict | None = None
 
 
+def _series_or_zeros(df: pd.DataFrame, col: str) -> pd.Series:
+    return pd.to_numeric(df.get(col, pd.Series([0.0] * len(df))), errors="coerce").fillna(0.0)
+
+
 def _compute_strength(df: pd.DataFrame, cfg: SimConfig) -> pd.Series:
     """
     Builds a single 'strength' z-score using the stats you actually have.
@@ -26,26 +30,36 @@ def _compute_strength(df: pd.DataFrame, cfg: SimConfig) -> pd.Series:
     w = cfg.course_fit_weights or {}
 
     # Higher SG is better => positive strength
-    sg_total = zscore(
+    sg_total_raw = pd.to_numeric(
         df.get(
             "strokes_gained_total_eff",
-            df.get("strokes_gained_total", pd.Series([0] * len(df))),
-        )
-    )
-    sg_t2g = zscore(
+            df.get("strokes_gained_total", pd.Series([0.0] * len(df))),
+        ),
+        errors="coerce",
+    ).fillna(0.0)
+    sg_t2g_raw = pd.to_numeric(
         df.get(
             "strokes_gained_tee_green_eff",
-            df.get("strokes_gained_tee_green", pd.Series([0] * len(df))),
-        )
-    )
-    sg_putt_proxy = zscore(
-        df.get("strokes_gained", pd.Series([0] * len(df)))
-    )  # proxy, since we don't have SG:Putting split
-    birdies = zscore(df.get("birdies_per_round", pd.Series([0] * len(df))))
-    gir = zscore(df.get("gir_pct", pd.Series([0] * len(df))))
-    drive = zscore(df.get("drive_avg", pd.Series([0] * len(df))))
-    acc = zscore(df.get("drive_acc", pd.Series([0] * len(df))))
-    scramble = zscore(df.get("scrambling_pct", pd.Series([0] * len(df))))
+            df.get("strokes_gained_tee_green", pd.Series([0.0] * len(df))),
+        ),
+        errors="coerce",
+    ).fillna(0.0)
+
+    sg_total = zscore(sg_total_raw)
+    sg_t2g = zscore(sg_t2g_raw)
+
+    # Prefer a truer putting proxy when both SG:Total and SG:T2G are available.
+    # Fallback to the older generic strokes_gained column when needed.
+    sg_putt_raw = sg_total_raw - sg_t2g_raw
+    if (sg_total_raw.abs().sum() + sg_t2g_raw.abs().sum()) <= 1e-9:
+        sg_putt_raw = _series_or_zeros(df, "strokes_gained")
+    sg_putt_proxy = zscore(sg_putt_raw)
+
+    birdies = zscore(_series_or_zeros(df, "birdies_per_round"))
+    gir = zscore(_series_or_zeros(df, "gir_pct"))
+    drive = zscore(_series_or_zeros(df, "drive_avg"))
+    acc = zscore(_series_or_zeros(df, "drive_acc"))
+    scramble = zscore(_series_or_zeros(df, "scrambling_pct"))
 
     # WGR: lower rank is better, so invert
     wgr_rank = pd.to_numeric(df.get("wgr_rank", 999), errors="coerce").fillna(999.0)
@@ -96,12 +110,11 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
     rng = np.random.default_rng(cfg.rng_seed)
 
     # baseline per-round scoring avg
-    base_mu = pd.to_numeric(df["scoring_avg"], errors="coerce").fillna(71.5).to_numpy()
+    base_mu = pd.to_numeric(df["scoring_avg"], errors="coerce").fillna(71.5).to_numpy(dtype=float)
 
-    strength = _compute_strength(df, cfg).to_numpy()
+    strength = _compute_strength(df, cfg).to_numpy(dtype=float)
 
     # translate strength -> strokes improvement
-    # Increased from 0.6 to 0.72 to improve elite-player separation and win calibration.
     # 1.0 strength ≈ 0.72 strokes/round better.
     mu = base_mu - 0.72 * strength + float(cfg.course_difficulty)
 
@@ -113,25 +126,40 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
     round_adjustments = np.zeros((n, 4), dtype=float)
     for idx, col in enumerate(["wave_r1_adjust", "wave_r2_adjust", "wave_r3_adjust", "wave_r4_adjust"]):
         if col in df.columns:
-            round_adjustments[:, idx] = pd.to_numeric(df[col], errors="coerce").fillna(0.0).to_numpy()
+            round_adjustments[:, idx] = pd.to_numeric(df[col], errors="coerce").fillna(0.0).to_numpy(dtype=float)
 
     round_loc = mu[:, None] + round_adjustments
 
     # Apply elite-preserving variance shaping without changing the UI control.
     eff_round_sd = _effective_round_sd(cfg.round_sd)
 
-    # Stronger players get a slightly tighter scoring distribution.
-    # Caps at 12% reduction so this helps elites without overfitting.
+    # Better players should keep more ceiling, not less.
+    # Slightly raise elite variance and slightly compress weaker-player variance.
     strength_clip = np.clip(strength, -3.0, 3.0)
-    player_sd_scale = 1.0 - np.clip(strength_clip, 0.0, None) * 0.04
-    player_sd_scale = np.clip(player_sd_scale, 0.88, 1.00)
+    player_sd_scale = 1.0 + 0.06 * np.clip(strength_clip, 0.0, None) - 0.03 * np.clip(-strength_clip, 0.0, None)
+    player_sd_scale = np.clip(player_sd_scale, 0.90, 1.18)
     player_round_sd = eff_round_sd * player_sd_scale
 
+    # Event-level performance shock creates realistic good-week / bad-week clustering.
+    # Negative event shocks = better scoring.
+    event_sd = 0.85
+    event_form = rng.normal(loc=0.0, scale=event_sd, size=(sims, n, 1))
+
+    # Mild round-to-round persistence on top of event form.
+    round_persistence = rng.normal(loc=0.0, scale=0.18, size=(sims, n, 4))
+    round_persistence[:, :, 1] += 0.35 * round_persistence[:, :, 0]
+    round_persistence[:, :, 2] += 0.20 * round_persistence[:, :, 1]
+    round_persistence[:, :, 3] += 0.15 * round_persistence[:, :, 2]
+
     # Rounds: [sims, n, 4]
-    rounds = rng.normal(
-        loc=round_loc[None, :, :],
-        scale=player_round_sd[None, :, None],
-        size=(sims, n, 4),
+    rounds = (
+        rng.normal(
+            loc=round_loc[None, :, :],
+            scale=player_round_sd[None, :, None],
+            size=(sims, n, 4),
+        )
+        + event_form
+        + round_persistence
     )
 
     # Total score (4 rounds)
@@ -145,7 +173,6 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
     cut_mask = np.zeros((sims, n), dtype=bool)
     for i in range(sims):
         order = np.argsort(r2_totals[i, :])
-        # ties: keep simple by taking top N exactly
         cut_mask[i, order[: int(cfg.cut_size)]] = True
 
     # Make missed-cut players comparable to 4-round totals
@@ -169,15 +196,20 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
     avg_finish = finish_rank.mean(axis=0)
     avg_total_score = totals_adj.mean(axis=0)
 
-    # Project FanDuel points (approx)
-    fppg = pd.to_numeric(df.get("FPPG", 0.0), errors="coerce").fillna(0.0).to_numpy()
-    proj_fd = (
-        0.70 * fppg
-        + 35.0 * win
-        + 12.0 * top10
-        + 8.0 * make_cut
-        - 0.08 * (avg_finish - 1.0)
+    # Simulated FanDuel distribution proxy.
+    fppg = pd.to_numeric(df.get("FPPG", 0.0), errors="coerce").fillna(0.0).to_numpy(dtype=float)
+    sim_fd_points = (
+        0.55 * fppg[None, :]
+        + 45.0 * (finish_rank == 1)
+        + 20.0 * ((finish_rank > 1) & (finish_rank <= 5))
+        + 10.0 * ((finish_rank > 5) & (finish_rank <= 10))
+        + 8.0 * cut_mask
+        - 0.10 * (finish_rank - 1.0)
     )
+
+    proj_fd = sim_fd_points.mean(axis=0)
+    p90_fd = np.percentile(sim_fd_points, 90, axis=0)
+    fd_ceiling = proj_fd + 0.35 * (p90_fd - proj_fd)
 
     out = df.copy()
     out["win_pct"] = win * 100.0
@@ -186,6 +218,27 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
     out["avg_finish"] = avg_finish
     out["avg_total_score"] = avg_total_score
     out["proj_fd_points"] = proj_fd
+    out["p90_fd_points"] = p90_fd
+    out["fd_ceiling_points"] = fd_ceiling
+    out["sim_event_sd"] = np.std(sim_fd_points, axis=0)
+
+    # Ownership proxy for lineup construction.
+    proj_rank = pd.Series(proj_fd).rank(ascending=False, method="average", pct=True).to_numpy(dtype=float)
+    salary_rank = pd.to_numeric(out.get("Salary", 0.0), errors="coerce").fillna(0.0).rank(ascending=False, method="average", pct=True).to_numpy(dtype=float)
+    wgr_rank = pd.to_numeric(out.get("wgr_rank", 999.0), errors="coerce").fillna(999.0)
+    wgr_rank_pct = wgr_rank.rank(ascending=True, method="average", pct=True).to_numpy(dtype=float)
+    heater = pd.to_numeric(out.get("hotness_1_5", 3.0), errors="coerce").fillna(3.0)
+    heater_pct = heater.rank(ascending=False, method="average", pct=True).to_numpy(dtype=float)
+
+    ownership = 100.0 * (
+        0.40 * proj_rank
+        + 0.25 * salary_rank
+        + 0.20 * wgr_rank_pct
+        + 0.15 * heater_pct
+    )
+    ownership = np.clip(ownership, 1.0, 45.0)
+    out["ownership_pct"] = ownership
+    out["leverage_score"] = out["win_pct"] - out["ownership_pct"]
 
     # Keep clean player name
     if "name" not in out.columns:
