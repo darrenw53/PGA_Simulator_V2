@@ -101,8 +101,9 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
     strength = _compute_strength(df, cfg).to_numpy()
 
     # translate strength -> strokes improvement
-    # 1.0 strength ≈ 0.6 strokes/round better (kept intact)
-    mu = base_mu - 0.6 * strength + float(cfg.course_difficulty)
+    # Increased from 0.6 to 0.72 to improve elite-player separation and win calibration.
+    # 1.0 strength ≈ 0.72 strokes/round better.
+    mu = base_mu - 0.72 * strength + float(cfg.course_difficulty)
 
     n = len(df)
     sims = int(cfg.n_sims)
@@ -118,6 +119,7 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
 
     # Apply elite-preserving variance shaping without changing the UI control.
     eff_round_sd = _effective_round_sd(cfg.round_sd)
+
     # Stronger players get a slightly tighter scoring distribution.
     # Caps at 12% reduction so this helps elites without overfitting.
     strength_clip = np.clip(strength, -3.0, 3.0)
@@ -127,12 +129,15 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
 
     # Rounds: [sims, n, 4]
     rounds = rng.normal(
-        loc=round_loc[None, :, :], scale=player_round_sd[None, :, None], size=(sims, n, 4)
+        loc=round_loc[None, :, :],
+        scale=player_round_sd[None, :, None],
+        size=(sims, n, 4),
     )
+
     # Total score (4 rounds)
     totals = rounds.sum(axis=2)
 
-    # Cut after 2 rounds:
+    # Cut after 2 rounds
     r2_totals = rounds[:, :, :2].sum(axis=2)
 
     # Determine who makes cut per sim
@@ -143,19 +148,10 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
         # ties: keep simple by taking top N exactly
         cut_mask[i, order[: int(cfg.cut_size)]] = True
 
-    # ---------------------------------------------------------------------
-    # FIX: Make missed-cut players comparable to 4-round totals
-    #
-    # Previously, missed-cut players were assigned only their 2-round total,
-    # which is ~140 and therefore "beats" any 4-round total (~260-290).
-    # That caused missed-cut players to win sims and could bury elite players.
-    #
-    # Correct approach: assign a 4-round-equivalent total by adding a penalty
-    # for rounds 3-4 for anyone who misses the cut.
-    # ---------------------------------------------------------------------
+    # Make missed-cut players comparable to 4-round totals
     totals_adj = totals.copy()
 
-    # Penalty round score: field-average expected round + 2 strokes (conservative)
+    # Penalty round score: field-average expected round + 2 strokes
     penalty_round = float(np.nanmean(mu)) + 2.0
     miss_cut_penalty = 2.0 * penalty_round  # rounds 3 and 4
 
@@ -163,7 +159,7 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
         miss = ~cut_mask[i, :]
         totals_adj[i, miss] = r2_totals[i, miss] + miss_cut_penalty
 
-    # Finish rank (1 = best). Now totals_adj is comparable for all players.
+    # Finish rank (1 = best)
     finish_rank = np.argsort(np.argsort(totals_adj, axis=1), axis=1) + 1
 
     # Metrics
@@ -173,16 +169,14 @@ def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
     avg_finish = finish_rank.mean(axis=0)
     avg_total_score = totals_adj.mean(axis=0)
 
-    # Project FanDuel points (approx):
-    # - Use FanDuel FPPG as base, then adjust for upside + cut risk using sim outputs.
+    # Project FanDuel points (approx)
     fppg = pd.to_numeric(df.get("FPPG", 0.0), errors="coerce").fillna(0.0).to_numpy()
-    # Upside boosts
     proj_fd = (
         0.70 * fppg
-        + 35.0 * win  # winning is huge
-        + 12.0 * top10  # top10 meaningful
-        + 8.0 * make_cut  # survive cut matters
-        - 0.08 * (avg_finish - 1.0)  # small penalty for worse average finish
+        + 35.0 * win
+        + 12.0 * top10
+        + 8.0 * make_cut
+        - 0.08 * (avg_finish - 1.0)
     )
 
     out = df.copy()
