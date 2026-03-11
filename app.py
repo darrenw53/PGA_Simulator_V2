@@ -11,6 +11,7 @@ from src.fanduel import optimize_fanduel_lineup
 from src.run_store import list_runs, load_predictions, save_run, save_actuals_csv
 from src.hotness import compute_hotness_last_n_weeks
 from src.rolling_form import compute_rolling_sg_total_from_weekly
+from src.tee_times import load_tee_times, tee_times_to_dataframe, apply_wave_adjustments
 
 # NEW: early-season reference priors
 from src.reference import load_reference_results_tsv, compute_reference_priors
@@ -65,6 +66,17 @@ def _compute_rolling_sg(weekly_root_str: str, selected_week_label: str, n_weeks:
 @st.cache_data(show_spinner=False)
 def _load_reference_df(path_str: str):
     return load_reference_results_tsv(Path(path_str))
+
+
+@st.cache_data(show_spinner=False)
+def _load_tee_times_from_path(path_str: str):
+    raw = load_tee_times(path=Path(path_str))
+    return tee_times_to_dataframe(raw)
+
+@st.cache_data(show_spinner=False)
+def _load_tee_times_from_bytes(file_bytes: bytes):
+    raw = load_tee_times(file_bytes=file_bytes)
+    return tee_times_to_dataframe(raw)
 
 
 def _heater_meter_col_config():
@@ -145,6 +157,10 @@ def main():
     # NEW: seed default slider state keys (so we can programmatically set them)
     if "round_sd" not in st.session_state:
         st.session_state.round_sd = 2.3
+    if "wave_r1_gap" not in st.session_state:
+        st.session_state.wave_r1_gap = 0.0
+    if "wave_r2_gap" not in st.session_state:
+        st.session_state.wave_r2_gap = 0.0
 
     st.title(APP_TITLE)
     st.caption("File-driven weekly simulator + FanDuel lineup builder + saved runs (no API calls).")
@@ -248,6 +264,7 @@ def main():
         up_stats = st.sidebar.file_uploader("player_statistics.json", type=["json"])
         up_wgr = st.sidebar.file_uploader("wgr_rankings.json", type=["json"])
         up_fd = st.sidebar.file_uploader("FanDuel players CSV", type=["csv"])
+        up_tee = st.sidebar.file_uploader("tee_times_rd1.json (optional)", type=["json"])
 
         if up_sched and up_stats and up_wgr and up_fd:
             weekly_data = load_weekly_data(
@@ -262,6 +279,27 @@ def main():
     if weekly_data is None:
         st.info("Load a week folder (data/weekly/...) or upload the files to begin.")
         st.stop()
+
+    # =========================
+    # OPTIONAL TEE TIMES / WAVE DATA
+    # =========================
+    tee_times_df = pd.DataFrame()
+    tee_times_status = None
+    if data_mode == "Use data/weekly folder" and week_label is not None:
+        tee_times_path = weekly_root / week_label / "tee_times_rd1.json"
+        if tee_times_path.exists():
+            try:
+                tee_times_df = _load_tee_times_from_path(str(tee_times_path))
+                tee_times_status = f"Loaded tee_times_rd1.json ({len(tee_times_df):,} players)."
+            except Exception as e:
+                tee_times_status = f"Failed to load tee_times_rd1.json: {e}"
+    else:
+        try:
+            if "up_tee" in locals() and up_tee is not None:
+                tee_times_df = _load_tee_times_from_bytes(up_tee.getvalue())
+                tee_times_status = f"Loaded uploaded tee times ({len(tee_times_df):,} players)."
+        except Exception as e:
+            tee_times_status = f"Failed to load uploaded tee times: {e}"
 
     # =========================
     # TOURNAMENT SELECTION
@@ -373,6 +411,14 @@ def main():
         rolling_sg=rolling_df,
         rolling_weight=0.60,
     )
+
+    if not tee_times_df.empty and "player_id" in model_table.columns and "player_id" in tee_times_df.columns:
+        tmp_tt = tee_times_df.copy()
+        tmp_tt["player_id"] = tmp_tt["player_id"].astype(str)
+        model_table["player_id"] = model_table["player_id"].astype(str)
+        merge_cols = [c for c in ["player_id", "tee_time_local_clock", "wave", "starting_hole", "wave_draw_summary"] if c in tmp_tt.columns]
+        model_table = model_table.merge(tmp_tt[merge_cols], on="player_id", how="left")
+
     if model_table.empty:
         st.error("No players matched between FanDuel CSV and your stats/WGR files.")
         st.stop()
@@ -478,6 +524,40 @@ def main():
 
     course_difficulty = st.sidebar.slider("Course difficulty shift (strokes)", -2.0, 2.0, 0.0, 0.05)
 
+    st.sidebar.header("Weather / Wave")
+    use_weather_wave = st.sidebar.checkbox(
+        "Enable AM/PM wave adjustment",
+        value=False,
+        disabled=tee_times_df.empty,
+        help="Uses tee_times_rd1.json to identify AM vs PM starters and applies round-specific stroke adjustments.",
+    )
+    if tee_times_status:
+        if tee_times_df.empty:
+            st.sidebar.caption(tee_times_status)
+        else:
+            st.sidebar.success(tee_times_status)
+    elif tee_times_df.empty:
+        st.sidebar.caption("No tee_times_rd1.json found. Put it in the selected week folder to enable wave adjustments.")
+
+    wave_r1_gap = st.sidebar.slider(
+        "Round 1 AM/PM wave gap (strokes)",
+        -1.5, 1.5,
+        float(st.session_state.wave_r1_gap),
+        0.05,
+        key="wave_r1_gap",
+        disabled=not use_weather_wave,
+        help="Positive = AM wave easier in Round 1. Negative = PM wave easier. A value of 0.30 means AM gets -0.15 and PM gets +0.15 so the field average stays neutral.",
+    )
+    wave_r2_gap = st.sidebar.slider(
+        "Round 2 AM/PM wave gap (strokes)",
+        -1.5, 1.5,
+        float(st.session_state.wave_r2_gap),
+        0.05,
+        key="wave_r2_gap",
+        disabled=not use_weather_wave,
+        help="Same concept for Friday. The app assumes players flip waves from Round 1 to Round 2, which is standard for PGA Tour pairings.",
+    )
+
     st.sidebar.header("Run Saving")
     auto_save = st.sidebar.checkbox("Auto-save run outputs", value=True)
     run_note = st.sidebar.text_input("Run note (optional)", value="")
@@ -505,7 +585,7 @@ def main():
         "player_id", "name", "Heater Meter", "Salary", "FPPG",
         "wgr_rank", "scoring_avg",
         "strokes_gained_total", "strokes_gained_tee_green", "strokes_gained",
-        "birdies_per_round",
+        "birdies_per_round", "tee_time_local_clock", "wave",
     ]
     show_cols = [c for c in preview_cols if c in model_table.columns]
     st.dataframe(
@@ -515,6 +595,17 @@ def main():
             "Heater Meter": _heater_meter_col_config(),
         },
     )
+
+    with st.expander("Weather wave preview", expanded=False):
+        if tee_times_df.empty:
+            st.info("Load tee_times_rd1.json in the week folder (or upload it in one-off mode) to preview wave assignments.")
+        else:
+            wave_preview = model_table.copy()
+            if use_weather_wave:
+                wave_preview = apply_wave_adjustments(wave_preview, r1_wave_gap=float(wave_r1_gap), r2_wave_gap=float(wave_r2_gap))
+            cols = [c for c in ["name", "tee_time_local_clock", "wave", "wave_draw_summary", "wave_r1_adjust", "wave_r2_adjust"] if c in wave_preview.columns]
+            st.dataframe(wave_preview[cols].sort_values(["wave", "tee_time_local_clock", "name"]), use_container_width=True, hide_index=True)
+            st.caption("Positive adjustment = tougher scoring. Negative adjustment = easier scoring.")
 
     # =========================
     # RUN SIMULATION
@@ -533,6 +624,10 @@ def main():
             "scrambling_pct": w_scramble,
         }
 
+        sim_input = model_table.copy()
+        if use_weather_wave and not tee_times_df.empty:
+            sim_input = apply_wave_adjustments(sim_input, r1_wave_gap=float(wave_r1_gap), r2_wave_gap=float(wave_r2_gap))
+
         cfg = SimConfig(
             n_sims=int(n_sims),
             rng_seed=_safe_int(rng_seed, default=None) if rng_seed.strip() else None,
@@ -544,7 +639,7 @@ def main():
         )
 
         with st.spinner("Simulating..."):
-            results = simulate_tournament(model_table, cfg)
+            results = simulate_tournament(sim_input, cfg)
 
         st.session_state.sim_results = results
         st.session_state.last_tournament_id = tournament_id
@@ -570,6 +665,12 @@ def main():
                 "field_filters": {
                     "min_salary": int(min_salary),
                     "max_salary": int(max_salary),
+                },
+                "weather_wave": {
+                    "enabled": bool(use_weather_wave and not tee_times_df.empty),
+                    "tee_times_file_present": bool(not tee_times_df.empty),
+                    "round_1_gap": float(wave_r1_gap) if use_weather_wave and not tee_times_df.empty else 0.0,
+                    "round_2_gap": float(wave_r2_gap) if use_weather_wave and not tee_times_df.empty else 0.0,
                 },
                 # NEW: record reference context (if used)
                 "reference": {
@@ -597,7 +698,7 @@ def main():
     if results is not None and not results.empty:
         st.markdown("### Latest simulation results")
         summ_cols = [
-            "name", "Heater Meter", "Salary", "FPPG",
+            "name", "Heater Meter", "Salary", "FPPG", "tee_time_local_clock", "wave",
             "win_pct", "top10_pct", "make_cut_pct", "avg_finish", "proj_fd_points",
         ]
         summ_cols = [c for c in summ_cols if c in results.columns]
