@@ -15,6 +15,9 @@ class LineupMeta:
     n_candidates: int
     remaining_slots: int
     blend_alpha: float
+    ceiling_weight: float
+    leverage_weight: float
+    value_salary_exp: float
 
 
 def _prep_pool(sim_results: pd.DataFrame) -> pd.DataFrame:
@@ -25,13 +28,41 @@ def _prep_pool(sim_results: pd.DataFrame) -> pd.DataFrame:
     if missing:
         raise ValueError(f"sim_results missing required columns: {sorted(missing)}")
 
-    df["Salary"] = pd.to_numeric(df["Salary"], errors="coerce")
-    df["proj_fd_points"] = pd.to_numeric(df["proj_fd_points"], errors="coerce")
-    df["FPPG"] = pd.to_numeric(df["FPPG"], errors="coerce")
+    for col in [
+        "Salary",
+        "proj_fd_points",
+        "FPPG",
+        "p90_fd_points",
+        "fd_ceiling_points",
+        "ownership_pct",
+        "leverage_score",
+    ]:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
 
     df = df.dropna(subset=["Salary", "proj_fd_points", "FPPG"]).copy()
     df = df[df["Salary"] > 0].copy()
     df["Salary"] = df["Salary"].astype(int)
+
+    if "p90_fd_points" not in df.columns:
+        df["p90_fd_points"] = df["proj_fd_points"]
+    else:
+        df["p90_fd_points"] = df["p90_fd_points"].fillna(df["proj_fd_points"])
+
+    if "fd_ceiling_points" not in df.columns:
+        df["fd_ceiling_points"] = 0.65 * df["proj_fd_points"] + 0.35 * df["p90_fd_points"]
+    else:
+        df["fd_ceiling_points"] = df["fd_ceiling_points"].fillna(0.65 * df["proj_fd_points"] + 0.35 * df["p90_fd_points"])
+
+    if "ownership_pct" not in df.columns:
+        df["ownership_pct"] = 10.0
+    else:
+        df["ownership_pct"] = df["ownership_pct"].fillna(10.0)
+
+    if "leverage_score" not in df.columns:
+        df["leverage_score"] = 0.0
+    else:
+        df["leverage_score"] = df["leverage_score"].fillna(0.0)
 
     # Ensure uniqueness
     key = "player_id" if "player_id" in df.columns else "name"
@@ -133,12 +164,26 @@ def optimize_fanduel_lineup(
     lock_names: Optional[Set[str]] = None,
     exclude_names: Optional[Set[str]] = None,
     blend_alpha: float = 1.0,
+    ceiling_weight: float = 0.30,
+    leverage_weight: float = 0.10,
+    value_salary_exp: float = 0.92,
 ):
     """
     blend_alpha:
       0.0 => optimize purely by FPPG
       1.0 => optimize purely by proj_fd_points
       between => blended
+
+    ceiling_weight:
+      extra weight given to simulated ceiling outcomes
+
+    leverage_weight:
+      extra weight given to lower-owned / higher-leverage golfers
+
+    value_salary_exp:
+      controls how aggressively cheap salaries are rewarded in candidate selection
+      1.00 = traditional points / salary
+      <1.00 softens cheap-player bias
     """
     lock_names = lock_names or set()
     exclude_names = exclude_names or set()
@@ -149,16 +194,25 @@ def optimize_fanduel_lineup(
     if df.empty:
         return None, None
 
-    # Blend points used for optimization
     alpha = float(blend_alpha)
-    df["blend_points"] = alpha * df["proj_fd_points"] + (1.0 - alpha) * df["FPPG"]
+    c_wt = float(ceiling_weight)
+    l_wt = float(leverage_weight)
+    v_exp = float(value_salary_exp)
+
+    base_points = alpha * df["proj_fd_points"] + (1.0 - alpha) * df["FPPG"]
+    df["blend_points"] = base_points
+    df["optimizer_score"] = (
+        base_points
+        + c_wt * (df["fd_ceiling_points"] - df["proj_fd_points"])
+        + l_wt * df["leverage_score"]
+    )
 
     locked = df[df["name"].isin(lock_names)].copy()
     if len(locked) > lineup_size:
         return None, None
 
     locked_salary = int(locked["Salary"].sum()) if not locked.empty else 0
-    locked_points = float(locked["blend_points"].sum()) if not locked.empty else 0.0
+    locked_points = float(locked["optimizer_score"].sum()) if not locked.empty else 0.0
 
     if locked_salary > salary_cap:
         return None, None
@@ -166,36 +220,40 @@ def optimize_fanduel_lineup(
     remaining_slots = lineup_size - len(locked)
     remaining_cap = salary_cap - locked_salary
 
-    # Candidate pool by blended points + blended value
-    df["value"] = df["blend_points"] / (df["Salary"].clip(lower=1) / 1000.0)
+    salary_denom = (df["Salary"].clip(lower=1) / 1000.0) ** max(v_exp, 0.01)
+    df["value"] = df["optimizer_score"] / salary_denom
 
-    top_points = df.sort_values("blend_points", ascending=False).head(candidate_pool)
+    top_points = df.sort_values("optimizer_score", ascending=False).head(candidate_pool)
     top_value = df.sort_values("value", ascending=False).head(candidate_pool)
-    candidates = pd.concat([top_points, top_value, locked], ignore_index=True)
+    top_win = df.sort_values("win_pct", ascending=False).head(max(12, candidate_pool // 3)) if "win_pct" in df.columns else df.head(0)
+    top_leverage = df.sort_values("leverage_score", ascending=False).head(max(12, candidate_pool // 3))
+    candidates = pd.concat([top_points, top_value, top_win, top_leverage, locked], ignore_index=True)
 
     key = "player_id" if "player_id" in candidates.columns else "name"
     candidates = candidates.drop_duplicates(subset=[key]).copy()
 
     choose_pool = candidates[~candidates["name"].isin(lock_names)].copy()
-    choose_pool = choose_pool.sort_values("blend_points", ascending=False).reset_index(drop=True)
+    choose_pool = choose_pool.sort_values("optimizer_score", ascending=False).reset_index(drop=True)
 
     if remaining_slots == 0:
-        lineup = locked.copy().sort_values("blend_points", ascending=False).reset_index(drop=True)
+        lineup = locked.copy().sort_values("optimizer_score", ascending=False).reset_index(drop=True)
         meta = LineupMeta(
             total_salary=locked_salary,
             total_points=locked_points,
             n_candidates=len(candidates),
             remaining_slots=0,
             blend_alpha=alpha,
+            ceiling_weight=c_wt,
+            leverage_weight=l_wt,
+            value_salary_exp=v_exp,
         )
         return lineup, meta.__dict__
 
-    # Feasibility check: cheapest remaining slots must fit
     cheapest = choose_pool["Salary"].nsmallest(remaining_slots).sum()
     if int(cheapest) > remaining_cap:
         return None, None
 
-    sol = _best_under_cap_mim(choose_pool, remaining_cap, remaining_slots, points_col="blend_points")
+    sol = _best_under_cap_mim(choose_pool, remaining_cap, remaining_slots, points_col="optimizer_score")
     if sol is None:
         return None, None
 
@@ -203,13 +261,16 @@ def optimize_fanduel_lineup(
     picked = choose_pool.iloc[idxs].copy()
 
     lineup = pd.concat([locked, picked], ignore_index=True)
-    lineup = lineup.sort_values("blend_points", ascending=False).reset_index(drop=True)
+    lineup = lineup.sort_values("optimizer_score", ascending=False).reset_index(drop=True)
 
     meta = LineupMeta(
         total_salary=int(lineup["Salary"].sum()),
-        total_points=float(lineup["blend_points"].sum()),
+        total_points=float(lineup["optimizer_score"].sum()),
         n_candidates=len(candidates),
         remaining_slots=remaining_slots,
         blend_alpha=alpha,
+        ceiling_weight=c_wt,
+        leverage_weight=l_wt,
+        value_salary_exp=v_exp,
     )
     return lineup, meta.__dict__
