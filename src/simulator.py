@@ -1,165 +1,51 @@
-from __future__ import annotations
-
-from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 
-from .features import zscore
+def run_simulation(players, n_sims=10000, round_sd=3.2, course_difficulty=1.0):
 
+    rng = np.random.default_rng()
 
-@dataclass
-class SimConfig:
-    n_sims: int = 25000
-    rng_seed: int | None = None
-    cut_size: int = 65
-    round_sd: float = 2.3
-    course_difficulty: float = 0.0
-    wgr_weight: float = 1.0
-    course_fit_weights: dict | None = None
+    df = players.copy()
 
+    # --- Fix elite flattening ---
+    # compress extremely high round volatility
+    effective_round_sd = min(round_sd, 3.0)
 
-def _compute_strength(df: pd.DataFrame, cfg: SimConfig) -> pd.Series:
-    """
-    Builds a single 'strength' z-score using the stats you actually have.
-    Positive = better (lower scores expected).
-    """
-    w = cfg.course_fit_weights or {}
+    strengths = df["skill"].values
 
-    # Higher SG is better => positive strength
-    sg_total = zscore(df.get("strokes_gained_total_eff", df.get("strokes_gained_total", pd.Series([0] * len(df)))))
-    sg_t2g = zscore(df.get("strokes_gained_tee_green", pd.Series([0] * len(df))))
-    sg_putt_proxy = zscore(
-        df.get("strokes_gained", pd.Series([0] * len(df)))
-    )  # proxy, since we don't have SG:Putting split
-    birdies = zscore(df.get("birdies_per_round", pd.Series([0] * len(df))))
-    gir = zscore(df.get("gir_pct", pd.Series([0] * len(df))))
-    drive = zscore(df.get("drive_avg", pd.Series([0] * len(df))))
-    acc = zscore(df.get("drive_acc", pd.Series([0] * len(df))))
-    scramble = zscore(df.get("scrambling_pct", pd.Series([0] * len(df))))
+    results = []
 
-    # WGR: lower rank is better, so invert
-    wgr_rank = pd.to_numeric(df.get("wgr_rank", 999), errors="coerce").fillna(999.0)
-    wgr_strength = zscore(-wgr_rank) * float(cfg.wgr_weight)
+    for _ in range(n_sims):
 
-    strength = (
-        float(w.get("sg_total", 0.0)) * sg_total
-        + float(w.get("sg_t2g", 0.0)) * sg_t2g
-        + float(w.get("sg_putt_proxy", 0.0)) * sg_putt_proxy
-        + float(w.get("birdies_per_round", 0.0)) * birdies
-        + float(w.get("gir_pct", 0.0)) * gir
-        + float(w.get("drive_avg", 0.0)) * drive
-        + float(w.get("drive_acc", 0.0)) * acc
-        + float(w.get("scrambling_pct", 0.0)) * scramble
-        + wgr_strength
-    )
+        scores = []
 
-    # Normalize strength so typical range isn't crazy
-    strength = zscore(strength)
-    return strength.fillna(0.0)
+        for i, strength in enumerate(strengths):
 
+            # stronger players get slightly lower variance
+            player_sd = effective_round_sd * (1 - min(strength * 0.03, 0.15))
 
-def simulate_tournament(players: pd.DataFrame, cfg: SimConfig) -> pd.DataFrame:
-    df = players.copy().reset_index(drop=True)
+            mu = 72 - (0.6 * strength) + course_difficulty
 
-    rng = np.random.default_rng(cfg.rng_seed)
+            rounds = rng.normal(
+                loc=mu,
+                scale=player_sd,
+                size=4
+            )
 
-    # baseline per-round scoring avg
-    base_mu = pd.to_numeric(df["scoring_avg"], errors="coerce").fillna(71.5).to_numpy()
+            total = rounds.sum()
 
-    strength = _compute_strength(df, cfg).to_numpy()
+            scores.append(total)
 
-    # translate strength -> strokes improvement
-    # 1.0 strength ≈ 0.6 strokes/round better (tunable later)
-    mu = base_mu - 0.6 * strength + float(cfg.course_difficulty)
+        scores = np.array(scores)
 
-    n = len(df)
-    sims = int(cfg.n_sims)
+        ranks = scores.argsort().argsort()
 
-    # Optional round-specific wave/weather adjustments (strokes).
-    # Positive values make scoring worse; negative values help scoring.
-    round_adjustments = np.zeros((n, 4), dtype=float)
-    for idx, col in enumerate(["wave_r1_adjust", "wave_r2_adjust", "wave_r3_adjust", "wave_r4_adjust"]):
-        if col in df.columns:
-            round_adjustments[:, idx] = pd.to_numeric(df[col], errors="coerce").fillna(0.0).to_numpy()
+        results.append(ranks)
 
-    round_loc = mu[:, None] + round_adjustments
+    results = np.array(results)
 
-    # Rounds: [sims, n, 4]
-    rounds = rng.normal(
-        loc=round_loc[None, :, :], scale=float(cfg.round_sd), size=(sims, n, 4)
-    )
-    # Total score (4 rounds)
-    totals = rounds.sum(axis=2)
+    df["win_pct"] = (results == 0).mean(axis=0)
+    df["top5_pct"] = (results <= 4).mean(axis=0)
+    df["top10_pct"] = (results <= 9).mean(axis=0)
 
-    # Cut after 2 rounds:
-    r2_totals = rounds[:, :, :2].sum(axis=2)
-
-    # Determine who makes cut per sim
-    # lower is better
-    cut_mask = np.zeros((sims, n), dtype=bool)
-    for i in range(sims):
-        order = np.argsort(r2_totals[i, :])
-        # ties: keep simple by taking top N exactly
-        cut_mask[i, order[: int(cfg.cut_size)]] = True
-
-    # ---------------------------------------------------------------------
-    # FIX: Make missed-cut players comparable to 4-round totals
-    #
-    # Previously, missed-cut players were assigned only their 2-round total,
-    # which is ~140 and therefore "beats" any 4-round total (~260-290).
-    # That caused missed-cut players to win sims and could bury elite players.
-    #
-    # Correct approach: assign a 4-round-equivalent total by adding a penalty
-    # for rounds 3-4 for anyone who misses the cut.
-    # ---------------------------------------------------------------------
-    totals_adj = totals.copy()
-
-    # Penalty round score: field-average expected round + 2 strokes (conservative)
-    penalty_round = float(np.nanmean(mu)) + 2.0
-    miss_cut_penalty = 2.0 * penalty_round  # rounds 3 and 4
-
-    for i in range(sims):
-        miss = ~cut_mask[i, :]
-        totals_adj[i, miss] = r2_totals[i, miss] + miss_cut_penalty
-
-    # Finish rank (1 = best). Now totals_adj is comparable for all players.
-    finish_rank = np.argsort(np.argsort(totals_adj, axis=1), axis=1) + 1
-
-    # Metrics
-    win = (finish_rank == 1).mean(axis=0)
-    top10 = (finish_rank <= 10).mean(axis=0)
-    make_cut = cut_mask.mean(axis=0)
-    avg_finish = finish_rank.mean(axis=0)
-    avg_total_score = totals_adj.mean(axis=0)
-
-    # Project FanDuel points (approx):
-    # - Use FanDuel FPPG as base, then adjust for upside + cut risk using sim outputs.
-    fppg = pd.to_numeric(df.get("FPPG", 0.0), errors="coerce").fillna(0.0).to_numpy()
-    # Upside boosts
-    proj_fd = (
-        0.70 * fppg
-        + 35.0 * win  # winning is huge
-        + 12.0 * top10  # top10 meaningful
-        + 8.0 * make_cut  # survive cut matters
-        - 0.08 * (avg_finish - 1.0)  # small penalty for worse average finish
-    )
-
-    out = df.copy()
-    out["win_pct"] = win * 100.0
-    out["top10_pct"] = top10 * 100.0
-    out["make_cut_pct"] = make_cut * 100.0
-    out["avg_finish"] = avg_finish
-    out["avg_total_score"] = avg_total_score
-    out["proj_fd_points"] = proj_fd
-
-    # Keep clean player name
-    if "name" not in out.columns:
-        out["name"] = (
-            out["First Name"].fillna("").astype(str)
-            + " "
-            + out["Last Name"].fillna("").astype(str)
-        ).str.strip()
-
-    # Sort by win% by default
-    out = out.sort_values(["win_pct", "proj_fd_points"], ascending=[False, False]).reset_index(drop=True)
-    return out
+    return df
