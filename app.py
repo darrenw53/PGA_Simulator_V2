@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import os
+import base64
 import streamlit as st
 import pandas as pd
 
@@ -22,6 +23,158 @@ APP_TITLE = "SignalAI • PGA Simulator"
 DEFAULT_PASSWORD = "signalai123"
 
 
+def _find_logo_path(repo_root: Path) -> Path | None:
+    candidates = [
+        repo_root / "SignalAI_Logo.png",
+        repo_root / "signalai_logo.png",
+        repo_root / "assets" / "SignalAI_Logo.png",
+        repo_root / "assets" / "signalai_logo.png",
+    ]
+    for path in candidates:
+        if path.exists():
+            return path
+    return None
+
+
+def _img_to_base64(path: Path) -> str:
+    return base64.b64encode(path.read_bytes()).decode("utf-8")
+
+
+def _inject_signalai_theme() -> None:
+    st.markdown(
+        """
+        <style>
+        .stApp {
+            background:
+                radial-gradient(circle at top, rgba(0, 255, 220, 0.12), transparent 30%),
+                linear-gradient(180deg, #041016 0%, #06141f 35%, #02070d 100%);
+        }
+        [data-testid="stHeader"] {
+            background: rgba(0, 0, 0, 0);
+        }
+        [data-testid="stSidebar"] {
+            background: linear-gradient(180deg, rgba(4, 16, 22, 0.96), rgba(3, 9, 14, 0.96));
+            border-right: 1px solid rgba(0, 255, 220, 0.12);
+        }
+        .block-container {
+            padding-top: 1.5rem;
+            padding-bottom: 2rem;
+        }
+        .signalai-card {
+            background: linear-gradient(180deg, rgba(8, 24, 35, 0.92), rgba(3, 10, 15, 0.94));
+            border: 1px solid rgba(0, 255, 220, 0.16);
+            border-radius: 22px;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.02), 0 22px 48px rgba(0,0,0,0.40);
+            padding: 1.2rem 1.2rem 0.8rem 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .signalai-login-card {
+            background: linear-gradient(180deg, rgba(8, 24, 35, 0.96), rgba(3, 10, 15, 0.98));
+            border: 1px solid rgba(0, 255, 220, 0.16);
+            border-radius: 26px;
+            padding: 2rem 1.6rem 1.35rem 1.6rem;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.02), 0 30px 70px rgba(0,0,0,0.46);
+        }
+        .signalai-login-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #E9FFF9;
+            margin: 0.35rem 0 0.25rem 0;
+        }
+        .signalai-login-subtitle {
+            text-align: center;
+            color: rgba(220, 255, 249, 0.80);
+            font-size: 0.98rem;
+            margin-bottom: 1rem;
+        }
+        .signalai-powered {
+            text-align: center;
+            color: rgba(220, 255, 249, 0.62);
+            font-size: 0.88rem;
+            margin-top: 0.5rem;
+        }
+        .signalai-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #E9FFF9;
+            margin-bottom: 0.4rem;
+        }
+        .signalai-section-note {
+            color: rgba(220, 255, 249, 0.72);
+            margin-bottom: 0.1rem;
+        }
+        div[data-testid="stMetric"] {
+            background: linear-gradient(180deg, rgba(10, 28, 38, 0.85), rgba(5, 14, 20, 0.90));
+            border: 1px solid rgba(0, 255, 220, 0.12);
+            padding: 0.75rem 0.9rem;
+            border-radius: 16px;
+        }
+        div[data-testid="stDataFrame"] {
+            border: 1px solid rgba(0, 255, 220, 0.12);
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(5, 14, 20, 0.72);
+        }
+        .stButton > button, .stDownloadButton > button {
+            border-radius: 14px;
+            border: 1px solid rgba(0, 255, 220, 0.24);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+            font-weight: 700;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def _render_login_screen(repo_root: Path) -> bool:
+    if "auth_ok" not in st.session_state:
+        st.session_state.auth_ok = False
+
+    if st.session_state.auth_ok:
+        return True
+
+    logo_path = _find_logo_path(repo_root)
+    logo_html = ""
+    if logo_path is not None:
+        logo_b64 = _img_to_base64(logo_path)
+        logo_html = (
+            f'<div style="text-align:center; margin-bottom: 0.6rem;">'
+            f'<img src="data:image/png;base64,{logo_b64}" style="max-width: 320px; width: 78%; filter: drop-shadow(0 0 28px rgba(0,255,220,.20));" />'
+            f'</div>'
+        )
+
+    left, center, right = st.columns([1.1, 1.15, 1.1])
+    with center:
+        st.markdown('<div class="signalai-login-card">', unsafe_allow_html=True)
+        if logo_html:
+            st.markdown(logo_html, unsafe_allow_html=True)
+        st.markdown('<div class="signalai-login-title">SignalAI PGA Simulator</div>', unsafe_allow_html=True)
+        st.markdown('<div class="signalai-login-subtitle">Enter your password to access the simulator.</div>', unsafe_allow_html=True)
+        pwd = st.text_input("Password", type="password", label_visibility="collapsed", placeholder="Enter password")
+        if st.button("Enter Simulator", use_container_width=True, type="primary"):
+            if pwd == _get_app_password():
+                st.session_state.auth_ok = True
+                st.rerun()
+            else:
+                st.error("Incorrect password.")
+        st.markdown('<div class="signalai-powered">Powered by SignalAI</div>', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+    return False
+
+
+def _render_section_header(title: str, note: str | None = None) -> None:
+    st.markdown('<div class="signalai-card">', unsafe_allow_html=True)
+    st.markdown(f'<div class="signalai-section-title">{title}</div>', unsafe_allow_html=True)
+    if note:
+        st.markdown(f'<div class="signalai-section-note">{note}</div>', unsafe_allow_html=True)
+
+
+def _close_section_header() -> None:
+    st.markdown('</div>', unsafe_allow_html=True)
+
+
 def _get_app_password() -> str:
     try:
         secret_val = st.secrets.get("APP_PASSWORD")
@@ -35,23 +188,8 @@ def _get_app_password() -> str:
     return DEFAULT_PASSWORD
 
 
-def password_gate() -> bool:
-    if "auth_ok" not in st.session_state:
-        st.session_state.auth_ok = False
-
-    if st.session_state.auth_ok:
-        return True
-
-    st.title(APP_TITLE)
-    st.subheader("Login")
-    pwd = st.text_input("Password", type="password")
-    if st.button("Enter", use_container_width=True):
-        if pwd == _get_app_password():
-            st.session_state.auth_ok = True
-            st.rerun()
-        else:
-            st.error("Incorrect password.")
-    return False
+def password_gate(repo_root: Path) -> bool:
+    return _render_login_screen(repo_root)
 
 
 def _safe_int(x, default=None):
@@ -150,9 +288,16 @@ def _attach_heater_meter(df, heater_map_df):
 
 
 def main():
-    st.set_page_config(page_title=APP_TITLE, layout="wide")
+    st.set_page_config(page_title=APP_TITLE, layout="wide", page_icon="⛳")
+    try:
+        st.set_option("client.showErrorDetails", False)
+    except Exception:
+        pass
 
-    if not password_gate():
+    repo_root = Path(__file__).parent
+    _inject_signalai_theme()
+
+    if not password_gate(repo_root):
         return
 
     if "sim_results" not in st.session_state:
@@ -472,6 +617,7 @@ def main():
     auto_save = st.sidebar.checkbox("Auto-save run outputs", value=True)
     run_note = st.sidebar.text_input("Run note (optional)", value="")
 
+    _render_section_header("Tournament dashboard", "Customize the sliders, run the simulation, and build subscriber-ready lineups.")
     colA, colB, colC = st.columns([2.2, 1.2, 1.2])
     with colA:
         st.subheader(tournament_name)
@@ -514,7 +660,9 @@ def main():
             st.dataframe(wave_preview[cols].sort_values(["wave", "tee_time_local_clock", "name"]), use_container_width=True, hide_index=True)
             st.caption("Positive adjustment = tougher scoring. Negative adjustment = easier scoring.")
 
-    st.markdown("## Tournament simulation")
+    _close_section_header()
+
+    _render_section_header("Tournament simulation", "Run the current setup with your selected weights, weather wave, and volatility settings.")
 
     if st.button("Run simulation", type="primary", use_container_width=True):
         weights = {
@@ -542,14 +690,15 @@ def main():
             course_fit_weights=weights,
         )
 
-        with st.spinner("Simulating..."):
+        with st.status("Running tournament simulation...", expanded=False) as status:
+            status.write("Preparing field and scoring inputs...")
             results = simulate_tournament(sim_input, cfg)
+            status.write("Finalizing win, top-10, cut, and FanDuel outputs...")
+            status.update(label="Simulation complete.", state="complete")
 
         st.session_state.sim_results = results
         st.session_state.last_tournament_id = tournament_id
         st.session_state.last_tournament_name = tournament_name
-
-        st.success("Simulation complete.")
 
         if auto_save:
             settings_payload = {
@@ -591,12 +740,14 @@ def main():
                 predictions=results,
             )
             st.session_state.last_run_record = rec
-            st.info(f"Saved run: {rec.run_id}")
+            st.caption(f"Saved run: {rec.run_id}")
+
+    _close_section_header()
 
     results = _attach_heater_meter(st.session_state.sim_results, heater_map_df)
     st.session_state.sim_results = results
     if results is not None and not results.empty:
-        st.markdown("### Latest simulation results")
+        _render_section_header("Latest simulation results", "Top outputs from the most recent run, ready for review or download.")
         summ_cols = [
             "name", "Heater Meter", "Salary", "FPPG", "tee_time_local_clock", "wave",
             "win_pct", "top10_pct", "make_cut_pct", "avg_finish", "proj_fd_points",
@@ -630,11 +781,13 @@ def main():
                     file_name=f"{rec.tournament_id}_{rec.run_id}_predictions.csv",
                     use_container_width=True,
                 )
+        _close_section_header()
 
-    st.markdown("## FanDuel lineup builder (6 golfers, ≤ $60,000)")
+    _render_section_header("FanDuel lineup builder", "Build a six-golfer lineup under $60,000 using your latest simulation results.")
 
     if results is None or results.empty:
         st.info("Run a simulation first (or load a past run from Run History).")
+        _close_section_header()
         st.stop()
 
     col1, col2, col3 = st.columns([1.2, 1.2, 1.6])
@@ -672,7 +825,8 @@ def main():
         )
 
     if st.button("Build best lineup", use_container_width=True):
-        with st.spinner("Searching best lineup under $60,000..."):
+        with st.status("Searching best lineup under $60,000...", expanded=False) as status:
+            status.write("Ranking candidate pool...")
             lineup, meta = optimize_fanduel_lineup(
                 sim_results=results,
                 salary_cap=60000,
@@ -685,6 +839,7 @@ def main():
                 leverage_weight=float(leverage_weight),
                 value_salary_exp=float(value_salary_exp),
             )
+            status.update(label="Lineup search complete.", state="complete")
 
         if lineup is None or lineup.empty:
             st.error("No valid lineup found. Try increasing candidate pool or removing locks.")
@@ -724,6 +879,8 @@ def main():
                 mime="text/csv",
                 use_container_width=True,
             )
+
+    _close_section_header()
 
 
 if __name__ == "__main__":
