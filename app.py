@@ -68,15 +68,16 @@ def _format_money(x):
         return str(x)
 
 
-
-
 @st.cache_data(show_spinner=False)
 def _compute_hotness(weekly_root_str: str, selected_week_label: str):
     return compute_hotness_last_n_weeks(Path(weekly_root_str), selected_week_label)
 
+
 @st.cache_data(show_spinner=False)
 def _compute_rolling_sg(weekly_root_str: str, selected_week_label: str, n_weeks: int = 4):
     return compute_rolling_sg_total_from_weekly(Path(weekly_root_str), selected_week_label, n_weeks=n_weeks)
+
+
 @st.cache_data(show_spinner=False)
 def _load_reference_df(path_str: str):
     return load_reference_results_tsv(Path(path_str))
@@ -86,6 +87,7 @@ def _load_reference_df(path_str: str):
 def _load_tee_times_from_path(path_str: str):
     raw = load_tee_times(path=Path(path_str))
     return tee_times_to_dataframe(raw)
+
 
 @st.cache_data(show_spinner=False)
 def _load_tee_times_from_bytes(file_bytes: bytes):
@@ -115,12 +117,9 @@ def _attach_heater_meter(df, heater_map_df):
             return out
 
         out = df.copy()
-        # If this DF already has a Heater Meter column, drop it before merging/renaming.
-        # Otherwise, renaming hotness_1_5 -> Heater Meter would create duplicate column names.
         if "Heater Meter" in out.columns:
             out = out.drop(columns=["Heater Meter"])
 
-        # Merge on player_id when available, else fall back to name.
         if "player_id" in out.columns and "player_id" in heater_map_df.columns:
             tmp = heater_map_df[["player_id", "hotness_1_5"]].copy()
             tmp["player_id"] = tmp["player_id"].astype(str)
@@ -135,14 +134,12 @@ def _attach_heater_meter(df, heater_map_df):
                 out["Heater Meter"] = None
             return out
 
-        # Convert + drop source column to guarantee unique columns for Streamlit/Arrow.
         if "hotness_1_5" in out.columns:
             out["Heater Meter"] = pd.to_numeric(out["hotness_1_5"], errors="coerce")
             out = out.drop(columns=["hotness_1_5"])
         else:
             out["Heater Meter"] = None
 
-        # Final safety: remove any accidental duplicate columns.
         out = out.loc[:, ~out.columns.duplicated()]
         return out
     except Exception:
@@ -158,7 +155,6 @@ def main():
     if not password_gate():
         return
 
-    # persistent slots
     if "sim_results" not in st.session_state:
         st.session_state.sim_results = None
     if "last_tournament_id" not in st.session_state:
@@ -168,22 +164,20 @@ def main():
     if "last_run_record" not in st.session_state:
         st.session_state.last_run_record = None
 
-    # NEW: seed default slider state keys (so we can programmatically set them)
-    if "round_sd" not in st.session_state:
-        st.session_state.round_sd = 2.3
-    if "wave_r1_gap" not in st.session_state:
-        st.session_state.wave_r1_gap = 0.0
-    if "wave_r2_gap" not in st.session_state:
-        st.session_state.wave_r2_gap = 0.0
+    session_defaults = {
+        "round_sd": 2.3,
+        "wave_r1_gap": 0.0,
+        "wave_r2_gap": 0.0,
+    }
+    for k, v in session_defaults.items():
+        if k not in st.session_state:
+            st.session_state[k] = v
 
     st.title(APP_TITLE)
     st.caption("File-driven weekly simulator + FanDuel lineup builder + saved runs (no API calls).")
 
     repo_root = Path(__file__).parent
 
-    # =========================
-    # RUN HISTORY (LEFT SIDEBAR)
-    # =========================
     st.sidebar.header("Run History")
     runs = list_runs(repo_root)
 
@@ -204,15 +198,11 @@ def main():
             st.session_state.last_tournament_name = sel_run.tournament_name
             st.session_state.last_run_record = sel_run
             st.rerun()
-
     else:
         st.sidebar.caption("No saved runs yet. Run a simulation with Auto-save enabled.")
 
     st.sidebar.divider()
 
-    # =========================
-    # WEEKLY DATA LOADING
-    # =========================
     st.sidebar.header("Weekly Data")
     weekly_root = repo_root / "data" / "weekly"
     weekly_root.mkdir(parents=True, exist_ok=True)
@@ -245,9 +235,6 @@ def main():
         st.info("Load a valid week folder in data/weekly to begin.")
         st.stop()
 
-    # =========================
-    # OPTIONAL TEE TIMES / WAVE DATA
-    # =========================
     tee_times_df = pd.DataFrame()
     tee_times_status = None
     tee_times_path = weekly_root / week_label / "tee_times_rd1.json"
@@ -258,9 +245,6 @@ def main():
         except Exception as e:
             tee_times_status = f"Failed to load tee_times_rd1.json: {e}"
 
-    # =========================
-    # TOURNAMENT SELECTION
-    # =========================
     st.sidebar.header("Tournament")
     tourney_df = weekly_data.schedule_tournaments.copy()
     tourney_df["label"] = tourney_df["name"].astype(str) + " (" + tourney_df["start_date"].astype(str) + ")"
@@ -270,9 +254,6 @@ def main():
     tournament_name = str(sel_row["name"])
     course_meta = weekly_data.get_course_meta(tournament_id)
 
-    # =========================
-    # EARLY-SEASON REFERENCE (SIDEBAR)
-    # =========================
     st.sidebar.divider()
     st.sidebar.header("Early-season reference")
 
@@ -305,22 +286,14 @@ def main():
                 )
 
                 if st.sidebar.button("Apply suggested Round SD", use_container_width=True):
-                    # Updates the slider value (keyed)
                     st.session_state.round_sd = suggested_round_sd
                     st.rerun()
-
             except Exception as e:
                 st.sidebar.error("Failed to load reference priors.")
                 st.sidebar.caption(str(e))
 
-    # =========================
-    # FIELD + MODEL TABLE
-    # =========================
     fd_players = weekly_data.fanduel_players.copy()
 
-    # =========================
-    # ROLLING FORM (OPTIONAL)
-    # =========================
     use_rolling_sg = st.sidebar.checkbox(
         "Use rolling SG Total form (last 4 weeks)",
         value=False,
@@ -346,10 +319,8 @@ def main():
 
     st.sidebar.header("Field")
     st.sidebar.caption(f"FanDuel rows: {len(fd_players):,}")
-    # Determine dynamic salary bounds (Signature Events can exceed 15,000)
     try:
         salary_max = int(pd.to_numeric(fd_players["Salary"], errors="coerce").max())
-        # NaN guard
         if salary_max != salary_max:
             salary_max = 20000
     except Exception:
@@ -379,8 +350,6 @@ def main():
         st.error("No players matched between FanDuel CSV and your stats/WGR files.")
         st.stop()
 
-    # Pre-compute Heater Meter (hotness 1–5) so we can show it as a column in tables.
-    # This is informational only and does NOT alter simulation calculations.
     heater_map_df = pd.DataFrame()
     hr = None
     if week_label:
@@ -391,12 +360,8 @@ def main():
         except Exception:
             heater_map_df = pd.DataFrame()
 
-    # Attach to the merged field table (display-only)
     model_table = _attach_heater_meter(model_table, heater_map_df)
 
-    # =========================
-    # HOTNESS (INFORMATIONAL ONLY)
-    # =========================
     with st.expander("Hotness (last 4 weeks) • informational only", expanded=False):
         if not week_label:
             st.info("Hotness requires week folders in data/weekly so we can compare the last 4 weeks.")
@@ -408,15 +373,11 @@ def main():
                     st.warning("No hotness data available.")
                 else:
                     hot_df = hr.form_scores_wide.copy()
-                    # keep only golfers in this week's FanDuel field
                     field_ids = set(model_table["player_id"].astype(str).tolist())
                     hot_df = hot_df[hot_df["player_id"].astype(str).isin(field_ids)].copy()
 
-                    st.caption(
-                        "Weeks used (oldest → newest): " + " → ".join(hr.weeks)
-                    )
+                    st.caption("Weeks used (oldest → newest): " + " → ".join(hr.weeks))
 
-                    # nicer ordering
                     hot_df = hot_df.sort_values(["hotness_1_5", "hotness_raw"], ascending=[False, False], na_position="last")
 
                     st.dataframe(
@@ -448,9 +409,6 @@ def main():
             except Exception as e:
                 st.error(f"Hotness calculation failed: {e}")
 
-    # =========================
-    # SLIDERS
-    # =========================
     st.sidebar.header("Course-fit sliders")
     defaults = make_course_fit_weights()
 
@@ -487,27 +445,24 @@ def main():
         help="Uses tee_times_rd1.json to identify AM vs PM starters and applies round-specific stroke adjustments.",
     )
     if tee_times_status:
-        if tee_times_df.empty:
-            st.sidebar.caption(tee_times_status)
-        else:
-            st.sidebar.caption(tee_times_status)
+        st.sidebar.caption(tee_times_status)
     elif tee_times_df.empty:
         st.sidebar.caption("No tee_times_rd1.json found. Put it in the selected week folder to enable wave adjustments.")
 
     wave_r1_gap = st.sidebar.slider(
         "Round 1 AM/PM wave gap (strokes)",
-        -1.5, 1.5,
-        float(st.session_state.wave_r1_gap),
-        0.05,
+        min_value=-1.5,
+        max_value=1.5,
+        step=0.05,
         key="wave_r1_gap",
         disabled=not use_weather_wave,
         help="Positive = AM wave easier in Round 1. Negative = PM wave easier. A value of 0.30 means AM gets -0.15 and PM gets +0.15 so the field average stays neutral.",
     )
     wave_r2_gap = st.sidebar.slider(
         "Round 2 AM/PM wave gap (strokes)",
-        -1.5, 1.5,
-        float(st.session_state.wave_r2_gap),
-        0.05,
+        min_value=-1.5,
+        max_value=1.5,
+        step=0.05,
         key="wave_r2_gap",
         disabled=not use_weather_wave,
         help="Same concept for Friday. The app assumes players flip waves from Round 1 to Round 2, which is standard for PGA Tour pairings.",
@@ -517,9 +472,6 @@ def main():
     auto_save = st.sidebar.checkbox("Auto-save run outputs", value=True)
     run_note = st.sidebar.text_input("Run note (optional)", value="")
 
-    # =========================
-    # HEADER
-    # =========================
     colA, colB, colC = st.columns([2.2, 1.2, 1.2])
     with colA:
         st.subheader(tournament_name)
@@ -562,9 +514,6 @@ def main():
             st.dataframe(wave_preview[cols].sort_values(["wave", "tee_time_local_clock", "name"]), use_container_width=True, hide_index=True)
             st.caption("Positive adjustment = tougher scoring. Negative adjustment = easier scoring.")
 
-    # =========================
-    # RUN SIMULATION
-    # =========================
     st.markdown("## Tournament simulation")
 
     if st.button("Run simulation", type="primary", use_container_width=True):
@@ -627,7 +576,6 @@ def main():
                     "round_1_gap": float(wave_r1_gap) if use_weather_wave and not tee_times_df.empty else 0.0,
                     "round_2_gap": float(wave_r2_gap) if use_weather_wave and not tee_times_df.empty else 0.0,
                 },
-                # NEW: record reference context (if used)
                 "reference": {
                     "enabled": bool(use_ref),
                     "ref_file_present": bool(ref_path.exists()),
@@ -645,9 +593,6 @@ def main():
             st.session_state.last_run_record = rec
             st.info(f"Saved run: {rec.run_id}")
 
-    # =========================
-    # SHOW LATEST RESULTS + DOWNLOADS + ACTUALS PLACEHOLDER
-    # =========================
     results = _attach_heater_meter(st.session_state.sim_results, heater_map_df)
     st.session_state.sim_results = results
     if results is not None and not results.empty:
@@ -675,7 +620,6 @@ def main():
             use_container_width=True,
         )
 
-        # If last run was saved, show one-click downloads for that run
         rec = st.session_state.last_run_record
         if rec is not None:
             st.markdown("### Saved run file")
@@ -687,9 +631,6 @@ def main():
                     use_container_width=True,
                 )
 
-    # =========================
-    # LINEUP BUILDER
-    # =========================
     st.markdown("## FanDuel lineup builder (6 golfers, ≤ $60,000)")
 
     if results is None or results.empty:
@@ -749,7 +690,6 @@ def main():
             st.error("No valid lineup found. Try increasing candidate pool or removing locks.")
         else:
             st.success("Lineup found.")
-            # Ensure Heater Meter is present for display
             lineup = _attach_heater_meter(lineup, heater_map_df)
 
             cols = [
