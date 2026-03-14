@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import os
 import streamlit as st
 import pandas as pd
 
@@ -8,7 +9,7 @@ from src.file_loader import WeeklyData, load_weekly_data, list_week_folders, lis
 from src.features import build_model_table, make_course_fit_weights
 from src.simulator import SimConfig, simulate_tournament
 from src.fanduel import optimize_fanduel_lineup
-from src.run_store import list_runs, load_predictions, save_run, save_actuals_csv
+from src.run_store import list_runs, load_predictions, save_run
 from src.hotness import compute_hotness_last_n_weeks
 from src.rolling_form import compute_rolling_sg_total_from_weekly
 from src.tee_times import load_tee_times, tee_times_to_dataframe, apply_wave_adjustments
@@ -18,7 +19,15 @@ from src.reference import load_reference_results_tsv, compute_reference_priors
 
 
 APP_TITLE = "SignalAI • PGA Simulator"
-PASSWORD = "signalai123"
+DEFAULT_PASSWORD = "signalai123"
+
+
+def _app_password() -> str:
+    return str(
+        st.secrets.get("APP_PASSWORD")
+        or os.getenv("SIGNALAI_APP_PASSWORD")
+        or DEFAULT_PASSWORD
+    )
 
 
 def password_gate() -> bool:
@@ -32,7 +41,7 @@ def password_gate() -> bool:
     st.subheader("Login")
     pwd = st.text_input("Password", type="password")
     if st.button("Enter", use_container_width=True):
-        if pwd == PASSWORD:
+        if pwd == _app_password():
             st.session_state.auth_ok = True
             st.rerun()
         else:
@@ -163,7 +172,7 @@ def main():
         st.session_state.wave_r2_gap = 0.0
 
     st.title(APP_TITLE)
-    st.caption("File-driven weekly simulator + FanDuel lineup builder + saved runs (no API calls).")
+    st.caption("Subscriber release • weekly folder driven simulator + FanDuel lineup builder.")
 
     repo_root = Path(__file__).parent
 
@@ -191,30 +200,7 @@ def main():
             st.session_state.last_run_record = sel_run
             st.rerun()
 
-        # downloads from sidebar
-        with open(sel_run.predictions_path, "rb") as f:
-            st.sidebar.download_button(
-                "Download predictions.csv",
-                f,
-                file_name=f"{sel_run.tournament_id}_{sel_run.run_id}_predictions.csv",
-                use_container_width=True,
-            )
-        with open(sel_run.settings_path, "rb") as f:
-            st.sidebar.download_button(
-                "Download settings.json",
-                f,
-                file_name=f"{sel_run.tournament_id}_{sel_run.run_id}_settings.json",
-                use_container_width=True,
-            )
-
-        if sel_run.actuals_path and sel_run.actuals_path.exists():
-            with open(sel_run.actuals_path, "rb") as f:
-                st.sidebar.download_button(
-                    "Download actuals.csv",
-                    f,
-                    file_name=f"{sel_run.tournament_id}_{sel_run.run_id}_actuals.csv",
-                    use_container_width=True,
-                )
+        st.sidebar.caption("Saved runs can be loaded in-app. Raw settings and backend files are hidden in the subscriber release.")
     else:
         st.sidebar.caption("No saved runs yet. Run a simulation with Auto-save enabled.")
 
@@ -229,55 +215,25 @@ def main():
 
     week_folders = list_week_folders(weekly_root)
 
-    data_mode = st.sidebar.radio(
-        "How to load weekly data?",
-        ["Use data/weekly folder", "Upload files (one-off)"],
-        index=0,
-    )
-
     weekly_data: WeeklyData | None = None
     week_label = None
 
-    if data_mode == "Use data/weekly folder":
-        if not week_folders:
-            st.sidebar.warning("No week folders found in data/weekly yet.")
-            st.info(
-                "Create data/weekly/<week_name>/ and add schedule.json, player_statistics.json, "
-                "wgr_rankings.json, plus your FanDuel CSV."
-            )
-            st.stop()
+    if not week_folders:
+        st.sidebar.warning("No week folders found in data/weekly yet.")
+        st.stop()
 
-        week_label = st.sidebar.selectbox("Select week folder", options=week_folders, index=0)
-        folder_path = weekly_root / week_label
+    week_label = st.sidebar.selectbox("Select week folder", options=week_folders, index=0)
+    folder_path = weekly_root / week_label
 
-        csv_choices = list_fanduel_csvs(folder_path)
-        if not csv_choices:
-            st.sidebar.error("No CSV found in that week folder. Put your FanDuel CSV in it (any name).")
-            st.stop()
+    csv_choices = list_fanduel_csvs(folder_path)
+    if not csv_choices:
+        st.sidebar.error("No CSV found in that week folder. Put your FanDuel CSV in it (any name).")
+        st.stop()
 
-        fd_choice = st.sidebar.selectbox("FanDuel CSV in folder", csv_choices, index=0)
-        weekly_data = load_weekly_data(folder_path, fanduel_filename=fd_choice)
-
-    else:
-        st.sidebar.info("Upload the four files for a one-off run.")
-        up_sched = st.sidebar.file_uploader("schedule.json", type=["json"])
-        up_stats = st.sidebar.file_uploader("player_statistics.json", type=["json"])
-        up_wgr = st.sidebar.file_uploader("wgr_rankings.json", type=["json"])
-        up_fd = st.sidebar.file_uploader("FanDuel players CSV", type=["csv"])
-        up_tee = st.sidebar.file_uploader("tee_times_rd1.json (optional)", type=["json"])
-
-        if up_sched and up_stats and up_wgr and up_fd:
-            weekly_data = load_weekly_data(
-                folder=None,
-                schedule_bytes=up_sched.getvalue(),
-                stats_bytes=up_stats.getvalue(),
-                wgr_bytes=up_wgr.getvalue(),
-                fanduel_bytes=up_fd.getvalue(),
-            )
-            week_label = "Uploaded files"
+    fd_choice = st.sidebar.selectbox("FanDuel CSV in folder", csv_choices, index=0)
+    weekly_data = load_weekly_data(folder_path, fanduel_filename=fd_choice)
 
     if weekly_data is None:
-        st.info("Load a week folder (data/weekly/...) or upload the files to begin.")
         st.stop()
 
     # =========================
@@ -285,21 +241,12 @@ def main():
     # =========================
     tee_times_df = pd.DataFrame()
     tee_times_status = None
-    if data_mode == "Use data/weekly folder" and week_label is not None:
-        tee_times_path = weekly_root / week_label / "tee_times_rd1.json"
-        if tee_times_path.exists():
-            try:
-                tee_times_df = _load_tee_times_from_path(str(tee_times_path))
-                tee_times_status = f"Loaded tee_times_rd1.json ({len(tee_times_df):,} players)."
-            except Exception as e:
-                tee_times_status = f"Failed to load tee_times_rd1.json: {e}"
-    else:
+    tee_times_path = weekly_root / week_label / "tee_times_rd1.json"
+    if tee_times_path.exists():
         try:
-            if "up_tee" in locals() and up_tee is not None:
-                tee_times_df = _load_tee_times_from_bytes(up_tee.getvalue())
-                tee_times_status = f"Loaded uploaded tee times ({len(tee_times_df):,} players)."
+            tee_times_df = _load_tee_times_from_path(str(tee_times_path))
         except Exception as e:
-            tee_times_status = f"Failed to load uploaded tee times: {e}"
+            tee_times_status = f"Failed to load tee_times_rd1.json: {e}"
 
     # =========================
     # TOURNAMENT SELECTION
@@ -372,8 +319,7 @@ def main():
 
     rolling_df = None
     if use_rolling_sg:
-        if data_mode != "Use data/weekly folder" or week_label is None:
-            st.sidebar.warning("Rolling form requires 'Use data/weekly folder' mode.")
+        if week_label is None:
             use_rolling_sg = False
         else:
             try:
@@ -441,10 +387,8 @@ def main():
     # =========================
     # HOTNESS (INFORMATIONAL ONLY)
     # =========================
-    with st.expander("Hotness (last 4 weeks) • informational only", expanded=False):
-        if data_mode != "Use data/weekly folder" or not week_label:
-            st.info("Hotness requires week folders in data/weekly so we can compare the last 4 weeks.")
-        else:
+    with st.expander("Heater Meter details", expanded=False):
+        if week_label:
             try:
                 if hr is None:
                     hr = _compute_hotness(str(weekly_root), str(week_label))
@@ -532,12 +476,9 @@ def main():
         help="Uses tee_times_rd1.json to identify AM vs PM starters and applies round-specific stroke adjustments.",
     )
     if tee_times_status:
-        if tee_times_df.empty:
-            st.sidebar.caption(tee_times_status)
-        else:
-            st.sidebar.success(tee_times_status)
+        st.sidebar.caption(tee_times_status)
     elif tee_times_df.empty:
-        st.sidebar.caption("No tee_times_rd1.json found. Put it in the selected week folder to enable wave adjustments.")
+        st.sidebar.caption("No tee_times_rd1.json found in the selected week folder.")
 
     wave_r1_gap = st.sidebar.slider(
         "Round 1 AM/PM wave gap (strokes)",
@@ -645,7 +586,7 @@ def main():
         st.session_state.last_tournament_id = tournament_id
         st.session_state.last_tournament_name = tournament_name
 
-        st.success("Simulation complete.")
+        st.caption("Simulation complete.")
 
         if auto_save:
             settings_payload = {
@@ -688,7 +629,7 @@ def main():
                 predictions=results,
             )
             st.session_state.last_run_record = rec
-            st.info(f"Saved run: {rec.run_id}")
+            st.caption(f"Saved run: {rec.run_id}")
 
     # =========================
     # SHOW LATEST RESULTS + DOWNLOADS + ACTUALS PLACEHOLDER
@@ -720,41 +661,9 @@ def main():
             use_container_width=True,
         )
 
-        # If last run was saved, show one-click downloads for that run
         rec = st.session_state.last_run_record
         if rec is not None:
-            st.markdown("### Saved run files")
-            c1, c2, c3 = st.columns(3)
-            with open(rec.predictions_path, "rb") as f:
-                c1.download_button(
-                    "Download saved predictions.csv",
-                    f,
-                    file_name=f"{rec.tournament_id}_{rec.run_id}_predictions.csv",
-                    use_container_width=True,
-                )
-            with open(rec.settings_path, "rb") as f:
-                c2.download_button(
-                    "Download saved settings.json",
-                    f,
-                    file_name=f"{rec.tournament_id}_{rec.run_id}_settings.json",
-                    use_container_width=True,
-                )
-
-            # Placeholder: upload actuals later
-            st.markdown("### Import actual results (placeholder)")
-            st.caption("After the tournament ends, upload a CSV here and it will be saved next to this run as actuals.csv.")
-            up_actuals = st.file_uploader("Upload actuals.csv for this run", type=["csv"], key="actuals_uploader")
-            if up_actuals is not None:
-                path = save_actuals_csv(rec, up_actuals.getvalue())
-                st.success(f"Saved actuals to: {path.as_posix()}")
-
-                with open(path, "rb") as f:
-                    c3.download_button(
-                        "Download actuals.csv",
-                        f,
-                        file_name=f"{rec.tournament_id}_{rec.run_id}_actuals.csv",
-                        use_container_width=True,
-                    )
+            st.caption("Saved run stored on the server.")
 
     # =========================
     # LINEUP BUILDER
