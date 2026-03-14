@@ -365,16 +365,29 @@ def main():
         )
         st.stop()
 
-    week_label = st.sidebar.selectbox("Select week folder", options=week_folders, index=0)
+    def _week_sort_key(label: str):
+        try:
+            return pd.Timestamp(label)
+        except Exception:
+            path = weekly_root / str(label)
+            try:
+                return pd.Timestamp(path.stat().st_mtime, unit="s")
+            except Exception:
+                return pd.Timestamp.min
+
+    week_label = max(week_folders, key=_week_sort_key)
     folder_path = weekly_root / week_label
 
     csv_choices = list_fanduel_csvs(folder_path)
     if not csv_choices:
-        st.sidebar.error("No CSV found in that week folder. Put your FanDuel CSV in it (any name).")
+        st.sidebar.error("No CSV found in the most recent week folder.")
         st.stop()
 
-    fd_choice = st.sidebar.selectbox("FanDuel CSV in folder", csv_choices, index=0)
+    fd_choice = sorted(csv_choices)[0]
     weekly_data = load_weekly_data(folder_path, fanduel_filename=fd_choice)
+
+    st.sidebar.caption(f"Auto-loaded week: {week_label}")
+    st.sidebar.caption(f"FanDuel file: {fd_choice}")
 
     if weekly_data is None:
         st.info("Load a valid week folder in data/weekly to begin.")
