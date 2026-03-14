@@ -348,7 +348,6 @@ def main():
 
     st.sidebar.divider()
 
-    st.sidebar.header("Weekly Data")
     weekly_root = repo_root / "data" / "weekly"
     weekly_root.mkdir(parents=True, exist_ok=True)
 
@@ -385,9 +384,6 @@ def main():
 
     fd_choice = sorted(csv_choices)[0]
     weekly_data = load_weekly_data(folder_path, fanduel_filename=fd_choice)
-
-    st.sidebar.caption(f"Auto-loaded week: {week_label}")
-    st.sidebar.caption(f"FanDuel file: {fd_choice}")
 
     if weekly_data is None:
         st.info("Load a valid week folder in data/weekly to begin.")
@@ -634,7 +630,6 @@ def main():
     colA, colB, colC = st.columns([2.2, 1.2, 1.2])
     with colA:
         st.subheader(tournament_name)
-        st.write(f"Selected data: **{week_label}**")
         if course_meta:
             st.caption(
                 f"Course: {course_meta.get('course_name', '—')} • "
