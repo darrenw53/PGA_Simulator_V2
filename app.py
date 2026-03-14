@@ -469,12 +469,11 @@ def main():
     rng_seed = st.sidebar.text_input("RNG seed (optional)", value="")
     cut_line = st.sidebar.slider("Cut size (after R2)", 50, 80, 65, step=1)
 
-    # CHANGED: Round SD slider uses key so we can apply suggested value
     round_sd = st.sidebar.slider(
         "Round score volatility (stdev)",
-        1.0, 4.0,
-        float(st.session_state.round_sd),
-        0.05,
+        min_value=1.0,
+        max_value=4.0,
+        step=0.05,
         key="round_sd",
     )
 
