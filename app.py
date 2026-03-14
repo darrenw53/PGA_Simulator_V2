@@ -22,12 +22,17 @@ APP_TITLE = "SignalAI • PGA Simulator"
 DEFAULT_PASSWORD = "signalai123"
 
 
-def _app_password() -> str:
-    return str(
-        st.secrets.get("APP_PASSWORD")
-        or os.getenv("SIGNALAI_APP_PASSWORD")
-        or DEFAULT_PASSWORD
-    )
+def _get_app_password() -> str:
+    try:
+        secret_val = st.secrets.get("APP_PASSWORD")
+        if secret_val:
+            return str(secret_val)
+    except Exception:
+        pass
+    env_val = os.getenv("SIGNALAI_APP_PASSWORD")
+    if env_val:
+        return str(env_val)
+    return DEFAULT_PASSWORD
 
 
 def password_gate() -> bool:
@@ -41,7 +46,7 @@ def password_gate() -> bool:
     st.subheader("Login")
     pwd = st.text_input("Password", type="password")
     if st.button("Enter", use_container_width=True):
-        if pwd == _app_password():
+        if pwd == _get_app_password():
             st.session_state.auth_ok = True
             st.rerun()
         else:
@@ -172,7 +177,7 @@ def main():
         st.session_state.wave_r2_gap = 0.0
 
     st.title(APP_TITLE)
-    st.caption("Subscriber release • weekly folder driven simulator + FanDuel lineup builder.")
+    st.caption("File-driven weekly simulator + FanDuel lineup builder + saved runs (no API calls).")
 
     repo_root = Path(__file__).parent
 
@@ -200,7 +205,6 @@ def main():
             st.session_state.last_run_record = sel_run
             st.rerun()
 
-        st.sidebar.caption("Saved runs can be loaded in-app. Raw settings and backend files are hidden in the subscriber release.")
     else:
         st.sidebar.caption("No saved runs yet. Run a simulation with Auto-save enabled.")
 
@@ -220,6 +224,10 @@ def main():
 
     if not week_folders:
         st.sidebar.warning("No week folders found in data/weekly yet.")
+        st.info(
+            "Create data/weekly/<week_name>/ and add schedule.json, player_statistics.json, "
+            "wgr_rankings.json, plus your FanDuel CSV."
+        )
         st.stop()
 
     week_label = st.sidebar.selectbox("Select week folder", options=week_folders, index=0)
@@ -234,6 +242,7 @@ def main():
     weekly_data = load_weekly_data(folder_path, fanduel_filename=fd_choice)
 
     if weekly_data is None:
+        st.info("Load a valid week folder in data/weekly to begin.")
         st.stop()
 
     # =========================
@@ -245,6 +254,7 @@ def main():
     if tee_times_path.exists():
         try:
             tee_times_df = _load_tee_times_from_path(str(tee_times_path))
+            tee_times_status = f"tee_times_rd1.json loaded ({len(tee_times_df):,} players)."
         except Exception as e:
             tee_times_status = f"Failed to load tee_times_rd1.json: {e}"
 
@@ -373,7 +383,7 @@ def main():
     # This is informational only and does NOT alter simulation calculations.
     heater_map_df = pd.DataFrame()
     hr = None
-    if data_mode == "Use data/weekly folder" and week_label:
+    if week_label:
         try:
             hr = _compute_hotness(str(weekly_root), str(week_label))
             if hr is not None and getattr(hr, "form_scores_wide", None) is not None:
@@ -387,8 +397,10 @@ def main():
     # =========================
     # HOTNESS (INFORMATIONAL ONLY)
     # =========================
-    with st.expander("Heater Meter details", expanded=False):
-        if week_label:
+    with st.expander("Hotness (last 4 weeks) • informational only", expanded=False):
+        if not week_label:
+            st.info("Hotness requires week folders in data/weekly so we can compare the last 4 weeks.")
+        else:
             try:
                 if hr is None:
                     hr = _compute_hotness(str(weekly_root), str(week_label))
@@ -476,9 +488,12 @@ def main():
         help="Uses tee_times_rd1.json to identify AM vs PM starters and applies round-specific stroke adjustments.",
     )
     if tee_times_status:
-        st.sidebar.caption(tee_times_status)
+        if tee_times_df.empty:
+            st.sidebar.caption(tee_times_status)
+        else:
+            st.sidebar.caption(tee_times_status)
     elif tee_times_df.empty:
-        st.sidebar.caption("No tee_times_rd1.json found in the selected week folder.")
+        st.sidebar.caption("No tee_times_rd1.json found. Put it in the selected week folder to enable wave adjustments.")
 
     wave_r1_gap = st.sidebar.slider(
         "Round 1 AM/PM wave gap (strokes)",
@@ -539,7 +554,7 @@ def main():
 
     with st.expander("Weather wave preview", expanded=False):
         if tee_times_df.empty:
-            st.info("Load tee_times_rd1.json in the week folder (or upload it in one-off mode) to preview wave assignments.")
+            st.info("Load tee_times_rd1.json in the selected week folder to preview wave assignments.")
         else:
             wave_preview = model_table.copy()
             if use_weather_wave:
@@ -586,7 +601,7 @@ def main():
         st.session_state.last_tournament_id = tournament_id
         st.session_state.last_tournament_name = tournament_name
 
-        st.caption("Simulation complete.")
+        st.success("Simulation complete.")
 
         if auto_save:
             settings_payload = {
@@ -629,7 +644,7 @@ def main():
                 predictions=results,
             )
             st.session_state.last_run_record = rec
-            st.caption(f"Saved run: {rec.run_id}")
+            st.info(f"Saved run: {rec.run_id}")
 
     # =========================
     # SHOW LATEST RESULTS + DOWNLOADS + ACTUALS PLACEHOLDER
@@ -661,9 +676,17 @@ def main():
             use_container_width=True,
         )
 
+        # If last run was saved, show one-click downloads for that run
         rec = st.session_state.last_run_record
         if rec is not None:
-            st.caption("Saved run stored on the server.")
+            st.markdown("### Saved run file")
+            with open(rec.predictions_path, "rb") as f:
+                st.download_button(
+                    "Download saved predictions.csv",
+                    f,
+                    file_name=f"{rec.tournament_id}_{rec.run_id}_predictions.csv",
+                    use_container_width=True,
+                )
 
     # =========================
     # LINEUP BUILDER
